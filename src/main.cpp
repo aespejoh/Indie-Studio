@@ -6,8 +6,9 @@
 */
 
 #include "scene.hpp"
+#include "inputHandler.hpp"
 
-int main()
+int openRaylib()
 {
     const int width = 800;
     const int height = 450;
@@ -32,4 +33,13 @@ int main()
         EndDrawing();
     }
     CloseWindow();
+    return 0;
+}
+
+int main()
+{
+    MessageBus bus;
+    InputHandler handler(&bus);
+    handler.update();
+    bus.notify();
 }

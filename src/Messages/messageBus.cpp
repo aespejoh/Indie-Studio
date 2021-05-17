@@ -6,7 +6,7 @@
 */
 #include "Messages/messageBus.hpp"
 
-void MessageBus::addReciever(std::function<void(Msg)> messageReceiver)
+void MessageBus::addReceiver(std::function<void(Msg)> messageReceiver)
 {
     _receivers.push_back(messageReceiver);
 }

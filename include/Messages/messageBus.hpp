@@ -10,6 +10,7 @@
 #include <vector>
 #include <queue>
 #include <functional>
+#include <iostream>
 
 typedef enum {
     OPEN_INVENTORY,
@@ -18,6 +19,7 @@ typedef enum {
 
 class Msg {
     public:
+        explicit Msg(msgType type) : _type(type) {};
         Msg() = default;
         ~Msg() = default;
         void setType(msgType type) {_type = type;};
@@ -29,8 +31,8 @@ class Msg {
 class MessageBus {
     public:
         MessageBus() = default;
-        ~MessageBus() = delete;
-    void addReciever(std::function<void (Msg)> messageReceiver);
+        ~MessageBus() = default;
+    void addReceiver(std::function<void (Msg)> messageReceiver);
     void sendMessage(Msg message);
     void notify();
     private:
