@@ -14,7 +14,8 @@ int main()
     InitWindow(width, height, "\0");
     SetTargetFPS(60);
     Scene main_scene;
-    main_scene.setCameraPosition((Vector3) { 0.0f, 10.0f, 10.0f });
+    Vector3 cam_pos = { 0.0f, 10.0f, 10.0f };
+    main_scene.setCameraPosition(cam_pos);
 
     Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
 

@@ -1,12 +1,11 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.17.5)
 project(indie_studio)
-
 set(CMAKE_CXX_STANDARD 14)
-find_package(raylib 2.5.0 REQUIRED) # Requires at least version 2.5.0
-
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+find_package(raylib REQUIRED)
 add_executable(indie_studio
         src/main.cpp src/scene.cpp include/scene.hpp)
 
-include_directories(include)
+include_directories(./include)
 
 target_link_libraries(indie_studio raylib)
