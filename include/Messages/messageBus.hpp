@@ -11,22 +11,7 @@
 #include <queue>
 #include <functional>
 #include <iostream>
-
-typedef enum {
-    OPEN_INVENTORY,
-    PAUSE_GAME
-}msgType;
-
-class Msg {
-    public:
-        explicit Msg(msgType type) : _type(type) {};
-        Msg() = default;
-        ~Msg() = default;
-        void setType(msgType type) {_type = type;};
-        msgType getType() {return _type;};
-    private:
-        msgType _type;
-};
+#include "msg.hpp"
 
 class MessageBus {
     public:
