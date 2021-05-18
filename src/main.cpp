@@ -6,30 +6,45 @@
 */
 
 #include "scene.hpp"
+#include "InputModule/inputHandler.hpp"
+#include "gameLogic.hpp"
 
-int main()
+int openRaylib(InputHandler handler, GameLogic logic, MessageBus bus)
 {
     const int width = 800;
     const int height = 450;
     InitWindow(width, height, "\0");
     SetTargetFPS(60);
-    Scene main_scene;
-    Vector3 cam_pos = { 0.0f, 10.0f, 10.0f };
-    main_scene.setCameraPosition(cam_pos);
-
-    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+//    Scene main_scene;
+//    Vector3 cam_pos = { 0.0f, 10.0f, 10.0f };
+//    main_scene.setCameraPosition(cam_pos);
+//    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
 
     while (!WindowShouldClose())
     {
+        handler.update();
+        bus.notify();
         BeginDrawing();
         ClearBackground(RAYWHITE);
+        EndDrawing();
+/*
         BeginMode3D(main_scene.getCamera());
         DrawCube(cubePosition, 2, 2, 2, RED);
         DrawCubeWires(cubePosition, 2, 2, 2, MAROON);
         DrawGrid(10, 1);
         DrawFPS(10, 10);
         EndMode3D();
-        EndDrawing();
+*/
     }
     CloseWindow();
+    return 0;
+}
+
+int main()
+{
+
+    MessageBus bus;
+    InputHandler handler(&bus);
+    GameLogic logic(&bus);
+    openRaylib(handler, logic, bus);
 }
