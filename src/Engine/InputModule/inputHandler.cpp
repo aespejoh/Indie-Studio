@@ -18,17 +18,8 @@ void InputHandler::onNotify(Msg message)
 
 void InputHandler::update()
 {
-    int key = GetKeyPressed();
-    while (key > 0) { // Process more than one input on the same frame
-        handleInput(key);
-        key = GetCharPressed();
-    }
-}
-
-void InputHandler::handleInput(int key)
-{
     for (const auto &item : _keyBinds) {
-        if (key == item.first)
+        if (IsKeyDown(item.first))
             send(Msg(item.second));
     }
 }

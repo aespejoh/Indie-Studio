@@ -12,7 +12,6 @@ class InputHandler : public MessageNode {
     public:
         explicit InputHandler(MessageBus* msgBus);
         void update() override;
-        void handleInput(int);
         void addKeybind(int keycode, msgType action);
     private:
         void onNotify(Msg message) override;
