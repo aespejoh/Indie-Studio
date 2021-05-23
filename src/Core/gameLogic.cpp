@@ -4,7 +4,7 @@
 ** File description:
 ** Created by aespejo,
 */
-#include "gameLogic.hpp"
+#include "Core/gameLogic.hpp"
 
 GameLogic::GameLogic(MessageBus *msgBus) : MessageNode(msgBus)
 {
