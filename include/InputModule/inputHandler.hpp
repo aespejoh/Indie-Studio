@@ -13,6 +13,7 @@ class InputHandler : public MessageNode {
         explicit InputHandler(MessageBus* msgBus);
         void update() override;
         void handleInput(int);
+        void addKeybind(int keycode, msgType action);
     private:
         void onNotify(Msg message) override;
         std::vector<std::pair<int, msgType>> _keyBinds;

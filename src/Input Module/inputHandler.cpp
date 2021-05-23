@@ -6,10 +6,10 @@
 
 InputHandler::InputHandler(MessageBus *msgBus) : MessageNode(msgBus)
 {
-    _keyBinds.emplace_back(KEY_A, MOVE_LEFT);
-    _keyBinds.emplace_back(KEY_W, MOVE_UP);
-    _keyBinds.emplace_back(KEY_D, MOVE_RIGHT);
-    _keyBinds.emplace_back(KEY_S, MOVE_DOWN);
+    addKeybind(KEY_A, MOVE_LEFT);
+    addKeybind(KEY_W, MOVE_UP);
+    addKeybind(KEY_D, MOVE_RIGHT);
+    addKeybind(KEY_S, MOVE_DOWN);
 }
 
 void InputHandler::onNotify(Msg message)
@@ -31,4 +31,9 @@ void InputHandler::handleInput(int key)
         if (key == item.first)
             send(Msg(item.second));
     }
+}
+
+void InputHandler::addKeybind(int keycode, msgType action)
+{
+    _keyBinds.emplace_back(keycode, action);
 }
