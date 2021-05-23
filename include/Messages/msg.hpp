@@ -7,14 +7,19 @@
 #ifndef INDIE_STUDIO_MSG_HPP
 #define INDIE_STUDIO_MSG_HPP
 
-typedef enum {
+#include <map>
+#include <iostream>
+#include <string>
+
+enum msgType{
     OPEN_INVENTORY,
     PAUSE_GAME,
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,
     MOVE_RIGHT
-} msgType;
+};
+
 
 class Msg {
     public:
@@ -24,6 +29,7 @@ class Msg {
         msgType getType() {return _type;};
         int getKeyCode() const { return _keyCode;}
         void setKeyCode(int keyCode) { _keyCode = keyCode; };
+        void printType();
 
     private:
         msgType _type;

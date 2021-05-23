@@ -9,12 +9,15 @@
 #include "InputModule/inputHandler.hpp"
 #include "gameLogic.hpp"
 
-int openRaylib(InputHandler handler, GameLogic logic, MessageBus bus)
+int openRaylib()
 {
     const int width = 800;
     const int height = 450;
     InitWindow(width, height, "\0");
     SetTargetFPS(60);
+    MessageBus bus;
+    InputHandler handler(&bus);
+    GameLogic logic(&bus);
 //    Scene main_scene;
 //    Vector3 cam_pos = { 0.0f, 10.0f, 10.0f };
 //    main_scene.setCameraPosition(cam_pos);
@@ -22,6 +25,7 @@ int openRaylib(InputHandler handler, GameLogic logic, MessageBus bus)
 
     while (!WindowShouldClose())
     {
+        logic.update();
         handler.update();
         bus.notify();
         BeginDrawing();
@@ -42,9 +46,6 @@ int openRaylib(InputHandler handler, GameLogic logic, MessageBus bus)
 
 int main()
 {
-
-    MessageBus bus;
-    InputHandler handler(&bus);
-    GameLogic logic(&bus);
-    openRaylib(handler, logic, bus);
+    std::cout << OPEN_INVENTORY;
+    //openRaylib();
 }

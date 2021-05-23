@@ -6,15 +6,15 @@
 
 InputHandler::InputHandler(MessageBus *msgBus) : MessageNode(msgBus)
 {
-    _keyBinds.push_back(std::make_pair(KEY_A, MOVE_LEFT));
-    _keyBinds.push_back(std::make_pair(KEY_W, MOVE_UP));
-    _keyBinds.push_back(std::make_pair(KEY_D, MOVE_RIGHT));
-    _keyBinds.push_back(std::make_pair(KEY_S, MOVE_DOWN));
+    _keyBinds.emplace_back(KEY_A, MOVE_LEFT);
+    _keyBinds.emplace_back(KEY_W, MOVE_UP);
+    _keyBinds.emplace_back(KEY_D, MOVE_RIGHT);
+    _keyBinds.emplace_back(KEY_S, MOVE_DOWN);
 }
 
 void InputHandler::onNotify(Msg message)
 {
-    std::cout << "Input Received" << message.getType() << std::endl;
+    std::cout << "Input Received" << message.printType() << std::endl;
 }
 
 void InputHandler::update()
@@ -29,6 +29,7 @@ void InputHandler::update()
 void InputHandler::handleInput(int key)
 {
     for (const auto &item : _keyBinds) {
-        send(Msg(item.second));
+        if (key == item.first)
+            send(Msg(item.second));
     }
 }

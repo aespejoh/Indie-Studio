@@ -14,7 +14,7 @@ MessageNode::MessageNode(MessageBus *bus) : _bus(bus)
 std::function<void(Msg)> MessageNode::getNotifyFunc()
 {
     auto listener = [=] (Msg message) -> void {
-        onNotify(message);
+        this->onNotify(message);
     };
     return listener;
 }
