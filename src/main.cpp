@@ -46,6 +46,5 @@ int openRaylib()
 
 int main()
 {
-    std::cout << OPEN_INVENTORY;
-    //openRaylib();
+    openRaylib();
 }

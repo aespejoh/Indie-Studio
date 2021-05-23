@@ -11,7 +11,7 @@
 #include <iostream>
 #include <string>
 
-enum msgType{
+enum msgType {
     OPEN_INVENTORY,
     PAUSE_GAME,
     MOVE_UP,
@@ -27,13 +27,10 @@ class Msg {
         ~Msg() = default;
         void setType(msgType type) {_type = type;};
         msgType getType() {return _type;};
-        int getKeyCode() const { return _keyCode;}
-        void setKeyCode(int keyCode) { _keyCode = keyCode; };
         void printType();
 
     private:
         msgType _type;
-        int _keyCode = 0;
 };
 
 #endif //INDIE_STUDIO_MSG_HPP

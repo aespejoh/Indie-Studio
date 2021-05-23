@@ -14,7 +14,6 @@ InputHandler::InputHandler(MessageBus *msgBus) : MessageNode(msgBus)
 
 void InputHandler::onNotify(Msg message)
 {
-    std::cout << "Input Received" << message.printType() << std::endl;
 }
 
 void InputHandler::update()

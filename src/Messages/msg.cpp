@@ -24,5 +24,5 @@ std::ostream &operator<<(std::ostream &os, const msgType msg)
 
 void Msg::printType()
 {
-    std::cout << _type;
+    std::cout << _type << std::endl;
 }
