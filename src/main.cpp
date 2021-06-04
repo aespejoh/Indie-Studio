@@ -19,8 +19,7 @@ int openRaylib()
     InputHandler handler(&bus);
     GameLogic logic(&bus);
     SoundHandler sound(&bus);
-    sound.addSound("hp", "../resources/hp.mp3");
-    sound.addSound("hp2", "../resources/hp2.mp3");
+    sound.addMusic("hp", "../resources/hp2.mp3");
     sound.playMusic("hp");
 
     while (!WindowShouldClose())
