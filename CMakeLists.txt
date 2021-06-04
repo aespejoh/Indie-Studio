@@ -9,10 +9,12 @@ add_executable(bomberman
         src/Engine/InputModule/inputHandler.cpp
         src/Engine/Messages/msg.cpp
         src/Engine/SoundModule/SoundHandler.cpp
+        src/Engine/CameraModule/CameraHandler.cpp
         src/Core/gameLogic.cpp
         include/Engine/Messages/MessageNode.hpp
         include/Engine/Messages/messageBus.hpp
         include/Engine/InputModule/inputHandler.hpp
+        include/Engine/CameraModule/CameraHandler.hpp
         include/Engine/Messages/msg.hpp
         include/Core/gameLogic.hpp
         include/Engine/SoundModule/SoundHandler.hpp)
