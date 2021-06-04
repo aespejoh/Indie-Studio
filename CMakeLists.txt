@@ -4,12 +4,12 @@ set(CMAKE_CXX_STANDARD 14)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 add_executable(bomberman
         src/main.cpp
-        src/Engine/Messages/MessageNode.cpp
+        src/Engine/Messages/MsgNode.cpp
         src/Engine/Messages/messageBus.cpp
         src/Engine/InputModule/inputHandler.cpp
         src/Engine/Messages/msg.cpp
         src/Core/gameLogic.cpp
-        include/Engine/Messages/MessageNode.hpp
+        include/Engine/Messages/MsgNode.hpp
         include/Engine/Messages/messageBus.hpp
         include/Engine/InputModule/inputHandler.hpp
         include/Engine/Messages/msg.hpp
@@ -17,10 +17,20 @@ add_executable(bomberman
         src/Engine/console.cpp
         include/Engine/console.hpp
         src/Engine/Messages/renderModule.cpp
-        src/Engine/Messages/renderModule.hpp
+        include/renderModule.hpp
         src/Engine/Messages/cameraModule.cpp
-        src/Engine/Messages/cameraModule.hpp)
+        include/cameraModule.hpp src/Object.cpp
+        include/Object.hpp
+        src/Engine/RenderComponent.cpp
+        include/Engine/Messages/RenderComponent.hpp
+        src/BaseComponent.cpp
+        include/BaseComponent.hpp
+        include/Engine/Messages/CollisionBox.cpp
+        include/Engine/Messages/CollisionBox.hpp
+        src/SceneManager.cpp
+        src/SceneManager.hpp)
 
 include_directories(./include include/Engine/Messages include/Core include/Engine include/Engine/InputModule)
 find_package(raylib REQUIRED)
 target_link_libraries(bomberman raylib)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})

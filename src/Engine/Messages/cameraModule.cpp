@@ -6,7 +6,7 @@
 */
 #include "cameraModule.hpp"
 
-CameraModule::CameraModule(MessageBus *bus) : MessageNode(bus)
+CameraModule::CameraModule(MessageBus *bus) : MsgNode(bus)
 {
 }
 

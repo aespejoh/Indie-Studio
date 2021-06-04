@@ -7,10 +7,10 @@
 #ifndef INDIE_STUDIO_RENDERMODULE_HPP
 #define INDIE_STUDIO_RENDERMODULE_HPP
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 #include <raylib.h>
 
-class RenderModule : public MessageNode {
+class RenderModule : public MsgNode {
     public:
         explicit RenderModule(MessageBus *bus);
         void update() override;

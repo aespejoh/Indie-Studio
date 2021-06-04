@@ -7,6 +7,8 @@
 
 #include "inputHandler.hpp"
 #include "Core/gameLogic.hpp"
+#include "SceneManager.hpp"
+#include "RenderComponent.hpp"
 
 int openRaylib()
 {
@@ -17,9 +19,14 @@ int openRaylib()
     MessageBus bus;
     InputHandler handler(&bus);
     GameLogic logic(&bus);
-
+    SceneManager sceneManager;
+    Object *currentObj = sceneManager.CreateObject();
+    RenderComponent *renderComponent = new RenderComponent();
+    renderComponent->load_model("resources/Car.obj");
+    currentObj->loadComponent(renderComponent);
     while (!WindowShouldClose())
     {
+
         logic.update();
         handler.update();
         bus.notify();
@@ -35,3 +42,4 @@ int main()
 {
     openRaylib();
 }
+

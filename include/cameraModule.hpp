@@ -7,10 +7,10 @@
 #ifndef INDIE_STUDIO_CAMERAMODULE_HPP
 #define INDIE_STUDIO_CAMERAMODULE_HPP
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 #include "raylib.h"
 
-class CameraModule : public MessageNode{
+class CameraModule : public MsgNode{
     public:
         explicit CameraModule(MessageBus *bus);
         void switchCamera();

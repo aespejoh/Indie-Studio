@@ -7,7 +7,7 @@
 #ifndef INDIE_STUDIO_CONSOLE_HPP
 #define INDIE_STUDIO_CONSOLE_HPP
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 
 class Console {
     public:

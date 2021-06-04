@@ -7,9 +7,9 @@
 #ifndef INDIE_STUDIO_GAMELOGIC_HPP
 #define INDIE_STUDIO_GAMELOGIC_HPP
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 
-class GameLogic : public MessageNode {
+class GameLogic : public MsgNode {
     public:
         explicit GameLogic(MessageBus* msgBus);
         //void update() override;

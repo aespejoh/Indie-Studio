@@ -6,7 +6,7 @@
 */
 #include "renderModule.hpp"
 
-RenderModule::RenderModule(MessageBus *bus) : MessageNode(bus)
+RenderModule::RenderModule(MessageBus *bus) : MsgNode(bus)
 {
 
 }
@@ -28,5 +28,5 @@ void RenderModule::renderMap()
 
 void RenderModule::renderMapTile(Vector3 position)
 {
-    DrawCube(position, 1, 1, 1, )
+    DrawCube(position, 1, 1, 1, BLACK);
 }
