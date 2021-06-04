@@ -8,12 +8,23 @@
 #include <SoundModule/SoundHandler.hpp>
 
 SoundHandler::SoundHandler(MessageBus *msgBus) : MessageNode(msgBus) {
+    InitAudioDevice();
+}
 
+SoundHandler::~SoundHandler() {
+    std::map<std::string, Music>::iterator musicIt;
+    std::map<std::string, Sound>::iterator soundIt;
+
+    CloseAudioDevice();
+    for (musicIt = musicStorage.begin(); musicIt != musicStorage.end(); musicIt++)
+        UnloadMusicStream(musicIt->second);
+    for (soundIt = soundStorage.begin(); soundIt != soundStorage.end(); soundIt++)
+        UnloadSound(soundIt->second);
 }
 
 void SoundHandler::update() {
     std::map<std::string, Music>::iterator it;
-    for (it = soundStorage.begin(); it != soundStorage.end(); it++)
+    for (it = musicStorage.begin(); it != musicStorage.end(); it++)
         UpdateMusicStream(it->second);
     MessageNode::update();
 }
@@ -27,15 +38,31 @@ void SoundHandler::addSound(const std::string& name, const std::string& path) {
     if (!f.good())
         return;
     InitAudioDevice();
-    Music music = LoadMusicStream(path.c_str());
-    soundStorage.insert({name, music});
+    Sound sound = LoadSound(path.c_str());
+    soundStorage.insert({name, sound});
 }
 
-void SoundHandler::play(const std::string& name) {
+void SoundHandler::addMusic(const std::string& name, const std::string& path) {
+    std::ifstream f(path.c_str());
+    if (!f.good())
+        return;
     InitAudioDevice();
-    PlayMusicStream(soundStorage.find(name)->second);
+    Music music = LoadMusicStream(path.c_str());
+    musicStorage.insert({name, music});
 }
 
-void SoundHandler::stop(const std::string& name) {
-    StopMusicStream(soundStorage.find(name)->second);
+void SoundHandler::playSound(const std::string& name) {
+    PlaySound(soundStorage.find(name)->second);
+}
+
+void SoundHandler::playMusic(const std::string& name) {
+    PlayMusicStream(musicStorage.find(name)->second);
+}
+
+void SoundHandler::stopMusic(const std::string& name) {
+    StopMusicStream(musicStorage.find(name)->second);
+}
+
+void SoundHandler::stopSound(const std::string& name) {
+    StopSound(soundStorage.find(name)->second);
 }
