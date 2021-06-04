@@ -8,12 +8,14 @@ add_executable(bomberman
         src/Engine/Messages/messageBus.cpp
         src/Engine/InputModule/inputHandler.cpp
         src/Engine/Messages/msg.cpp
+        src/Engine/SoundModule/SoundHandler.cpp
         src/Core/gameLogic.cpp
         include/Engine/Messages/MessageNode.hpp
         include/Engine/Messages/messageBus.hpp
         include/Engine/InputModule/inputHandler.hpp
         include/Engine/Messages/msg.hpp
-        include/Core/gameLogic.hpp)
+        include/Core/gameLogic.hpp
+        include/Engine/SoundModule/SoundHandler.hpp)
 
 include_directories(./include include/Engine/Messages include/Core include/Engine include/Engine/InputModule)
 find_package(raylib REQUIRED)

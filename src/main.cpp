@@ -7,6 +7,7 @@
 
 #include "inputHandler.hpp"
 #include "Core/gameLogic.hpp"
+#include "SoundModule/SoundHandler.hpp"
 
 int openRaylib()
 {
@@ -17,10 +18,15 @@ int openRaylib()
     MessageBus bus;
     InputHandler handler(&bus);
     GameLogic logic(&bus);
+    SoundHandler sound(&bus);
+    sound.addSound("hp", "../resources/hp.mp3");
+    sound.addSound("hp2", "../resources/hp2.mp3");
+    sound.play("hp");
 
     while (!WindowShouldClose())
     {
         logic.update();
+        sound.update();
         handler.update();
         bus.notify();
         BeginDrawing();
