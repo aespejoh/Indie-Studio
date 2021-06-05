@@ -37,7 +37,6 @@ void SoundHandler::addSound(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())
         return;
-    InitAudioDevice();
     Sound sound = LoadSound(path.c_str());
     soundStorage.insert({name, sound});
 }
@@ -46,7 +45,6 @@ void SoundHandler::addMusic(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())
         return;
-    InitAudioDevice();
     Music music = LoadMusicStream(path.c_str());
     musicStorage.insert({name, music});
 }
