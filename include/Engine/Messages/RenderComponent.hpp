@@ -14,9 +14,12 @@ class RenderComponent : public BaseComponent {
         RenderComponent();
         void load_model(std::string path);
         void load_texture(std::string path);
+        void draw();
+
     private:
         Model _model;
         Texture _texture;
+        Color _color;
 };
 
 #endif //BOMBERMAN_RENDERCOMPONENT_HPP

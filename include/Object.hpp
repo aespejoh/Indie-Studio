@@ -11,12 +11,15 @@
 #include "raylib.h"
 #include <list>
 #include "BaseComponent.hpp"
+#include "MsgNode.hpp"
 
 class Object {
     public:
         explicit Object(int uniqueID);
         int getID();
         void loadComponent(BaseComponent *comp);
+        Vector3 getPosition() {return  _position;};
+        void draw();
     private:
         int ID;
         Vector3 _position;

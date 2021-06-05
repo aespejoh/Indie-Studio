@@ -10,7 +10,17 @@
 #include "raylib.h"
 #include "string"
 
+enum ComponentType {
+    RENDER
+};
+
+class Object;
 class BaseComponent {
+    public:
+        ComponentType getType() {return _type;};
+    protected:
+        Object* _parent_object;
+        ComponentType _type;
 
 };
 

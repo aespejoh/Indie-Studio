@@ -20,3 +20,11 @@ int Object::getID()
 {
     return ID;
 }
+
+void Object::draw()
+{
+    for (const auto &item : _components) {
+        if (item->getType() == RENDER)
+
+    }
+}
