@@ -12,11 +12,11 @@
 
 class CameraHandler : public MessageNode {
     public:
-        CameraHandler();
-        ~CameraHandler();
+        explicit CameraHandler(MessageBus* msgBus);
+        void update() override;
 
-    protected:
-    private:
+private:
+        void onNotify(Msg message) override;
 };
 
 #endif /* !CAMERAHANDLER_HPP_ */

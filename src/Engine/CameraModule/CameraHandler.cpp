@@ -5,12 +5,16 @@
 ** CameraHandler
 */
 
-#include "CameraHandler.hpp"
+#include "CameraModule/CameraHandler.hpp"
 
-CameraHandler::CameraHandler()
-{
+CameraHandler::CameraHandler(MessageBus *msgBus) : MessageNode(msgBus) {
+
 }
 
-CameraHandler::~CameraHandler()
-{
+void CameraHandler::update() {
+    MessageNode::update();
+}
+
+void CameraHandler::onNotify(Msg message) {
+    MessageNode::onNotify(message);
 }
