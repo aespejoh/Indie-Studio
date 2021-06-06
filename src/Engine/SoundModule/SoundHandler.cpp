@@ -44,6 +44,7 @@ void SoundHandler::addSound(const std::string& name, const std::string& path) {
 void SoundHandler::addMusic(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())
+        // TODO: Set return type to right exception
         return;
     Music music = LoadMusicStream(path.c_str());
     musicStorage.insert({name, music});
