@@ -14,7 +14,7 @@ int openRaylib()
 {
     const int width = 800;
     const int height = 450;
-    InitWindow(width, height, "\0");
+    InitWindow(width, height, "Testing Main");
     SetTargetFPS(60);
     MessageBus bus;
     InputHandler handler(&bus);
