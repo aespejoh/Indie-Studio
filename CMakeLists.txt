@@ -11,6 +11,7 @@ add_executable(bomberman
         src/Engine/Messages/msg.cpp
         src/Engine/SoundModule/SoundHandler.cpp
         src/Engine/CameraModule/CameraHandler.cpp
+        src/Engine/MapModule/MapModule.cpp
         src/Core/gameLogic.cpp
         src/Core/Core.cpp
         include/Engine/Messages/MessageNode.hpp
@@ -18,6 +19,7 @@ add_executable(bomberman
         include/Engine/InputModule/inputHandler.hpp
         include/Engine/CameraModule/CameraHandler.hpp
         include/Engine/Messages/msg.hpp
+        include/Engine/MapModule/mapModule.h
         include/Core/gameLogic.hpp
         include/Core/Core.hpp
         include/Engine/SoundModule/SoundHandler.hpp)
