@@ -35,9 +35,9 @@ void Core::setCamera() {
 }
 
 void Core::gameLoop() {
-    sound.playMusic("hp2");
 
     while (status != EXIT) {
+        sound.playMusic("hp2");
         logic.update();
         sound.update();
         handler.update();
