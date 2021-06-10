@@ -12,6 +12,7 @@
 #include <SoundModule/SoundHandler.hpp>
 #include <gameLogic.hpp>
 #include <inputHandler.hpp>
+#include "Menus/Game.hpp"
 #include "raylib.h"
 
 #define FPS 60

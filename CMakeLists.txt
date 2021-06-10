@@ -20,7 +20,8 @@ add_executable(bomberman
         include/Engine/Messages/msg.hpp
         include/Core/gameLogic.hpp
         include/Core/Core.hpp
-        include/Engine/SoundModule/SoundHandler.hpp)
+        src/Core/Menus/Mid.cpp src/Core/Menus/Settings.cpp src/Core/Menus/Game.cpp src/Core/Menus/GameOver.cpp src/Core/Menus/MainMenu.cpp
+        include/Engine/SoundModule/SoundHandler.hpp include/Core/Menus/Mid.hpp include/Core/Menus/Settings.hpp include/Core/Menus/Game.hpp include/Core/Menus/GameOver.hpp include/Core/Menus/MainMenu.hpp src/Core/Parameters.cpp include/Core/Parameters.hpp)
 
 include_directories(./include include/Engine/Messages include/Core include/Engine include/Engine/InputModule)
 find_package(raylib REQUIRED)

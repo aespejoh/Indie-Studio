@@ -14,6 +14,7 @@ Core::Core() : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus)
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
+    Game game(this);
 }
 
 Core::~Core()
