@@ -25,6 +25,6 @@ void Object::draw()
 {
     for (const auto &item : _components) {
         if (item->getType() == RENDER)
-
+            item->draw();
     }
 }

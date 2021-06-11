@@ -18,6 +18,7 @@ class Object;
 class BaseComponent {
     public:
         ComponentType getType() {return _type;};
+        virtual void draw() = 0;
     protected:
         Object* _parent_object;
         ComponentType _type;
