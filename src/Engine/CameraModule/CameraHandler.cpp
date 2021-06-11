@@ -7,17 +7,17 @@
 
 #include "CameraModule/CameraHandler.hpp"
 
-CameraHandler::CameraHandler(MessageBus *msgBus) : MessageNode(msgBus) {
+CameraHandler::CameraHandler(MessageBus *msgBus) : MsgNode(msgBus) {
     Camera camera = { 0 };
     this->camera = camera;
 }
 
 void CameraHandler::update() {
-    MessageNode::update();
+    MsgNode::update();
 }
 
 void CameraHandler::onNotify(Msg message) {
-    MessageNode::onNotify(message);
+    MsgNode::onNotify(message);
 }
 
 void CameraHandler::setFov(float val) {
@@ -25,15 +25,15 @@ void CameraHandler::setFov(float val) {
 }
 
 void CameraHandler::setTarget(float x, float y, float z) {
-    camera.target = (Vector3){x, y, z};
+    camera.target = Vector3{x, y, z};
 }
 
 void CameraHandler::setUp(float x, float y, float z) {
-    camera.up = (Vector3){x, y, z};
+    camera.up = Vector3{x, y, z};
 }
 
 void CameraHandler::setPosition(float x, float y, float z) {
-    camera.position = (Vector3){x, y, z};
+    camera.position = Vector3{x, y, z};
 }
 
 void CameraHandler::setProjection(int mode) {

@@ -13,7 +13,6 @@ add_executable(bomberman
         src/Core/gameLogic.cpp
         include/Engine/Messages/MsgNode.hpp
         src/Core/Core.cpp
-        include/Engine/Messages/MessageNode.hpp
         include/Engine/Messages/messageBus.hpp
         include/Engine/InputModule/inputHandler.hpp
         include/Engine/CameraModule/CameraHandler.hpp
@@ -23,15 +22,12 @@ add_executable(bomberman
         include/Engine/console.hpp
         src/Engine/Messages/renderModule.cpp
         include/Engine/Objects/renderModule.hpp
-        src/Engine/Messages/cameraModule.cpp
-        include/Engine/cameraModule.hpp src/Engine/Objects/Object.cpp
+        src/Engine/Objects/Object.cpp
         include/Engine/Objects/Object.hpp
         src/Engine/Objects/RenderComponent.cpp
         include/Engine/Messages/RenderComponent.hpp
         src/Engine/Objects/BaseComponent.cpp
         include/Engine/Objects/BaseComponent.hpp
-        include/Engine/Messages/CollisionBox.cpp
-        include/Engine/Messages/CollisionBox.hpp
         src/Engine/SceneManager.cpp
         include/Engine/SceneManager.hpp
         include/Core/gameLogic.hpp

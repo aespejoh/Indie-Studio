@@ -44,7 +44,7 @@ void Core::gameLoop() {
         bus.notify();
         BeginDrawing();
         cameraHandler.Begin3DMode();
-        DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
+        DrawCube(Vector3{-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
         cameraHandler.End3DMode();
         EndDrawing();
         if (WindowShouldClose())
