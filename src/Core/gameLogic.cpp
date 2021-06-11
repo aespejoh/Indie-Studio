@@ -6,7 +6,7 @@
 */
 #include "Core/gameLogic.hpp"
 
-GameLogic::GameLogic(MessageBus *msgBus) : MessageNode(msgBus)
+GameLogic::GameLogic(MessageBus *msgBus) : MsgNode(msgBus)
 {
 
 }

@@ -9,9 +9,9 @@
 
 #include "messageBus.hpp"
 
-class MessageNode {
+class MsgNode {
     public:
-        explicit MessageNode(MessageBus *bus);
+        explicit MsgNode(MessageBus *bus);
         virtual void update() {};
     protected:
         std::function<void (Msg)> getNotifyFunc();
