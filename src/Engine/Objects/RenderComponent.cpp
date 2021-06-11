@@ -5,7 +5,7 @@
 ** Created by aespejo,
 */
 #include "RenderComponent.hpp"
-#include "Object.hpp"
+#include "Objects/Object.hpp"
 
 void RenderComponent::load_model(std::string path)
 {

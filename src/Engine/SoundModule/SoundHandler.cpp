@@ -7,7 +7,7 @@
 
 #include <SoundModule/SoundHandler.hpp>
 
-SoundHandler::SoundHandler(MessageBus *msgBus) : MessageNode(msgBus) {
+SoundHandler::SoundHandler(MessageBus *msgBus) : MsgNode(msgBus) {
     InitAudioDevice();
 }
 
@@ -26,11 +26,11 @@ void SoundHandler::update() {
     std::map<std::string, Music>::iterator it;
     for (it = musicStorage.begin(); it != musicStorage.end(); it++)
         UpdateMusicStream(it->second);
-    MessageNode::update();
+    MsgNode::update();
 }
 
 void SoundHandler::onNotify(Msg message) {
-    MessageNode::onNotify(message);
+    MsgNode::onNotify(message);
 }
 
 void SoundHandler::addSound(const std::string& name, const std::string& path) {

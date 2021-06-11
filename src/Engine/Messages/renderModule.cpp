@@ -4,7 +4,7 @@
 ** File description:
 ** Created by aespejo,
 */
-#include "renderModule.hpp"
+#include "Objects/renderModule.hpp"
 
 RenderModule::RenderModule(MessageBus *bus) : MsgNode(bus)
 {

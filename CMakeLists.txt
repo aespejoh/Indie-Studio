@@ -18,18 +18,18 @@ add_executable(bomberman
         src/Engine/console.cpp
         include/Engine/console.hpp
         src/Engine/Messages/renderModule.cpp
-        include/renderModule.hpp
+        include/Engine/Objects/renderModule.hpp
         src/Engine/Messages/cameraModule.cpp
-        include/cameraModule.hpp src/Object.cpp
-        include/Object.hpp
-        src/Engine/RenderComponent.cpp
+        include/Engine/cameraModule.hpp src/Engine/Objects/Object.cpp
+        include/Engine/Objects/Object.hpp
+        src/Engine/Objects/RenderComponent.cpp
         include/Engine/Messages/RenderComponent.hpp
-        src/BaseComponent.cpp
-        include/BaseComponent.hpp
+        src/Engine/Objects/BaseComponent.cpp
+        include/Engine/Objects/BaseComponent.hpp
         include/Engine/Messages/CollisionBox.cpp
         include/Engine/Messages/CollisionBox.hpp
-        src/SceneManager.cpp
-        src/SceneManager.hpp
+        src/Engine/SceneManager.cpp
+        include/Engine/SceneManager.hpp
         include/Core/gameLogic.hpp
         include/Engine/SoundModule/SoundHandler.hpp)
 

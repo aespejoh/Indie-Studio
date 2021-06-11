@@ -7,7 +7,7 @@
 #ifndef BOMBERMAN_COLLISIONBOX_HPP
 #define BOMBERMAN_COLLISIONBOX_HPP
 
-#include "BaseComponent.hpp"
+#include "Objects/BaseComponent.hpp"
 
 class CollisionBox : public BaseComponent {
 

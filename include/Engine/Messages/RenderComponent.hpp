@@ -7,7 +7,7 @@
 #ifndef BOMBERMAN_RENDERCOMPONENT_HPP
 #define BOMBERMAN_RENDERCOMPONENT_HPP
 
-#include "BaseComponent.hpp"
+#include "Objects/BaseComponent.hpp"
 
 class RenderComponent : public BaseComponent {
     public:

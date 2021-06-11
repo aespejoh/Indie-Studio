@@ -5,7 +5,7 @@
 ** Created by aespejo,
 */
 
-#include "Object.hpp"
+#include "Objects/Object.hpp"
 
 Object::Object(int uniqueID) : ID(uniqueID)
 {
