@@ -8,12 +8,9 @@
 #ifndef CORE_HPP_
 #define CORE_HPP_
 
-#include <CameraModule/CameraHandler.hpp>
-#include <SoundModule/SoundHandler.hpp>
-#include <gameLogic.hpp>
-#include <inputHandler.hpp>
 #include "Menus/Game.hpp"
-#include "raylib.h"
+#include "Menus/MainMenu.hpp"
+#include "Parameters.hpp"
 
 #define FPS 60
 #define WIDTH 800
@@ -33,6 +30,7 @@ class Core {
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
+        MainMenu mainMenu;
         enum Menu {
                 MAIN = 0,
                 MID,

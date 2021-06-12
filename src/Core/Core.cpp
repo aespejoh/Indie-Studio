@@ -7,14 +7,23 @@
 
 #include "Core.hpp"
 
-Core::Core() : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus)
-{
+Core::Core()
+        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus),
+          mainMenu(Parameters(cameraHandler, handler, logic, sound)) {
     InitWindow(WIDTH, HEIGHT, "\0");
     SetTargetFPS(FPS);
     loadMusicAndSounds();
     setCamera();
+    //Parameters parameters(cameraHandler, handler, logic, sound);
+    mainMenu.setSound(sound);
+    mainMenu.setCameraHandler(cameraHandler);
+    mainMenu.setHandler(handler);
+    mainMenu.setLogic(logic);
+    mainMenu.setBus(bus);
     status = MAIN;
-    Game game(this);
+    //Game game(parameters);
+    //MainMenu _mainMenu(parameters);
+    //this->mainMenu = _mainMenu;
 }
 
 Core::~Core()
@@ -39,6 +48,7 @@ void Core::gameLoop() {
 
     while (status != EXIT) {
         sound.playMusic("hp2");
+        //mainMenu.menu();
         logic.update();
         sound.update();
         handler.update();
