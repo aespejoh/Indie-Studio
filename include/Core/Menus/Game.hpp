@@ -8,16 +8,14 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
-#include "Core.hpp"
+#include "Parameters.hpp"
 
 class Game {
     public:
-        Game(Core *core);
-
-
-    ~Game();
-
+        Game(Parameters &parameters);
+        ~Game();
     private:
+        Parameters parameters;
 };
 
 #endif /* !GAME_HPP_ */
