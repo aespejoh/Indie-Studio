@@ -13,8 +13,8 @@
 #include "Parameters.hpp"
 
 #define FPS 60
-#define WIDTH 800
-#define HEIGHT 450
+#define WIDTH 1000
+#define HEIGHT 750
 
 class Core {
     public:
@@ -30,15 +30,7 @@ class Core {
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
-        MainMenu mainMenu;
-        enum Menu {
-                MAIN = 0,
-                MID,
-                GAME,
-                GAME_OVER,
-                EXIT,
-                SETTINGS
-            };
+        //MainMenu mainMenu;
         Menu status;
 };
 

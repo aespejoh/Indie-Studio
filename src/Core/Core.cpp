@@ -8,18 +8,17 @@
 #include "Core.hpp"
 
 Core::Core()
-        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus),
-          mainMenu(Parameters(cameraHandler, handler, logic, sound)) {
+        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
     InitWindow(WIDTH, HEIGHT, "\0");
     SetTargetFPS(FPS);
     loadMusicAndSounds();
     setCamera();
     //Parameters parameters(cameraHandler, handler, logic, sound);
-    mainMenu.setSound(sound);
-    mainMenu.setCameraHandler(cameraHandler);
-    mainMenu.setHandler(handler);
-    mainMenu.setLogic(logic);
-    mainMenu.setBus(bus);
+    //mainMenu.setSound(sound);
+    //mainMenu.setCameraHandler(cameraHandler);
+    //mainMenu.setHandler(handler);
+    //mainMenu.setLogic(logic);
+    //mainMenu.setBus(bus);
     status = MAIN;
     //Game game(parameters);
     //MainMenu _mainMenu(parameters);
@@ -32,8 +31,9 @@ Core::~Core()
 }
 
 void Core::loadMusicAndSounds() {
-    sound.addMusic("hp2", "resources/hp2.mp3");
-    sound.addMusic("hp", "resources/hp.mp3");
+    sound.addMusic("hp2", "../../resources/hp2.mp3");
+    sound.addMusic("hp", "../../resources/hp.mp3");
+    sound.addSound("button", "resource/buttons/button.mp3");
 }
 
 void Core::setCamera() {
@@ -44,12 +44,16 @@ void Core::setCamera() {
     cameraHandler.setProjection(CAMERA_PERSPECTIVE);
 }
 
-void Core::gameLoop() {
-
+void Core::gameLoop()
+{
+    //sound.playMusic("hp2");
+    //sound.playSound("button");
+    MainMenu mainMenu(Parameters(cameraHandler, handler, logic, sound));
+    mainMenu.setBus(bus);
     while (status != EXIT) {
-        sound.playMusic("hp2");
-        //mainMenu.menu();
-        logic.update();
+        //sound.playMusic("hp2");
+        status = mainMenu.menu();
+        /*logic.update();
         sound.update();
         handler.update();
         bus.notify();
@@ -57,9 +61,10 @@ void Core::gameLoop() {
         cameraHandler.Begin3DMode();
         DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
         cameraHandler.End3DMode();
-        EndDrawing();
+        EndDrawing();*/
         if (WindowShouldClose())
             status = EXIT;
     }
+    CloseAudioDevice();
     CloseWindow();
 }
