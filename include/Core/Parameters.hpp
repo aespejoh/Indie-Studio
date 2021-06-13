@@ -13,6 +13,7 @@
 #include <gameLogic.hpp>
 #include <inputHandler.hpp>
 #include "raylib.h"
+#include "Menus.hpp"
 
 class Parameters {
     public:
