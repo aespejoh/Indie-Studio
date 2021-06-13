@@ -15,7 +15,7 @@ class Parameters {
         int getFps() const;
         void setFps(int fps);
 
-private:
+    private:
         int fps;
 
 };

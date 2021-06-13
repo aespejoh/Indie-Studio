@@ -7,7 +7,7 @@
 
 #include "Menus/Game.hpp"
 
-Game::Game(Core *core)
+Game::Game()
 {
 
 }

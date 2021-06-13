@@ -8,13 +8,16 @@
 #ifndef MAINMENU_HPP_
 #define MAINMENU_HPP_
 
+#include <Core.hpp>
+
 class MainMenu {
     public:
-        MainMenu();
+        MainMenu(Core *core);
         ~MainMenu();
+        int display();
 
-    protected:
     private:
+        Core *core;
 };
 
 #endif /* !MAINMENU_HPP_ */

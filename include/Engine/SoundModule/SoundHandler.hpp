@@ -19,7 +19,7 @@ class SoundHandler : public MsgNode {
         void update() override;
         void addSound(const std::string& name, const std::string& path);
         void addMusic(const std::string& name, const std::string& path);
-        void playMusic(const std::string &name);
+        void playMusic(const std::string &name) const;
         void playSound(const std::string &name);
         void stopMusic(const std::string& name);
         void stopSound(const std::string& name);

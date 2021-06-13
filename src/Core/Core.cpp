@@ -5,6 +5,7 @@
 ** Core
 */
 
+#include <Menus/MainMenu.hpp>
 #include "Core.hpp"
 
 Core::Core() : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus)
@@ -14,7 +15,7 @@ Core::Core() : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus)
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
-    Game game(this);
+    MainMenu mainMenu(this);
 }
 
 Core::~Core()
@@ -38,7 +39,10 @@ void Core::setCamera() {
 void Core::gameLoop() {
 
     while (status != EXIT) {
-        sound.playMusic("hp2");
+        switch (status) {
+            case MAIN:
+                status =
+        }
         logic.update();
         sound.update();
         handler.update();
@@ -52,4 +56,8 @@ void Core::gameLoop() {
             status = EXIT;
     }
     CloseWindow();
+}
+
+const SoundHandler &Core::getSound() const {
+    return sound;
 }

@@ -14,10 +14,20 @@
 #include <inputHandler.hpp>
 #include "Menus/Game.hpp"
 #include "raylib.h"
+#include <Menus/MainMenu.hpp>
 
 #define FPS 60
 #define WIDTH 800
 #define HEIGHT 450
+
+enum Menu {
+    MAIN = 0,
+    MID,
+    GAME,
+    GAME_OVER,
+    EXIT,
+    SETTINGS
+};
 
 class Core {
     public:
@@ -26,6 +36,7 @@ class Core {
         void gameLoop();
         void loadMusicAndSounds();
         void setCamera();
+        const SoundHandler &getSound() const;
 
     private:
         MessageBus bus;
@@ -33,15 +44,10 @@ class Core {
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
-        enum Menu {
-                MAIN = 0,
-                MID,
-                GAME,
-                GAME_OVER,
-                EXIT,
-                SETTINGS
-            };
         Menu status;
+
+    private:
+        MainMenu mainMenu;
 };
 
 #endif /* !CORE_HPP_ */

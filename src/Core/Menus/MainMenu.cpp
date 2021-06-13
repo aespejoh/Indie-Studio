@@ -7,10 +7,16 @@
 
 #include "Menus/MainMenu.hpp"
 
-MainMenu::MainMenu()
+MainMenu::MainMenu(Core *core)
 {
+    this->core = core;
 }
 
 MainMenu::~MainMenu()
 {
+}
+
+int MainMenu::display() {
+    core->getSound().playMusic("hp2");
+    return MAIN;
 }
