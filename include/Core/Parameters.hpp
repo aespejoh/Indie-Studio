@@ -12,9 +12,12 @@ class Parameters {
     public:
         Parameters();
         ~Parameters();
+        int getFps() const;
+        void setFps(int fps);
 
-    protected:
-    private:
+private:
+        int fps;
+
 };
 
 #endif /* !PARAMETERS_HPP_ */

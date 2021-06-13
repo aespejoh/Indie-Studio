@@ -9,8 +9,17 @@
 
 Parameters::Parameters()
 {
+    fps = 60;
 }
 
 Parameters::~Parameters()
 {
+}
+
+int Parameters::getFps() const {
+    return fps;
+}
+
+void Parameters::setFps(int fps) {
+    this->fps = fps;
 }
