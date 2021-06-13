@@ -5,10 +5,10 @@
 #ifndef INDIE_STUDIO_INPUTHANDLER_HPP
 #define INDIE_STUDIO_INPUTHANDLER_HPP
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 #include <raylib.h>
 
-class InputHandler : public MessageNode {
+class InputHandler : public MsgNode {
     public:
         explicit InputHandler(MessageBus* msgBus);
         void update() override;

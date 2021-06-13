@@ -10,9 +10,9 @@
 
 #include <raylib.h>
 #include <fstream>
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 
-class SoundHandler : public MessageNode {
+class SoundHandler : public MsgNode {
     public:
         explicit SoundHandler(MessageBus* msgBus);
         ~SoundHandler();
