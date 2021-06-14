@@ -13,6 +13,8 @@
 class SceneManager {
     public:
         Object *CreateObject();
+        const std::map<int, Object *> &getObjects() const;
+
     protected:
         std::map<int, Object*> _objects;
         int _objectID_count;

@@ -9,13 +9,16 @@
 #define GAME_HPP_
 
 #include "Core.hpp"
+#include "RenderComponent.hpp"
 
 class Game {
     public:
-        Game(Core *core);
+        explicit Game(Core *core);
         ~Game();
+        Menu menu();
     private:
-        Core *core;
+        SceneManager _scene;
+        Core *_core;
 };
 
 #endif /* !GAME_HPP_ */

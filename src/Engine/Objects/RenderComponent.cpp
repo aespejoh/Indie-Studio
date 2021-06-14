@@ -18,13 +18,14 @@ void RenderComponent::load_texture(std::string path)
     _texture = LoadTexture(path.c_str());
 }
 
-RenderComponent::RenderComponent()
+RenderComponent::RenderComponent(Object *parent)
 {
+    _parent_object = parent;
     _color = WHITE;
     _type = RENDER;
 }
 
 void RenderComponent::draw()
 {
-    DrawModel(_model, _parent_object->getPosition(), 1.0f, _color);
+    DrawModel(_model, _parent_object->getPosition(), 0.005f, _color);
 }

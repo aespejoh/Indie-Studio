@@ -12,3 +12,8 @@ Object *SceneManager::CreateObject()
     _objects.insert(std::make_pair(new_object->getID(), new_object));
     return new_object;
 }
+
+const std::map<int, Object *> &SceneManager::getObjects() const
+{
+    return _objects;
+}

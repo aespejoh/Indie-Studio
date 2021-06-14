@@ -53,14 +53,18 @@ void Core::gameLoop()
     //sound.playSound("button");
     MainMenu mainMenu(this);
     Mid midMenu(this);
+    Game game(this);
     sound.playMusic("hp");
     while (status != EXIT) {
-        if (status == MAIN)
+        cameraHandler.Begin3DMode();
+        status = game.menu();
+        cameraHandler.End3DMode();
+        /*if (status == MAIN)
             status = mainMenu.menu();
         else if (status == MID)
             status = midMenu.menu();
         else
-            status = mainMenu.menu();
+            status = mainMenu.menu();*/
         //sound.playMusic("hp2");
         //status = mainMenu.menu();
         /*logic.update();

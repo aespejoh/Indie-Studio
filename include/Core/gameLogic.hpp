@@ -8,6 +8,7 @@
 #define INDIE_STUDIO_GAMELOGIC_HPP
 
 #include "MsgNode.hpp"
+#include "SceneManager.hpp"
 
 class GameLogic : public MsgNode {
     public:

@@ -11,10 +11,10 @@
 
 class RenderComponent : public BaseComponent {
     public:
-        RenderComponent();
-        void load_model(std::string path);
+        explicit RenderComponent(Object* parent);
         void load_texture(std::string path);
-        void draw();
+        void load_model(std::string path);
+        void draw() override;
 
     private:
         Model _model;

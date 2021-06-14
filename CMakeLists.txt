@@ -46,6 +46,6 @@ add_executable(bomberman
         include/Engine/SceneManager.hpp
         )
 include_directories(./include include/Engine/Messages include/Core
-        include/Engine include/Engine/InputModule include/Core/Menus)
+        include/Engine include/Engine/InputModule include/Core/Menus include/Engine/Objects)
 find_package(raylib REQUIRED)
 target_link_libraries(bomberman raylib)
