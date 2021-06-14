@@ -25,6 +25,8 @@ Menu Mid::menu()
 
     BoundingBox bounds = GetMeshBoundingBox(model.meshes[0]);  // Set model
     // bounds
+    if (core == nullptr)
+        exit(84);
     //core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
