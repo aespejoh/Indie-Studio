@@ -11,15 +11,17 @@ SoundHandler::SoundHandler(MessageBus *msgBus) : MsgNode(msgBus) {
     InitAudioDevice();
 }
 
-SoundHandler::~SoundHandler() {
-    std::map<std::string, Music>::iterator musicIt;
-    std::map<std::string, Sound>::iterator soundIt;
-
+SoundHandler::~SoundHandler()
+{
     CloseAudioDevice();
-    for (musicIt = musicStorage.begin(); musicIt != musicStorage.end(); musicIt++)
-        UnloadMusicStream(musicIt->second);
-    for (soundIt = soundStorage.begin(); soundIt != soundStorage.end(); soundIt++)
-        UnloadSound(soundIt->second);
+    if (!musicStorage.empty()) {
+        for (const auto &item : musicStorage)
+            UnloadMusicStream(item.second);
+    }
+    if (!soundStorage.empty()) {
+        for (const auto &item : soundStorage)
+            UnloadSound(item.second);
+    }
 }
 
 void SoundHandler::update() {
