@@ -8,10 +8,12 @@
 #ifndef CORE_HPP_
 #define CORE_HPP_
 
-#include "Menus/Game.hpp"
-#include "Menus/MainMenu.hpp"
-#include "Menus/Mid.hpp"
-#include "Parameters.hpp"
+#include <CameraModule/CameraHandler.hpp>
+#include <SoundModule/SoundHandler.hpp>
+#include <gameLogic.hpp>
+#include <inputHandler.hpp>
+#include "Menus.hpp"
+#include "raylib.h"
 
 #define FPS 60
 #define WIDTH 1000
@@ -24,8 +26,13 @@ class Core {
         void gameLoop();
         void loadMusicAndSounds();
         void setCamera();
+        MessageBus getBus();
+        SoundHandler &getSound();
+        InputHandler &getHandler();
+        GameLogic &getLogic();
+        CameraHandler &getCameraHandler();
 
-    private:
+private:
         MessageBus bus;
         SoundHandler sound;
         InputHandler handler;

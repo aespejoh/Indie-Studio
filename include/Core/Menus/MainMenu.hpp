@@ -8,7 +8,7 @@
 #ifndef MAINMENU_HPP_
 #define MAINMENU_HPP_
 
-#include "Parameters.hpp"
+#include "Core.hpp"
 
 #define WIDTH 1000
 #define HEIGHT 750
@@ -16,10 +16,9 @@
 
 class MainMenu {
     public:
-        explicit MainMenu(const Parameters& parameters);
+        explicit MainMenu(Core *core);
         ~MainMenu();
         Menu menu();
-        void setBus(const MessageBus &bus);
         void loadTextures();
         void drawings();
         void initInfo();
@@ -28,7 +27,7 @@ class MainMenu {
         void exitMouseCheck();
 
     private:
-        Parameters parameters;
+        Core *core;
         Texture2D background;
         Texture2D playButton;
         Texture2D optionsButton;

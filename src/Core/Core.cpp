@@ -5,6 +5,9 @@
 ** Core
 */
 
+#include "Menus/MainMenu.hpp"
+#include "Menus/Mid.hpp"
+#include "Menus/Game.hpp"
 #include "Core.hpp"
 
 Core::Core()
@@ -48,10 +51,9 @@ void Core::gameLoop()
 {
     //sound.playMusic("hp2");
     //sound.playSound("button");
-    MainMenu mainMenu(Parameters(cameraHandler, handler, logic, sound));
-    Mid midMenu(Parameters(cameraHandler, handler, logic, sound));
-    mainMenu.setBus(bus);
-    midMenu.setBus(bus);
+    MainMenu mainMenu(this);
+    Mid midMenu(this);
+    sound.playMusic("hp");
     while (status != EXIT) {
         if (status == MAIN)
             status = mainMenu.menu();
@@ -75,4 +77,24 @@ void Core::gameLoop()
     }
     CloseAudioDevice();
     CloseWindow();
+}
+
+MessageBus Core::getBus() {
+    return bus;
+}
+
+SoundHandler &Core::getSound() {
+    return sound;
+}
+
+InputHandler &Core::getHandler() {
+    return handler;
+}
+
+GameLogic &Core::getLogic() {
+    return logic;
+}
+
+CameraHandler &Core::getCameraHandler() {
+    return cameraHandler;
 }

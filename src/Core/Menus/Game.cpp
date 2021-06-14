@@ -7,8 +7,7 @@
 
 #include "Menus/Game.hpp"
 
-Game::Game(Parameters &parameters)
-        : parameters(parameters) {
+Game::Game(Core *core){
 }
 
 Game::~Game()

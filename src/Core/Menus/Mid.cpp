@@ -7,7 +7,7 @@
 
 #include "Menus/Mid.hpp"
 
-Mid::Mid(const Parameters &parameters) : parameters(parameters)
+Mid::Mid(Core *core)
 {
 }
 
@@ -25,21 +25,16 @@ Menu Mid::menu()
 
     BoundingBox bounds = GetMeshBoundingBox(model.meshes[0]);  // Set model
     // bounds
-    parameters.getSound().playMusic("hp");
-    parameters.getLogic().update();
-    parameters.getSound().update();
-    parameters.getHandler().update();
-    parameters.getBus().notify();
+    //core->getSound().playMusic("hp");
+    core->getLogic().update();
+    core->getSound().update();
+    core->getHandler().update();
+    core->getBus().notify();
     BeginDrawing();
-    parameters.getCameraHandler().Begin3DMode();
+    core->getCameraHandler().Begin3DMode();
     DrawModel(model, position, 0.05f, WHITE);
     DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-    parameters.getCameraHandler().End3DMode();
+    core->getCameraHandler().End3DMode();
     EndDrawing();
     return MID;
-}
-
-void Mid::setBus(const MessageBus &bus)
-{
-    parameters.setBus(bus);
 }
