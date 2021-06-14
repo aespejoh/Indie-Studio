@@ -52,6 +52,8 @@ Menu MainMenu::menu()
 
     if (exitAction)
         return EXIT;
+    if (playAction)
+        return MID;
     return MAIN;
 }
 

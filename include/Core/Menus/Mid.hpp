@@ -8,13 +8,16 @@
 #ifndef MID_HPP_
 #define MID_HPP_
 
+#include "Parameters.hpp"
+
 class Mid {
     public:
-        Mid();
+        explicit Mid(const Parameters& parameters);
         ~Mid();
-
-    protected:
+        Menu menu();
+        void setBus(const MessageBus &bus);
     private:
+        Parameters parameters;
 };
 
 #endif /* !MID_HPP_ */

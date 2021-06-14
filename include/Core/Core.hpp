@@ -10,6 +10,7 @@
 
 #include "Menus/Game.hpp"
 #include "Menus/MainMenu.hpp"
+#include "Menus/Mid.hpp"
 #include "Parameters.hpp"
 
 #define FPS 60

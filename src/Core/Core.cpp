@@ -31,8 +31,8 @@ Core::~Core()
 }
 
 void Core::loadMusicAndSounds() {
-    sound.addMusic("hp2", "../../resources/hp2.mp3");
-    sound.addMusic("hp", "../../resources/hp.mp3");
+    sound.addMusic("hp2", "resources/hp2.mp3");
+    sound.addMusic("hp", "resources/hp.mp3");
     sound.addSound("button", "resource/buttons/button.mp3");
 }
 
@@ -49,10 +49,18 @@ void Core::gameLoop()
     //sound.playMusic("hp2");
     //sound.playSound("button");
     MainMenu mainMenu(Parameters(cameraHandler, handler, logic, sound));
+    Mid midMenu(Parameters(cameraHandler, handler, logic, sound));
     mainMenu.setBus(bus);
+    midMenu.setBus(bus);
     while (status != EXIT) {
+        if (status == MAIN)
+            status = mainMenu.menu();
+        else if (status == MID)
+            status = midMenu.menu();
+        else
+            status = mainMenu.menu();
         //sound.playMusic("hp2");
-        status = mainMenu.menu();
+        //status = mainMenu.menu();
         /*logic.update();
         sound.update();
         handler.update();
