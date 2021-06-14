@@ -38,7 +38,7 @@ void MainMenu::loadTextures()
 
 Menu MainMenu::menu()
 {
-    //core->getSound().playMusic("hp");
+    core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
@@ -111,8 +111,8 @@ void MainMenu::playMouseCheck()
     }
     else playState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (playAction)
+        core->getSound().playSound("button");
     playSourceRec.y = playState * playFrameHeight;
 }
 
@@ -129,8 +129,8 @@ void MainMenu::optionsMouseCheck()
     }
     else optionsState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (optionsAction)
+       core->getSound().playSound("button");
     optionsSourceRec.y = optionsState * optionsFrameHeight;
 }
 
@@ -147,7 +147,7 @@ void MainMenu::exitMouseCheck()
     }
     else exitState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (exitAction)
+        core->getSound().playSound("button");
     exitSourceRec.y = exitState * exitFrameHeight;
 }
