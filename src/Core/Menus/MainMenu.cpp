@@ -10,6 +10,8 @@
 MainMenu::MainMenu(Core *core)
 {
     this->core = core;
+    loadTextures();
+    initInfo();
 }
 
 MainMenu::~MainMenu()
@@ -36,7 +38,6 @@ void MainMenu::loadTextures()
 
 Menu MainMenu::menu()
 {
-    loadTextures();
     //core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
@@ -45,7 +46,6 @@ Menu MainMenu::menu()
 
     mousePoint = GetMousePosition();
 
-    initInfo();
     playMouseCheck();
     optionsMouseCheck();
     exitMouseCheck();
