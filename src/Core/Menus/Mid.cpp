@@ -9,6 +9,7 @@
 
 Mid::Mid(Core *core)
 {
+    this->core = core;
 }
 
 Mid::~Mid()
