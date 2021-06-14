@@ -13,7 +13,9 @@ Game::Game(Core *core)  : _core(core)
     RenderComponent* renderComponent = new RenderComponent(player);
     renderComponent->load_texture("resources/bomberman/body.png");
     renderComponent->load_model("resources/bomberman/Bomberman.obj");
+    renderComponent->setScale(0.075f);
     player->loadComponent(renderComponent);
+    core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
 }
 
 Game::~Game()

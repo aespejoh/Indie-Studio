@@ -23,9 +23,20 @@ RenderComponent::RenderComponent(Object *parent)
     _parent_object = parent;
     _color = WHITE;
     _type = RENDER;
+    _scale = 0;
 }
 
 void RenderComponent::draw()
 {
-    DrawModel(_model, _parent_object->getPosition(), 0.005f, _color);
+    DrawModel(_model, _parent_object->getPosition(), _scale, _color);
+}
+
+float RenderComponent::getScale() const
+{
+    return _scale;
+}
+
+void RenderComponent::setScale(float scale)
+{
+    _scale = scale;
 }

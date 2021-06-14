@@ -57,10 +57,10 @@ void Core::gameLoop()
     Game game(this);
     sound.playMusic("hp");
     while (status != EXIT) {
-        cameraHandler.Begin3DMode();
-        status = game.menu();
-        cameraHandler.End3DMode();
-        /*
+//        cameraHandler.Begin3DMode();
+//        status = game.menu();
+//        cameraHandler.End3DMode();
+//
         switch (status) {
             case MAIN:
                 status = mainMenu.menu();
@@ -72,6 +72,7 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
         }
+        /*
         if (status == MAIN)
             status = mainMenu.menu();
         else if (status == MID)
