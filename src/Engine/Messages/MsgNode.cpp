@@ -4,14 +4,14 @@
 ** File description:
 ** Created by aespejo,
 */
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 
-MessageNode::MessageNode(MessageBus *bus) : _bus(bus)
+MsgNode::MsgNode(MessageBus *bus) : _bus(bus)
 {
     _bus->addReceiver(getNotifyFunc());
 }
 
-std::function<void(Msg)> MessageNode::getNotifyFunc()
+std::function<void(Msg)> MsgNode::getNotifyFunc()
 {
     auto listener = [=] (Msg message) -> void {
         this->onNotify(message);
@@ -19,12 +19,12 @@ std::function<void(Msg)> MessageNode::getNotifyFunc()
     return listener;
 }
 
-void MessageNode::onNotify(Msg message)
+void MsgNode::onNotify(Msg message)
 {
     std::cout << "onNotifyNotImplemented";
 }
 
-void MessageNode::send(Msg message)
+void MsgNode::send(Msg message)
 {
     _bus->sendMessage(message);
 }

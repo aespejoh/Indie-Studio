@@ -4,7 +4,7 @@
 
 #include "InputModule/inputHandler.hpp"
 
-InputHandler::InputHandler(MessageBus *msgBus) : MessageNode(msgBus)
+InputHandler::InputHandler(MessageBus *msgBus) : MsgNode(msgBus)
 {
     addKeybind(KEY_A, MOVE_LEFT);
     addKeybind(KEY_W, MOVE_UP);

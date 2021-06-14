@@ -10,16 +10,16 @@
 
 #include <raylib.h>
 #include <fstream>
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 
-class SoundHandler : public MessageNode {
+class SoundHandler : public MsgNode {
     public:
         explicit SoundHandler(MessageBus* msgBus);
         ~SoundHandler();
         void update() override;
         void addSound(const std::string& name, const std::string& path);
         void addMusic(const std::string& name, const std::string& path);
-        void playMusic(const std::string &name);
+        void playMusic(const std::string &name) const;
         void playSound(const std::string &name);
         void stopMusic(const std::string& name);
         void stopSound(const std::string& name);

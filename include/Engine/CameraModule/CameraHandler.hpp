@@ -8,10 +8,10 @@
 #ifndef CAMERAHANDLER_HPP_
 #define CAMERAHANDLER_HPP_
 
-#include "MessageNode.hpp"
+#include "MsgNode.hpp"
 #include <raylib.h>
 
-class CameraHandler : public MessageNode {
+class CameraHandler : public MsgNode {
     public:
         explicit CameraHandler(MessageBus* msgBus);
         void update() override;
