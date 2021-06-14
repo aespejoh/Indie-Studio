@@ -4,7 +4,7 @@
 ** File description:
 ** Created by aespejo,
 */
-#include "RenderComponent.hpp"
+#include "Engine/Objects/RenderComponent.hpp"
 #include "Objects/Object.hpp"
 
 void RenderComponent::load_model(std::string path)
