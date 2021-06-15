@@ -10,6 +10,7 @@
 
 #include "Core.hpp"
 #include "RenderComponent.hpp"
+#include "Player.hpp"
 
 class Game {
     public:
@@ -17,6 +18,7 @@ class Game {
         ~Game();
         Menu menu();
     private:
+        std::vector<Player*> _players;
         SceneManager _scene;
         Core *_core;
 };

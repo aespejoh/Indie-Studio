@@ -13,5 +13,8 @@ GameLogic::GameLogic(MessageBus *msgBus) : MsgNode(msgBus)
 
 void GameLogic::onNotify(Msg message)
 {
-    message.printType();
+    switch (msgType) {
+    case MOVE_UP:
+
+    }
 }

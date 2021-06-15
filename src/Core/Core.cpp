@@ -57,10 +57,8 @@ void Core::gameLoop()
     Game game(this);
     sound.playMusic("hp");
     while (status != EXIT) {
-//        cameraHandler.Begin3DMode();
-//        status = game.menu();
-//        cameraHandler.End3DMode();
-//
+        status = game.menu();
+        /*
         switch (status) {
             case MAIN:
                 status = mainMenu.menu();
@@ -72,16 +70,15 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
         }
-        /*
         if (status == MAIN)
             status = mainMenu.menu();
         else if (status == MID)
             status = midMenu.menu();
         else
             status = mainMenu.menu();
-        //sound.playMusic("hp2");
-        //status = mainMenu.menu();
-        /*logic.update();
+        sound.playMusic("hp2");
+        status = mainMenu.menu();
+        logic.update();
         sound.update();
         handler.update();
         bus.notify();
@@ -89,7 +86,8 @@ void Core::gameLoop()
         cameraHandler.Begin3DMode();
         DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
         cameraHandler.End3DMode();
-        EndDrawing();*/
+        EndDrawing();
+        */
         if (WindowShouldClose())
             status = EXIT;
     }
