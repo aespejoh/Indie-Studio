@@ -16,7 +16,7 @@ Game::~Game()
 {
 }
 
-void Game::menu() {
+Menu Game::menu() {
 
 }
 
