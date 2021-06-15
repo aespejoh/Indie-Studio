@@ -7,9 +7,16 @@
 
 #include "Menus/Game.hpp"
 
-Game::Game(Core *core){
+Game::Game(Core *core)
+{
+
 }
 
 Game::~Game()
 {
 }
+
+void Game::menu() {
+
+}
+
