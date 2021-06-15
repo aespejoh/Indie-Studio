@@ -16,16 +16,7 @@ Core::Core()
     SetTargetFPS(FPS);
     loadMusicAndSounds();
     setCamera();
-    //Parameters parameters(cameraHandler, handler, logic, sound);
-    //mainMenu.setSound(sound);
-    //mainMenu.setCameraHandler(cameraHandler);
-    //mainMenu.setHandler(handler);
-    //mainMenu.setLogic(logic);
-    //mainMenu.setBus(bus);
     status = MAIN;
-    //Game game(parameters);
-    //MainMenu _mainMenu(parameters);
-    //this->mainMenu = _mainMenu;
 }
 
 Core::~Core()
@@ -53,14 +44,29 @@ void Core::gameLoop()
     //sound.playSound("button");
     MainMenu mainMenu(this);
     Mid midMenu(this);
-    sound.playMusic("hp");
+    Game game(this);
+    //sound.playMusic("hp");
     while (status != EXIT) {
-        if (status == MAIN)
+        switch (status) {
+            case MAIN:
+                status = mainMenu.menu();
+                break;
+            case GAME:
+                status = mainMenu.menu();
+                break;
+            case MID:
+                status = midMenu.menu();
+                break;
+            default:
+                status = mainMenu.menu();
+                break;
+        }
+        /*if (status == MAIN)
             status = mainMenu.menu();
         else if (status == MID)
             status = midMenu.menu();
         else
-            status = mainMenu.menu();
+            status = mainMenu.menu();*/
         //sound.playMusic("hp2");
         //status = mainMenu.menu();
         /*logic.update();
@@ -78,6 +84,7 @@ void Core::gameLoop()
     CloseAudioDevice();
     CloseWindow();
 }
+
 
 MessageBus Core::getBus() {
     return bus;

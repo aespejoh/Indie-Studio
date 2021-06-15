@@ -38,7 +38,7 @@ void MainMenu::loadTextures()
 
 Menu MainMenu::menu()
 {
-    //core->getSound().playMusic("hp");
+    core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
@@ -64,11 +64,11 @@ void MainMenu::drawings()
     DrawTexture(background, 0, 0, WHITE);
     //DrawRectangle(100, 100, 120, 60, RED);
     DrawTextureRec(playButton, playSourceRec,
-                   (Vector2){ playBtnBounds.x, playBtnBounds.y }, WHITE);
+                   Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
     DrawTextureRec(optionsButton, optionsSourceRec,
-                   (Vector2){ optionsBtnBounds.x, optionsBtnBounds.y }, WHITE);
+                   Vector2{ optionsBtnBounds.x, optionsBtnBounds.y }, WHITE);
     DrawTextureRec(exitButton, exitSourceRec,
-                   (Vector2){ exitBtnBounds.x, exitBtnBounds.y }, WHITE);
+                   Vector2{ exitBtnBounds.x, exitBtnBounds.y }, WHITE);
     //core->getCameraHandler().Begin3DMode();
     //DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
     //core->getCameraHandler().End3DMode();
@@ -111,8 +111,8 @@ void MainMenu::playMouseCheck()
     }
     else playState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (playAction)
+        core->getSound().playSound("button");
     playSourceRec.y = playState * playFrameHeight;
 }
 
@@ -129,8 +129,8 @@ void MainMenu::optionsMouseCheck()
     }
     else optionsState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (optionsAction)
+       core->getSound().playSound("button");
     optionsSourceRec.y = optionsState * optionsFrameHeight;
 }
 
@@ -147,7 +147,7 @@ void MainMenu::exitMouseCheck()
     }
     else exitState = 0;
 
-    //if (playAction)
-    //    parameters.getSound().playSound("button");
+    if (exitAction)
+        core->getSound().playSound("button");
     exitSourceRec.y = exitState * exitFrameHeight;
 }
