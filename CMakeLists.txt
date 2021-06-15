@@ -10,6 +10,7 @@ add_executable(bomberman
         src/Core/Menus/Mid.cpp
         src/Core/Menus/Settings.cpp
         src/Core/Core.cpp
+        src/Engine/MapModule/MapModule.cpp
         src/Core/gameLogic.cpp
         src/Engine/CameraModule/CameraHandler.cpp
         src/Engine/InputModule/inputHandler.cpp
@@ -25,6 +26,7 @@ add_executable(bomberman
         src/Engine/SceneManager.cpp
         src/main.cpp
         include/Core/Menus/Game.hpp
+        include/Engine/MapModule/mapModule.h
         include/Core/Menus/GameOver.hpp
         include/Core/Menus/MainMenu.hpp
         include/Core/Menus/Mid.hpp
