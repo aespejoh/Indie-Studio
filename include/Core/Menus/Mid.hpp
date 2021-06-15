@@ -31,11 +31,13 @@ class Mid {
         Texture2D black;
         Texture2D yellow;
         Texture2D red;
+        Texture2D arrow_left;
+        Texture2D arrow_right;
         Vector3 position;
         Vector3 position_two;
         Vector3 position_three;
         Vector3 position_four;
-
+        Font font;
 };
 
 #endif /* !MID_HPP_ */

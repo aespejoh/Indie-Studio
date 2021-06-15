@@ -25,8 +25,9 @@ Menu Mid::menu()
     // bounds
     if (core == nullptr)
         exit(84);
-    //core->getSound().playMusic("hp");
-    core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
+    core->getSound().playMusic("hp2");
+    core->getCameraHandler().setTarget(0.0f, 0.0f, -2.5f);
+    core->getCameraHandler().setPosition(0.0f, 7.5f, 12.5f);
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
@@ -52,17 +53,38 @@ void Mid::loadTexture()
     boomberman_red = LoadModel("resources/bomberman/Bomberman.obj");
     red = LoadTexture("resources/bomberman/red_body.png");
     boomberman_red.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = red;
+
+    Image left = LoadImage("resources/arrow_left.png");
+    ImageResize(&left, 50, 50);
+
+    arrow_left = LoadTextureFromImage(left);
+
+    Image right = LoadImage("resources/arrow_right.png");
+    ImageResize(&right, 50, 50);
+
+    arrow_right = LoadTextureFromImage(right);
+
+    font = LoadFont("resources/font/BOMBERMA.TTF");
 }
 
 void Mid::drawings()
 {
     BeginDrawing();
+    DrawTexture(arrow_left, 75, 180, WHITE);
+    DrawTextEx(font, "Test", Vector2{120.0f, 190.0f}, 35, 2, BLACK);
+    DrawTexture(arrow_right, 225, 180, WHITE);
+    DrawTexture(arrow_left, 300, 180, WHITE);
+    DrawTexture(arrow_right, 450, 180, WHITE);
+    DrawTexture(arrow_left, 525, 180, WHITE);
+    DrawTexture(arrow_right, 675, 180, WHITE);
+    DrawTexture(arrow_left, 750, 180, WHITE);
+    DrawTextEx(font, "IA", Vector2{795.0f, 190.0f}, 35, 2, BLACK);
+    DrawTexture(arrow_right, 900, 180, WHITE);
     core->getCameraHandler().Begin3DMode();
     DrawModel(boomberman_blue, position, 0.075f, WHITE);
     DrawModel(boomberman_black, position_two, 0.075f, WHITE);
     DrawModel(boomberman_yellow, position_three, 0.075f, WHITE);
     DrawModel(boomberman_red, position_four, 0.075f, WHITE);
-    //DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
     core->getCameraHandler().End3DMode();
     EndDrawing();
 }
