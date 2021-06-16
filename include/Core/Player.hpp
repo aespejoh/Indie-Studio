@@ -17,7 +17,7 @@ class Player
 {
     public:
         explicit Player(int playerID);
-        void load_model_and_texture();
+        void load_model_and_texture(int player_num);
         void draw();
         void moveUp();
         void moveLeft();

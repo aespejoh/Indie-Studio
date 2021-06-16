@@ -10,6 +10,10 @@ InputHandler::InputHandler(MessageBus *msgBus) : MsgNode(msgBus)
     addKeybind(KEY_W, MOVE_UP);
     addKeybind(KEY_D, MOVE_RIGHT);
     addKeybind(KEY_S, MOVE_DOWN);
+    addKeybind(KEY_DOWN, PLA2_MOVE_DOWN);
+    addKeybind(KEY_UP, PLA2_MOVE_UP);
+    addKeybind(KEY_LEFT, PLA2_MOVE_LEFT);
+    addKeybind(KEY_RIGHT, PLA2_MOVE_RIGHT);
 }
 
 void InputHandler::onNotify(Msg message)
