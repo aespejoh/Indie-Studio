@@ -10,7 +10,10 @@
 Mid::Mid(Core *core)
 {
     this->core = core;
-    loadTexture();
+    loadModels();
+    loadTextures();
+    loadRect();
+    setPositions();
 }
 
 Mid::~Mid()
@@ -19,23 +22,30 @@ Mid::~Mid()
 
 Menu Mid::menu()
 {
-    ClearBackground(WHITE);
-    setPositions();
-    BoundingBox bounds = GetMeshBoundingBox(boomberman_blue.meshes[0]);  // Set model
-    // bounds
+    ClearBackground(SKYBLUE);
+
     if (core == nullptr)
         exit(84);
-    //core->getSound().playMusic("hp");
-    core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
+    core->getSound().playMusic("hp2");
+    core->getCameraHandler().setTarget(0.0f, 0.0f, -2.5f);
+    core->getCameraHandler().setPosition(0.0f, 7.5f, 12.5f);
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
     core->getBus().notify();
+    mousePoint = GetMousePosition();
+
+    initInfo();
+    checkMouse();
+    playMouseCheck();
     drawings();
+
+    if (playAction && (!arrow_one || !arrow_two))
+        return MID; //tmp
     return MID;
 }
 
-void Mid::loadTexture()
+void Mid::loadModels()
 {
     boomberman_blue = LoadModel("resources/bomberman/Bomberman.obj");
     blue = LoadTexture("resources/bomberman/blue_body.png");
@@ -57,20 +67,130 @@ void Mid::loadTexture()
 void Mid::drawings()
 {
     BeginDrawing();
-    core->getCameraHandler().Begin3DMode();
-    DrawModel(boomberman_blue, position, 0.075f, WHITE);
-    DrawModel(boomberman_black, position_two, 0.075f, WHITE);
-    DrawModel(boomberman_yellow, position_three, 0.075f, WHITE);
-    DrawModel(boomberman_red, position_four, 0.075f, WHITE);
-    //DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-    core->getCameraHandler().End3DMode();
+    drawButton();
+    drawPlayersInfo();
+    drawModels();
     EndDrawing();
 }
 
 void Mid::setPositions()
 {
-    position = { -1.5f, 0.0f, 0.0f };             // Set model position
+    position = { -1.5f, 0.0f, 0.0f };
     position_two = { -5.0f, 0.0f, 0.0f };
     position_three = { 2.0f, 0.0f, 0.0f };
     position_four = { 5.0f, 0.0f, 0.0f };
+}
+
+void Mid::loadTextures()
+{
+    Image left = LoadImage("resources/arrow_left.png");
+    ImageResize(&left, 50, 50);
+    arrow_left = LoadTextureFromImage(left);
+
+    Image right = LoadImage("resources/arrow_right.png");
+    ImageResize(&right, 50, 50);
+    arrow_right = LoadTextureFromImage(right);
+
+    Image _playButton = LoadImage("resources/buttons/playButton.png");
+    ImageResize(&_playButton, 200, 125);
+    playButton = LoadTextureFromImage(_playButton);
+
+    Image _background = LoadImage("resources/background_two.jpg");
+    ImageResize(&_background, WIDTH, HEIGHT);
+    background = LoadTextureFromImage(_background);
+
+    font = LoadFont("resources/font/BOMBERMA.TTF");
+}
+
+void Mid::loadRect()
+{
+    arrow_left_one_rect = {75, 180, (float)arrow_left.width,
+                           (float)arrow_left.height};
+    arrow_right_one_rect = {225, 180, (float)arrow_left.width,
+                            (float)arrow_left.height};
+    arrow_left_two_rect = {300, 180, (float)arrow_left.width,
+                           (float)arrow_left.height};
+    arrow_right_two_rect = {450, 180, (float)arrow_left.width,
+                            (float)arrow_left.height};
+}
+
+void Mid::drawModels()
+{
+    core->getCameraHandler().Begin3DMode();
+    DrawModel(boomberman_blue, position, 0.075f, WHITE);
+    DrawModel(boomberman_black, position_two, 0.075f, WHITE);
+    DrawModel(boomberman_yellow, position_three, 0.075f, WHITE);
+    DrawModel(boomberman_red, position_four, 0.075f, WHITE);
+    core->getCameraHandler().End3DMode();
+}
+
+void Mid::drawPlayersInfo()
+{
+    DrawTexture(arrow_left, 75, 180, WHITE);
+    if (arrow_one)
+        DrawTextEx(font, "IA", Vector2{150.0f, 190.0f}, 35, 2, BLACK);
+    else
+        DrawTextEx(font, "Pl 1", Vector2{130.0f, 190.0f}, 35, 2, BLACK);
+    DrawTexture(arrow_right, 225, 180, WHITE);
+    DrawTexture(arrow_left, 300, 180, WHITE);
+    if (arrow_two)
+        DrawTextEx(font, "IA", Vector2{375.0f, 190.0f}, 35, 2, BLACK);
+    else
+        DrawTextEx(font, "Pl 2", Vector2{355.0f, 190.0f}, 35, 2, BLACK);
+    DrawTexture(arrow_right, 450, 180, WHITE);
+    DrawTextEx(font, "IA", Vector2{600.0f, 190.0f}, 35, 2, BLACK);
+    DrawTextEx(font, "IA", Vector2{825.0f, 190.0f}, 35, 2, BLACK);
+}
+
+void Mid::checkMouse()
+{
+    if (CheckCollisionPointRec(mousePoint, arrow_left_one_rect) ||
+        CheckCollisionPointRec(mousePoint, arrow_right_one_rect)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow_one)
+            arrow_one = false;
+        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow_one)
+            arrow_one = true;
+    }
+    if (CheckCollisionPointRec(mousePoint, arrow_left_two_rect) ||
+        CheckCollisionPointRec(mousePoint, arrow_right_two_rect)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow_two)
+            arrow_two = false;
+        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow_two)
+            arrow_two = true;
+    }
+}
+
+void Mid::drawButton()
+{
+    DrawTexture(background, 50, 50, WHITE);
+    DrawTextureRec(playButton, playSourceRec,
+                   Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
+}
+
+void Mid::playMouseCheck()
+{
+    if (CheckCollisionPointRec(mousePoint, playBtnBounds)) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            playState = 2;
+        else
+            playState = 1;
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+            playAction = true;
+    }
+    else playState = 0;
+
+    if (playAction)
+        core->getSound().playSound("button");
+    playSourceRec.y = playState * playFrameHeight;
+}
+
+void Mid::initInfo()
+{
+    playFrameHeight = (float)playButton.height/NUM_FRAMES;
+
+    playSourceRec = {0, 0, (float)playButton.width, playFrameHeight};
+
+    playBtnBounds = {WIDTH/2.0f - playButton.width/2.0f,
+                     HEIGHT/2.0f - playButton.height/NUM_FRAMES/2.0f + 250,
+                     (float)playButton.width, playFrameHeight};
 }
