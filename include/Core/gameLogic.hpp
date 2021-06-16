@@ -8,13 +8,16 @@
 #define INDIE_STUDIO_GAMELOGIC_HPP
 
 #include "MsgNode.hpp"
-#include "SceneManager.hpp"
+#include "Player.hpp"
 
 class GameLogic : public MsgNode {
     public:
-        explicit GameLogic(MessageBus* msgBus);
-        //void update() override;
-
+        explicit GameLogic(MessageBus *msgBus);
+        void update() override;
+        Player *_player1;
+        Player *_player2;
+        Player *_player3;
+        Player *_player4;
     private:
         void onNotify(Msg message) override;
 };

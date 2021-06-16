@@ -6,6 +6,7 @@
 */
 
 #include "Player.hpp"
+#include "raymath.h"
 
 void Player::load_model_and_texture()
 {
@@ -21,4 +22,40 @@ void Player::draw()
 
 Player::Player(int playerID) : _player_ID(playerID)
 {
+}
+
+void Player::moveUp()
+{
+    _position.z -= 0.05f;
+    if (_yaw < 180.0f)
+        _yaw += 10.0f;
+    _model.transform = MatrixRotateXYZ(Vector3 { DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll });
+}
+
+void Player::moveLeft()
+{
+    _position.x -= 0.05f;
+    if (_yaw < 90)
+        _yaw += 10.0f;
+    else if (_yaw > 90)
+        _yaw -= 10.0f;
+    _model.transform = MatrixRotateXYZ(Vector3 { DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll });
+}
+
+void Player::moveRight()
+{
+    _position.x += 0.05f;
+    if (_yaw < 270)
+        _yaw += 10.0f;
+    else if (_yaw > 270)
+        _yaw -= 10.0f;
+    _model.transform = MatrixRotateXYZ(Vector3 { DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll });
+}
+
+void Player::moveDown()
+{
+    _position.z += 0.05f;
+    if (_yaw > 0)
+        _yaw -= 10.0f;
+    _model.transform = MatrixRotateXYZ(Vector3 { DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll });
 }

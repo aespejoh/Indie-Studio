@@ -19,6 +19,11 @@ class Player
         explicit Player(int playerID);
         void load_model_and_texture();
         void draw();
+        void moveUp();
+        void moveLeft();
+        void moveRight();
+        void moveDown();
+        float _yaw = 0.0f;
     private:
         Model _model;
         Texture _texture;
@@ -27,4 +32,6 @@ class Player
         float _scale = 0.075f;
         Color _color = WHITE;
         int _player_ID;
+        float _pitch = 0.0f;
+        float _roll = 0.0f;
 };

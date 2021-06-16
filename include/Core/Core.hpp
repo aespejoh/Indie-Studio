@@ -26,7 +26,7 @@ class Core {
         void gameLoop();
         void loadMusicAndSounds();
         void setCamera();
-        MessageBus getBus();
+        MessageBus* getBus();
         SoundHandler &getSound();
         InputHandler &getHandler();
         GameLogic &getLogic();

@@ -7,15 +7,13 @@
 
 #include "Menus/Game.hpp"
 
-Game::Game(Core *core)  : _core(core)
+#include <utility>
+
+Game::Game(Core *core) : _core(core)
 {
     Player *player1 = new Player(0);
-    _players.push_back(player1);
-    for (const auto &item : _players) {
-        item->load_model_and_texture();
-    }
-
-
+    player1->load_model_and_texture();
+    _core->getLogic()._player1 = player1;
 /*
     Object* player = _scene.CreateObject();
     RenderComponent* renderComponent = new RenderComponent(player);
@@ -33,17 +31,15 @@ Game::~Game()
 
 Menu Game::menu()
 {
-    Vector3 vector3 = {0.5f, 1.0f, 0.5f};
-    Vector3 vector3_2 = {0.5f, 1.0f, 0.5f};
-    Vector3 new_vector = vector3 + vector3_2;
     ClearBackground(WHITE);
     _core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
     BeginDrawing();
     _core->getCameraHandler().Begin3DMode();
     DrawGrid(10, 1);
-    for (const auto &item : _players) {
-        item->draw();
-    }
+    _core->getLogic()._player1->draw();
+    _core->getLogic().update();
+    _core->getHandler().update();
+    _core->getBus()->notify();
     _core->getCameraHandler().End3DMode();
     EndDrawing();
     return GAME;

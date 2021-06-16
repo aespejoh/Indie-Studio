@@ -21,7 +21,7 @@ std::function<void(Msg)> MsgNode::getNotifyFunc()
 
 void MsgNode::onNotify(Msg message)
 {
-    std::cout << "onNotifyNotImplemented";
+    //std::cout << "onNotifyNotImplemented";
 }
 
 void MsgNode::send(Msg message)

@@ -46,7 +46,6 @@ void Core::gameLoop()
     Mid midMenu(this);
     Game game(this);
     //sound.playMusic("hp");
-    Game game(this);
     sound.playMusic("hp");
     while (status != EXIT) {
         status = game.menu();
@@ -73,7 +72,7 @@ void Core::gameLoop()
             status = mainMenu.menu();
         sound.playMusic("hp2");
         status = mainMenu.menu();
-        logic.update();
+        _logic.update();
         sound.update();
         handler.update();
         bus.notify();
@@ -91,8 +90,8 @@ void Core::gameLoop()
 }
 
 
-MessageBus Core::getBus() {
-    return bus;
+MessageBus * Core::getBus() {
+    return &bus;
 }
 
 SoundHandler &Core::getSound() {
