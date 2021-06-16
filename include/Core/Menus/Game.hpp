@@ -14,6 +14,7 @@ class Game {
     public:
         Game(Core *core);
         ~Game();
+        Menu menu();
     private:
         Core *core;
 };

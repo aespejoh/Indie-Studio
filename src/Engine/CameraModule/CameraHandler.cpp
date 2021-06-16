@@ -13,6 +13,7 @@ CameraHandler::CameraHandler(MessageBus *msgBus) : MsgNode(msgBus) {
 }
 
 void CameraHandler::update() {
+    UpdateCamera(&camera);
     MsgNode::update();
 }
 
