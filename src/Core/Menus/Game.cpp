@@ -17,6 +17,6 @@ Game::~Game()
 }
 
 Menu Game::menu() {
-
+    return GAME;
 }
 
