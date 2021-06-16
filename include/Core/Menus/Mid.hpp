@@ -50,12 +50,9 @@ class Mid {
         Vector3 position_four;
         Font font;
         Vector2 mousePoint = { 0.0f, 0.0f };
-        bool arrow_one = false;
-        bool arrow_two = false;
-        Rectangle arrow_left_one_rect = {0, 0, 0, 0};
-        Rectangle arrow_right_one_rect = {0, 0, 0, 0};
-        Rectangle arrow_left_two_rect = {0, 0, 0, 0};
-        Rectangle arrow_right_two_rect = {0, 0, 0, 0};
+        bool arrow = false;
+        Rectangle arrow_left_rect = {0, 0, 0, 0};
+        Rectangle arrow_right_rect = {0, 0, 0, 0};
         float playFrameHeight = 0.0;
         Rectangle playBtnBounds = {0, 0, 0, 0};
         Rectangle playSourceRec = {0, 0, 0, 0};

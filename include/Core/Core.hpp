@@ -28,7 +28,9 @@ class Core {
         GameLogic &getLogic();
         CameraHandler &getCameraHandler();
 
-    private:
+    void setSecPlayer(bool secPlayer);
+
+private:
         MessageBus bus;
         SoundHandler sound;
         InputHandler handler;
@@ -36,6 +38,7 @@ class Core {
         CameraHandler cameraHandler;
         //MainMenu mainMenu;
         Menu status;
+        bool sec_player = false;
     private:
         int fps = 60;
         int width = 1000;

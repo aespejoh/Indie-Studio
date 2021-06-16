@@ -105,3 +105,8 @@ GameLogic &Core::getLogic() {
 CameraHandler &Core::getCameraHandler() {
     return cameraHandler;
 }
+
+void Core::setSecPlayer(bool secPlayer)
+{
+    sec_player = secPlayer;
+}

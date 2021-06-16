@@ -22,7 +22,7 @@ Mid::~Mid()
 
 Menu Mid::menu()
 {
-    ClearBackground(SKYBLUE);
+    ClearBackground(WHITE);
 
     if (core == nullptr)
         exit(84);
@@ -40,7 +40,10 @@ Menu Mid::menu()
     playMouseCheck();
     drawings();
 
-    if (playAction && (!arrow_one || !arrow_two))
+    if (!arrow)
+        core->setSecPlayer(true);
+
+    if (playAction)
         return MID; //tmp
     return MID;
 }
@@ -95,8 +98,8 @@ void Mid::loadTextures()
     ImageResize(&_playButton, 200, 125);
     playButton = LoadTextureFromImage(_playButton);
 
-    Image _background = LoadImage("resources/background_two.jpg");
-    ImageResize(&_background, WIDTH, HEIGHT);
+    Image _background = LoadImage("resources/background_two.png");
+    ImageResize(&_background, WIDTH + 100, HEIGHT + 100);
     background = LoadTextureFromImage(_background);
 
     font = LoadFont("resources/font/BOMBERMA.TTF");
@@ -104,13 +107,9 @@ void Mid::loadTextures()
 
 void Mid::loadRect()
 {
-    arrow_left_one_rect = {75, 180, (float)arrow_left.width,
+    arrow_left_rect = {300, 180, (float)arrow_left.width,
                            (float)arrow_left.height};
-    arrow_right_one_rect = {225, 180, (float)arrow_left.width,
-                            (float)arrow_left.height};
-    arrow_left_two_rect = {300, 180, (float)arrow_left.width,
-                           (float)arrow_left.height};
-    arrow_right_two_rect = {450, 180, (float)arrow_left.width,
+    arrow_right_rect = {450, 180, (float)arrow_left.width,
                             (float)arrow_left.height};
 }
 
@@ -126,14 +125,9 @@ void Mid::drawModels()
 
 void Mid::drawPlayersInfo()
 {
-    DrawTexture(arrow_left, 75, 180, WHITE);
-    if (arrow_one)
-        DrawTextEx(font, "IA", Vector2{150.0f, 190.0f}, 35, 2, BLACK);
-    else
-        DrawTextEx(font, "Pl 1", Vector2{130.0f, 190.0f}, 35, 2, BLACK);
-    DrawTexture(arrow_right, 225, 180, WHITE);
+    DrawTextEx(font, "Pl 1", Vector2{130.0f, 190.0f}, 35, 2, BLACK);
     DrawTexture(arrow_left, 300, 180, WHITE);
-    if (arrow_two)
+    if (arrow)
         DrawTextEx(font, "IA", Vector2{375.0f, 190.0f}, 35, 2, BLACK);
     else
         DrawTextEx(font, "Pl 2", Vector2{355.0f, 190.0f}, 35, 2, BLACK);
@@ -144,25 +138,18 @@ void Mid::drawPlayersInfo()
 
 void Mid::checkMouse()
 {
-    if (CheckCollisionPointRec(mousePoint, arrow_left_one_rect) ||
-        CheckCollisionPointRec(mousePoint, arrow_right_one_rect)) {
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow_one)
-            arrow_one = false;
-        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow_one)
-            arrow_one = true;
-    }
-    if (CheckCollisionPointRec(mousePoint, arrow_left_two_rect) ||
-        CheckCollisionPointRec(mousePoint, arrow_right_two_rect)) {
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow_two)
-            arrow_two = false;
-        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow_two)
-            arrow_two = true;
+    if (CheckCollisionPointRec(mousePoint, arrow_left_rect) ||
+        CheckCollisionPointRec(mousePoint, arrow_right_rect)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow)
+            arrow = false;
+        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow)
+            arrow = true;
     }
 }
 
 void Mid::drawButton()
 {
-    DrawTexture(background, 50, 50, WHITE);
+    DrawTexture(background, -50, -50, WHITE);
     DrawTextureRec(playButton, playSourceRec,
                    Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
 }
