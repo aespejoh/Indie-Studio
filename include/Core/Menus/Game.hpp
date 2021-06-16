@@ -16,7 +16,7 @@ class Game {
         ~Game();
         Menu menu();
     private:
-        Core *core;
+        Core *_core;
 };
 
 #endif /* !GAME_HPP_ */

@@ -12,8 +12,8 @@
 
 Core::Core()
         : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
-    InitWindow(WIDTH, HEIGHT, "\0");
-    SetTargetFPS(FPS);
+    InitWindow(width, height, "\0");
+    SetTargetFPS(fps);
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
@@ -43,8 +43,8 @@ void Core::gameLoop()
     //sound.playMusic("hp2");
     //sound.playSound("button");
     MainMenu mainMenu(this);
-    Mid midMenu(this);
     Game game(this);
+    Mid midMenu(this);
     //sound.playMusic("hp");
     while (status != EXIT) {
         switch (status) {
@@ -52,7 +52,7 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
             case GAME:
-                status = mainMenu.menu();
+                status = game.menu();
                 break;
             case MID:
                 status = midMenu.menu();
