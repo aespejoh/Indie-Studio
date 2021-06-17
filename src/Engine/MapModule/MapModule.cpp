@@ -156,18 +156,59 @@ void MapModule::initBoxes()
     }
 }
 
+std::vector<Vector3> MapModule::generateBoxPositions()
+{
+    std::vector<Vector3> posList;
+
+    for (int row = 0; row < MAX_ROW; ++row) {
+        for (int col = 0; col < MAX_COL; ++col) {
+            if (ascii_map[row][col] == MapCell::Box)
+                posList.push_back((Vector3) {(float) row, 1.0f, (float) col});
+        }
+    }
+    return (posList);
+}
+
+std::vector<Vector3> MapModule::generateWallPositions()
+{
+    std::vector<Vector3> posList;
+
+    for (int row = 0; row < MAX_ROW; ++row) {
+        for (int col = 0; col < MAX_COL; ++col) {
+            if (ascii_map[row][col] == MapCell::Wall)
+                posList.push_back((Vector3) {(float) row, 1.0f, (float) col});
+        }
+    }
+    return (posList);
+}
+
+void MapModule::generatePositionVectors()
+{
+    std::vector<Vector3> boxPositions = generateBoxPositions();
+    std::vector<Vector3> wallPositions = generateWallPositions();
+
+    positions.insert({"boxes", boxPositions});
+    positions.insert({"walls", wallPositions});
+}
+
 void MapModule::generateMap()
 {
     this->initWalls();
     this->initExit();
     this->initBoxes();
+    this->generatePositionVectors();
 }
 
-void MapModule::printMap()
+void MapModule::printAsciiMap()
 {
     for (int f = 0; this->ascii_map.size() != f; f++) {
         std::cerr << std::endl;
         for (int s = 0; this->ascii_map[f].size() != s; s++)
             std::cerr << this->ascii_map[f][s];
     }
+}
+
+const std::map<std::string, std::vector<Vector3>> &MapModule::getPositions() const
+{
+    return (positions);
 }

@@ -13,6 +13,8 @@
 #include <fstream>
 #include <dirent.h>
 #include <random>
+#include <raylib.h>
+#include <map>
 
 #define MAX_COL 15
 #define MAX_ROW 15
@@ -38,6 +40,10 @@ enum MapCell {
 class MapModule {
 private:
     std::vector<std::vector<int>> ascii_map;
+    std::map<std::string, std::vector<Vector3>> positions;
+
+public:
+    const std::map<std::string, std::vector<Vector3>> &getPositions() const;
 
 public:
     MapModule();
@@ -45,7 +51,7 @@ public:
     void saveMap(const std::string& game = std::string("empty"));
     void loadMap(const std::string &filename);
     void generateMap();
-    void printMap();
+    void printAsciiMap();
 
 
 private:
@@ -55,6 +61,9 @@ private:
     void initWalls();
     void initExit();
     void initBoxes();
+    std::vector<Vector3> generateBoxPositions();
+    std::vector<Vector3> generateWallPositions();
+    void generatePositionVectors();
 };
 
 
