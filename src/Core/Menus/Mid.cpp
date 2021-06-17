@@ -26,7 +26,7 @@ Menu Mid::menu()
 
     if (core == nullptr)
         exit(84);
-    core->getSound().playMusic("hp2");
+    core->getSound().playMusic("hp");
     core->getCameraHandler().setTarget(0.0f, 0.0f, -2.5f);
     core->getCameraHandler().setPosition(0.0f, 7.5f, 12.5f);
     core->getLogic().update();
@@ -102,7 +102,7 @@ void Mid::loadTextures()
     ImageResize(&_background, WIDTH + 100, HEIGHT + 100);
     background = LoadTextureFromImage(_background);
 
-    font = LoadFont("resources/font/BOMBERMA.TTF");
+    font = LoadFont("resources/font/Caramel Sweets.ttf");
 }
 
 void Mid::loadRect()
