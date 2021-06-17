@@ -8,13 +8,15 @@
 #define INDIE_STUDIO_RENDERMODULE_HPP
 
 #include "MsgNode.hpp"
+#include <MapModule/mapModule.h>
 #include <raylib.h>
 
 class RenderModule : public MsgNode {
     public:
         explicit RenderModule(MessageBus *bus);
         void update() override;
-        void renderMap();
+        void renderMap(MapModule &map);
+
     protected:
         void renderMapTile(Vector3 position);
         void onNotify(Msg message) override;
