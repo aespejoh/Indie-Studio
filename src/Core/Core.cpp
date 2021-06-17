@@ -12,8 +12,7 @@
 #include "Core.hpp"
 
 Core::Core()
-        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
-    MapModule map;
+        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus), renderModule(&bus){
     map.generateMap();
     InitWindow(width, height, "\0");
     SetTargetFPS(fps);
@@ -112,4 +111,14 @@ CameraHandler &Core::getCameraHandler() {
 void Core::setSecPlayer(bool secPlayer)
 {
     sec_player = secPlayer;
+}
+
+MapModule &Core::getMap()
+{
+    return (map);
+}
+
+RenderModule Core::getRender()
+{
+    return (renderModule);
 }

@@ -12,6 +12,7 @@
 #include <SoundModule/SoundHandler.hpp>
 #include <gameLogic.hpp>
 #include <inputHandler.hpp>
+#include <Objects/renderModule.hpp>
 #include "Menus.hpp"
 #include "raylib.h"
 
@@ -27,6 +28,9 @@ class Core {
         InputHandler &getHandler();
         GameLogic &getLogic();
         CameraHandler &getCameraHandler();
+        MapModule &getMap();
+        RenderModule getRender();
+
 
     void setSecPlayer(bool secPlayer);
 
@@ -36,7 +40,8 @@ private:
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
-        //MainMenu mainMenu;
+        MapModule map;
+        RenderModule renderModule;
         Menu status;
         bool sec_player = false;
     private:
