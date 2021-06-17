@@ -97,3 +97,19 @@ void Core::setSecPlayer(bool secPlayer)
 const std::vector<std::vector<int>> &Core::getMap() const {
     return _map;
 }
+
+int Core::getFps(){
+    return fps;
+}
+
+void Core::setFps(int fps) {
+    Core::fps = fps;
+}
+
+float Core::getMusicVolume(){
+    return music_volume;
+}
+
+void Core::setMusicVolume(float musicVolume) {
+    music_volume = musicVolume;
+}

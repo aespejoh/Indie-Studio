@@ -29,6 +29,10 @@ class Core {
         CameraHandler &getCameraHandler();
         const std::vector<std::vector<int>> &getMap() const;
         void setSecPlayer(bool secPlayer);
+        int getFps();
+        void setFps(int fps);
+        float getMusicVolume();
+        void setMusicVolume(float musicVolume);
 
 private:
         MessageBus bus;
@@ -39,6 +43,7 @@ private:
         //MainMenu mainMenu;
         Menu status;
         bool sec_player = false;
+        float music_volume = 1.0;
         std::vector<std::vector<int>> _map;
     private:
         int fps = 60;
