@@ -35,6 +35,16 @@ void SoundHandler::onNotify(Msg message) {
     MsgNode::onNotify(message);
 }
 
+void SoundHandler::setMusicVolume(const std::string& name, float volume)
+{
+    SetMusicVolume(musicStorage.find(name)->second, volume);
+}
+
+void SoundHandler::setSoundVolume(const std::string& name, float volume)
+{
+    SetSoundVolume(soundStorage.find(name)->second, volume);
+}
+
 void SoundHandler::addSound(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())

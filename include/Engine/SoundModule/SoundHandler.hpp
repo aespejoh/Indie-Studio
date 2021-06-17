@@ -23,8 +23,10 @@ class SoundHandler : public MsgNode {
         void playSound(const std::string &name);
         void stopMusic(const std::string& name);
         void stopSound(const std::string& name);
+        void setMusicVolume(const std::string& name, float volume);
+        void setSoundVolume(const std::string& name, float volume);
 
-    private:
+private:
         void onNotify(Msg message) override;
         std::map<std::string, Sound> soundStorage;
         std::map<std::string, Music> musicStorage;
