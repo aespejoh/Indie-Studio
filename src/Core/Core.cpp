@@ -5,6 +5,7 @@
 ** Core
 */
 
+#include <MapModule/mapModule.h>
 #include "Menus/MainMenu.hpp"
 #include "Menus/Mid.hpp"
 #include "Menus/Game.hpp"
@@ -12,6 +13,9 @@
 
 Core::Core()
         : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
+    MapModule map;
+    std::vector<std::vector<int>> realmap = map.generateMap();
+    //map.printMap(realmap);
     InitWindow(WIDTH, HEIGHT, "\0");
     SetTargetFPS(FPS);
     loadMusicAndSounds();

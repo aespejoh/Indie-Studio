@@ -45,6 +45,7 @@ public:
     void saveMap(const std::string& game = std::string("empty"));
     void loadMap(const std::string &filename);
     std::vector<std::vector<int>> generateMap();
+    void printMap(std::vector<std::vector<int>> map);
 
 
 private:

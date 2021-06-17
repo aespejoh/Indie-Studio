@@ -165,3 +165,11 @@ std::vector<std::vector<int>> MapModule::generateMap()
     this->initBoxes();
     return ascii_map;
 }
+
+void MapModule::printMap(std::vector<std::vector<int>> map) {
+    for (int f = 0; map.size() != f; f++) {
+        std::cout << std::endl;
+        for (int s = 0; map[f].size() != s; s++)
+            std::cout << map[f][s];
+    }
+}
