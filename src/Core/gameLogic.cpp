@@ -42,6 +42,7 @@ void GameLogic::onNotify(Msg message)
             add_bomb(new Bomb(_player1->getPosition(), bombModel));
             _bombCooldown1 = 50;
         }
+        break;
     case PLA2_PLACE_BOMB:
         if (_bombCooldown2 == 0) {
             add_bomb(new Bomb(_player2->getPosition(), bombModel));
