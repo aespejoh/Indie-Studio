@@ -158,9 +158,10 @@ void MapModule::initBoxes()
     }
 }
 
-void MapModule::generateMap()
+std::vector<std::vector<int>> MapModule::generateMap()
 {
     this->initWalls();
     this->initExit();
     this->initBoxes();
+    return ascii_map;
 }

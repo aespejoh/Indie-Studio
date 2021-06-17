@@ -44,7 +44,7 @@ public:
     ~MapModule() = default;
     void saveMap(const std::string& game = std::string("empty"));
     void loadMap(const std::string &filename);
-    void generateMap();
+    std::vector<std::vector<int>> generateMap();
 
 
 private:
