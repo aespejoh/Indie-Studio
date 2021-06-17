@@ -141,35 +141,33 @@ void MapModule::initBoxes()
 {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, 1);
+    std::uniform_int_distribution<int> dist(1, MAX_ROW - 1);
     int numBoxes = 0;
+    int i;
+    int j;
 
     while (numBoxes <= MAX_BOXES) {
-        for (int i = 1; i < MAX_ROW - 1; ++i) {
-            for (int j = 1; j < MAX_ROW - 1; ++j) {
-                if (this->ascii_map[i][j] == MapCell::Empty) {
-                    if (numBoxes <= MAX_BOXES and dist(mt) == 1) {
-                        this->ascii_map[i][j] = MapCell::Box;
-                        numBoxes++;
-                    }
-                }
-            }
+        i = dist(mt);
+        j = dist(mt);
+        if (this->ascii_map[i][j] == MapCell::Empty) {
+            this->ascii_map[i][j] = MapCell::Box;
+            numBoxes++;
         }
     }
 }
 
-std::vector<std::vector<int>> MapModule::generateMap()
+void MapModule::generateMap()
 {
     this->initWalls();
     this->initExit();
     this->initBoxes();
-    return ascii_map;
 }
 
-void MapModule::printMap(std::vector<std::vector<int>> map) {
-    for (int f = 0; map.size() != f; f++) {
-        std::cout << std::endl;
-        for (int s = 0; map[f].size() != s; s++)
-            std::cout << map[f][s];
+void MapModule::printMap()
+{
+    for (int f = 0; this->ascii_map.size() != f; f++) {
+        std::cerr << std::endl;
+        for (int s = 0; this->ascii_map[f].size() != s; s++)
+            std::cerr << this->ascii_map[f][s];
     }
 }
