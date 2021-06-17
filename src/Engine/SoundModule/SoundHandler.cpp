@@ -67,7 +67,11 @@ void SoundHandler::playSound(const std::string& name) {
     PlaySound(soundStorage.find(name)->second);
 }
 
-void SoundHandler::playMusic(const std::string& name) const {
+void SoundHandler::playMusic(const std::string& name)
+{
+    if (playedBGM != name and !playedBGM.empty())
+        stopMusic(playedBGM);
+    playedBGM = name;
     PlayMusicStream(musicStorage.find(name)->second);
 }
 

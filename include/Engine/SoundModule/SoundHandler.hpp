@@ -19,7 +19,7 @@ class SoundHandler : public MsgNode {
         void update() override;
         void addSound(const std::string& name, const std::string& path);
         void addMusic(const std::string& name, const std::string& path);
-        void playMusic(const std::string &name) const;
+        void playMusic(const std::string &name);
         void playSound(const std::string &name);
         void stopMusic(const std::string& name);
         void stopSound(const std::string& name);
@@ -27,6 +27,7 @@ class SoundHandler : public MsgNode {
         void setSoundVolume(const std::string& name, float volume);
 
 private:
+        std::string playedBGM;
         void onNotify(Msg message) override;
         std::map<std::string, Sound> soundStorage;
         std::map<std::string, Music> musicStorage;
