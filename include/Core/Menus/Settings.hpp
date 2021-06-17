@@ -8,12 +8,29 @@
 #ifndef SETTINGS_HPP_
 #define SETTINGS_HPP_
 
+#include "Core.hpp"
+
+#define WIDTH 1000
+#define HEIGHT 750
+#define NUM_FRAMES 2
+
 class Settings {
     public:
-        Settings();
+        Settings(Core *core);
         ~Settings();
+        Menu menu();
+        void loadTexture();
+        void checkMouse();
 
     protected:
+        Core *core;
+        Font font;
+        Texture2D background;
+        Texture2D arrow_left;
+        Texture2D arrow_right;
+        Vector2 mousePoint = { 0.0f, 0.0f };
+        Rectangle arrow_left_rect = {0, 0, 0, 0};
+        Rectangle arrow_right_rect = {0, 0, 0, 0};
     private:
 };
 
