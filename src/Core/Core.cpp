@@ -16,8 +16,6 @@ Core::Core()
     MapModule map;
     std::vector<std::vector<int>> realmap = map.generateMap();
     //map.printMap(realmap);
-    InitWindow(WIDTH, HEIGHT, "\0");
-    SetTargetFPS(FPS);
     InitWindow(width, height, "\0");
     SetTargetFPS(fps);
     loadMusicAndSounds();
