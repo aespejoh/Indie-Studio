@@ -11,7 +11,6 @@ MainMenu::MainMenu(Core *core)
 {
     this->core = core;
     loadTextures();
-    initInfo();
 }
 
 MainMenu::~MainMenu()
@@ -46,6 +45,7 @@ Menu MainMenu::menu()
 
     mousePoint = GetMousePosition();
 
+    initInfo();
     playMouseCheck();
     optionsMouseCheck();
     exitMouseCheck();
@@ -62,16 +62,12 @@ void MainMenu::drawings()
 {
     BeginDrawing();
     DrawTexture(background, 0, 0, WHITE);
-    //DrawRectangle(100, 100, 120, 60, RED);
     DrawTextureRec(playButton, playSourceRec,
                    Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
     DrawTextureRec(optionsButton, optionsSourceRec,
                    Vector2{ optionsBtnBounds.x, optionsBtnBounds.y }, WHITE);
     DrawTextureRec(exitButton, exitSourceRec,
                    Vector2{ exitBtnBounds.x, exitBtnBounds.y }, WHITE);
-    //core->getCameraHandler().Begin3DMode();
-    //DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-    //core->getCameraHandler().End3DMode();
     EndDrawing();
 }
 

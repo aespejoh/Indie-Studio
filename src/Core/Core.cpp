@@ -18,6 +18,8 @@ Core::Core()
     //map.printMap(realmap);
     InitWindow(WIDTH, HEIGHT, "\0");
     SetTargetFPS(FPS);
+    InitWindow(width, height, "\0");
+    SetTargetFPS(fps);
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
@@ -31,7 +33,7 @@ Core::~Core()
 void Core::loadMusicAndSounds() {
     sound.addMusic("hp2", "resources/hp2.mp3");
     sound.addMusic("hp", "resources/hp.mp3");
-    sound.addSound("button", "resource/buttons/button.mp3");
+    sound.addSound("button", "resources/buttons/button.mp3");
 }
 
 void Core::setCamera() {
@@ -56,7 +58,7 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
             case GAME:
-                status = mainMenu.menu();
+                status = game.menu();
                 break;
             case MID:
                 status = midMenu.menu();
@@ -108,4 +110,9 @@ GameLogic &Core::getLogic() {
 
 CameraHandler &Core::getCameraHandler() {
     return cameraHandler;
+}
+
+void Core::setSecPlayer(bool secPlayer)
+{
+    sec_player = secPlayer;
 }

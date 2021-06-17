@@ -15,10 +15,6 @@
 #include "Menus.hpp"
 #include "raylib.h"
 
-#define FPS 60
-#define WIDTH 1000
-#define HEIGHT 750
-
 class Core {
     public:
         Core();
@@ -32,6 +28,8 @@ class Core {
         GameLogic &getLogic();
         CameraHandler &getCameraHandler();
 
+    void setSecPlayer(bool secPlayer);
+
 private:
         MessageBus bus;
         SoundHandler sound;
@@ -40,6 +38,12 @@ private:
         CameraHandler cameraHandler;
         //MainMenu mainMenu;
         Menu status;
+        bool sec_player = false;
+    private:
+        int fps = 60;
+        int width = 1000;
+        int height = 750;
+
 };
 
 #endif /* !CORE_HPP_ */
