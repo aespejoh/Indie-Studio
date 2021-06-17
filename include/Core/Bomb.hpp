@@ -13,17 +13,27 @@
 #define BOMB_MODEL_PATH "resources/bomb/bomb.gltf"
 #define BOMB_TEXTURE_PATH "resources/bomb/Normal.png"
 
+class BombModel
+{
+    public:
+        void load_model_texture();
+        Model *getModel() {return &_model;};
+        Texture *getTexture() {return &_texture;};
+    private:
+        Model _model;
+        Texture _texture;
+};
+
 class Bomb {
     public:
-        explicit Bomb(Vector3 position);
+        explicit Bomb(Vector3 position, BombModel bombModel);
         void draw();
         int get_Tick() const;
         void addTick();
     private:
-        void load_model_and_texture();
         Vector3 _position;
         Model _model;
-        Texture _texture;
+        Texture *_texture;
         float _scale = 5.0f;
         Color _color;
         int _tick;

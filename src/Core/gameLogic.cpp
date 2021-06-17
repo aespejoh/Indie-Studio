@@ -8,7 +8,6 @@
 
 GameLogic::GameLogic(MessageBus *msgBus) : MsgNode(msgBus)
 {
-
 }
 
 void GameLogic::onNotify(Msg message)
@@ -39,9 +38,15 @@ void GameLogic::onNotify(Msg message)
         _player2->moveRight();
         break;
     case PLACE_BOMB:
-        add_bomb(new Bomb(_player1->getPosition()));
+        if (_bombCooldown1 == 0) {
+            add_bomb(new Bomb(_player1->getPosition(), bombModel));
+            _bombCooldown1 = 50;
+        }
     case PLA2_PLACE_BOMB:
-        add_bomb(new Bomb(_player2->getPosition()));
+        if (_bombCooldown2 == 0) {
+            add_bomb(new Bomb(_player2->getPosition(), bombModel));
+            _bombCooldown2 = 50;
+        }
     default:
         break;
     }
@@ -49,7 +54,8 @@ void GameLogic::onNotify(Msg message)
 
 void GameLogic::update()
 {
-
+    _bombCooldown1 != 0 ? _bombCooldown1-- : _bombCooldown1;
+    _bombCooldown2 != 0 ? _bombCooldown2-- : _bombCooldown2;
 }
 
 void GameLogic::add_bomb(Bomb *bomb)
@@ -60,4 +66,9 @@ void GameLogic::add_bomb(Bomb *bomb)
 const std::vector<Bomb *> &GameLogic::getBombs() const
 {
     return _bombs;
+}
+
+BombModel *GameLogic::getBombModel()
+{
+    return &bombModel;
 }

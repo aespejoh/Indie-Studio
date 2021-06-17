@@ -6,17 +6,11 @@
 */
 
 #include "Bomb.hpp"
+#include <algorithm>
 
-Bomb::Bomb(Vector3 position) : _position(position)
+Bomb::Bomb(Vector3 position, BombModel bombModel) : _position(position)
 {
-    load_model_and_texture();
-}
-
-void Bomb::load_model_and_texture()
-{
-    _model = LoadModel(BOMB_MODEL_PATH);
-    _texture = LoadTexture(BOMB_TEXTURE_PATH);
-    _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
+    _model = *bombModel.getModel();
 }
 
 void Bomb::draw()
@@ -34,3 +28,9 @@ void Bomb::addTick()
     _tick++;
 }
 
+void BombModel::load_model_texture()
+{
+    _model = LoadModel(BOMB_MODEL_PATH);
+    _texture = LoadTexture(BOMB_TEXTURE_PATH);
+    _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
+}

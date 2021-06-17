@@ -15,8 +15,7 @@ Game::Game(Core *core) : _core(core)
     _core->getLogic()._player1 = player1;
     Player *player2 = new Player(2);
     _core->getLogic()._player2 = player2;
-    Bomb *bomb = new Bomb(Vector3 {0.5f, 0.0f, 0.5f});
-    _core->getLogic().add_bomb(bomb);
+    _core->getLogic().getBombModel()->load_model_texture();
 /*
     Object* player = _scene.CreateObject();
     RenderComponent* renderComponent = new RenderComponent(player);

@@ -16,14 +16,19 @@ class GameLogic : public MsgNode {
         explicit GameLogic(MessageBus *msgBus);
         void update() override;
         void add_bomb(Bomb*);
-        const std::vector<Bomb *> &getBombs() const;
+        BombModel *getBombModel();
+
+    const std::vector<Bomb *> &getBombs() const;
         Player *_player1;
         Player *_player2;
         Player *_player3;
         Player *_player4;
     private:
+        BombModel bombModel;
         void onNotify(Msg message) override;
         std::vector<Bomb*> _bombs;
+        int _bombCooldown1 = 0;
+        int _bombCooldown2 = 0;
 };
 
 #endif //INDIE_STUDIO_GAMELOGIC_HPP
