@@ -57,6 +57,18 @@ void GameLogic::update()
 {
     _bombCooldown1 != 0 ? _bombCooldown1-- : _bombCooldown1;
     _bombCooldown2 != 0 ? _bombCooldown2-- : _bombCooldown2;
+    for (auto i = _bombs.begin(); i > _bombs.end(); ++i) {
+        if (*i == nullptr)
+            _bombs.erase(i);
+    }
+    for (auto &item : _bombs)
+        if (item != nullptr) {
+            if (item->update()) {
+                item->explode();
+                delete item;
+                item = nullptr;
+            }
+        }
 }
 
 void GameLogic::add_bomb(Bomb *bomb)

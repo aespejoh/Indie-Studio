@@ -28,6 +28,21 @@ void Bomb::addTick()
     _tick++;
 }
 
+#include <iostream>
+
+bool Bomb::update()
+{
+    addTick();
+    if (_tick > 100)
+        return true;
+    return false;
+}
+
+void Bomb::explode()
+{
+
+}
+
 void BombModel::load_model_texture()
 {
     _model = LoadModel(BOMB_MODEL_PATH);

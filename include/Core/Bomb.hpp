@@ -29,14 +29,16 @@ class Bomb {
         explicit Bomb(Vector3 position, BombModel bombModel);
         void draw();
         int get_Tick() const;
-        void addTick();
+        bool update();
+        void explode();
     private:
+        void addTick();
         Vector3 _position;
         Model _model;
         Texture *_texture;
         float _scale = 5.0f;
         Color _color;
-        int _tick;
+        int _tick = 0;
 };
 
 #endif

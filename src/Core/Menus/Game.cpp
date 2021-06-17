@@ -41,7 +41,8 @@ Menu Game::menu()
     _core->getLogic()._player1->draw();
     _core->getLogic()._player2->draw();
     for (const auto &item : _core->getLogic().getBombs())
-        item->draw();
+        if (item != nullptr)
+            item->draw();
     _core->getLogic().update();
     _core->getHandler().update();
     _core->getBus()->notify();
