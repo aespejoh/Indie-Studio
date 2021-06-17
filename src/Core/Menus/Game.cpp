@@ -11,12 +11,12 @@
 
 Game::Game(Core *core) : _core(core)
 {
-    Player *player1 = new Player(0);
-    player1->load_model_and_texture(1);
+    Player *player1 = new Player(1);
     _core->getLogic()._player1 = player1;
-    Player *player2 = new Player(1);
-    player2->load_model_and_texture(2);
+    Player *player2 = new Player(2);
     _core->getLogic()._player2 = player2;
+    Bomb *bomb = new Bomb(Vector3 {0.5f, 0.0f, 0.5f});
+    _core->getLogic().add_bomb(bomb);
 /*
     Object* player = _scene.CreateObject();
     RenderComponent* renderComponent = new RenderComponent(player);
@@ -41,6 +41,8 @@ Menu Game::menu()
     DrawGrid(10, 1);
     _core->getLogic()._player1->draw();
     _core->getLogic()._player2->draw();
+    for (const auto &item : _core->getLogic().getBombs())
+        item->draw();
     _core->getLogic().update();
     _core->getHandler().update();
     _core->getBus()->notify();

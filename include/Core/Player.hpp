@@ -5,6 +5,9 @@
 ** Player
 */
 
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include "raylib.h"
 
 #define MODEL_PLAYER_PATH "resources/bomberman/Bomberman.obj"
@@ -17,14 +20,15 @@ class Player
 {
     public:
         explicit Player(int playerID);
-        void load_model_and_texture(int player_num);
         void draw();
         void moveUp();
         void moveLeft();
         void moveRight();
         void moveDown();
-        float _yaw = 0.0f;
+        const Vector3 &getPosition() const;
+
     private:
+        void load_model_and_texture(int player_num);
         Model _model;
         Texture _texture;
         Vector3 _position = {0.0f, 0.0f, 0.0f};
@@ -34,4 +38,7 @@ class Player
         int _player_ID;
         float _pitch = 0.0f;
         float _roll = 0.0f;
+        float _yaw = 0.0f;
 };
+
+#endif

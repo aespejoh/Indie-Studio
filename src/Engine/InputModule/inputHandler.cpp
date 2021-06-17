@@ -14,6 +14,8 @@ InputHandler::InputHandler(MessageBus *msgBus) : MsgNode(msgBus)
     addKeybind(KEY_UP, PLA2_MOVE_UP);
     addKeybind(KEY_LEFT, PLA2_MOVE_LEFT);
     addKeybind(KEY_RIGHT, PLA2_MOVE_RIGHT);
+    addKeybind(KEY_SPACE, PLACE_BOMB);
+    addKeybind(KEY_ENTER, PLA2_PLACE_BOMB);
 }
 
 void InputHandler::onNotify(Msg message)

@@ -38,6 +38,10 @@ void GameLogic::onNotify(Msg message)
     case PLA2_MOVE_RIGHT:
         _player2->moveRight();
         break;
+    case PLACE_BOMB:
+        add_bomb(new Bomb(_player1->getPosition()));
+    case PLA2_PLACE_BOMB:
+        add_bomb(new Bomb(_player2->getPosition()));
     default:
         break;
     }
@@ -46,4 +50,14 @@ void GameLogic::onNotify(Msg message)
 void GameLogic::update()
 {
 
+}
+
+void GameLogic::add_bomb(Bomb *bomb)
+{
+    _bombs.push_back(bomb);
+}
+
+const std::vector<Bomb *> &GameLogic::getBombs() const
+{
+    return _bombs;
 }
