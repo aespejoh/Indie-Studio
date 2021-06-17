@@ -14,8 +14,7 @@
 Core::Core()
         : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
     MapModule map;
-    std::vector<std::vector<int>> realmap = map.generateMap();
-    //map.printMap(realmap);
+    map.generateMap();
     InitWindow(width, height, "\0");
     SetTargetFPS(fps);
     loadMusicAndSounds();
