@@ -12,11 +12,14 @@
 #include <iostream>
 #include <fstream>
 #include <dirent.h>
+#include <random>
 
 #define MAX_COL 15
 #define MAX_ROW 15
+#define MAX_BOXES 40
 
 enum MapCell {
+    Empty,
     Wall,
     Box,
     Exit,
@@ -37,14 +40,20 @@ private:
     std::vector<std::vector<int>> ascii_map;
 
 public:
-    MapModule() = default;
+    MapModule();
     ~MapModule() = default;
     void saveMap(const std::string& game = std::string("empty"));
     void loadMap(const std::string &filename);
+    void generateMap();
+
 
 private:
-    std::vector<std::string> getFiles();
-    std::string getFileName();
+    static std::string lastFile(std::vector<std::string> files);
+    static std::string getFile();
+    static std::string getFileName();
+    void initWalls();
+    void initExit();
+    void initBoxes();
 };
 
 
