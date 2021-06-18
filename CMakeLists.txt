@@ -46,7 +46,7 @@ add_executable(bomberman
         include/Engine/SoundModule/SoundHandler.hpp
         include/Engine/console.hpp
         include/Engine/SceneManager.hpp
-        )
+        src/Core/MainExceptions.cpp include/Core/MainExceptions.hpp)
 include_directories(./include include/Engine/Messages include/Core
         include/Engine include/Engine/InputModule include/Core/Menus)
 find_package(raylib REQUIRED)
