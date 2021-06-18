@@ -11,6 +11,7 @@
 #include <raylib.h>
 #include <fstream>
 #include "MsgNode.hpp"
+#include "MainExceptions.hpp"
 
 class SoundHandler : public MsgNode {
     public:

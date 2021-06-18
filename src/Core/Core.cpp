@@ -6,6 +6,7 @@
 */
 
 #include <MapModule/mapModule.h>
+#include <MainExceptions.hpp>
 #include "Menus/MainMenu.hpp"
 #include "Menus/Mid.hpp"
 #include "Menus/Game.hpp"
@@ -26,9 +27,14 @@ Core::~Core()
 }
 
 void Core::loadMusicAndSounds() {
-    sound.addMusic("hp2", "resources/hp2.mp3");
-    sound.addMusic("hp", "resources/hp.mp3");
-    sound.addSound("button", "resources/buttons/button.mp3");
+    try {
+        sound.addMusic("hp2", "resources/hp2.mp3");
+        sound.addMusic("hp", "resources/hp.mp3");
+        sound.addSound("button", "resources/buttons/button.mp3");
+    } catch (MainException exception) {
+        std::cout << "Error: " << exception.what();
+        exit(84);
+    }
 }
 
 void Core::setCamera() {

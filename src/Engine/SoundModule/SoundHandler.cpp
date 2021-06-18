@@ -48,8 +48,7 @@ void SoundHandler::setSoundVolume(const std::string& name, float volume)
 void SoundHandler::addSound(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())
-        // TODO: Set return type to right exception
-        return;
+        throw MainException("A sound file hasn't been found");
     Sound sound = LoadSound(path.c_str());
     soundStorage.insert({name, sound});
 }
@@ -57,8 +56,7 @@ void SoundHandler::addSound(const std::string& name, const std::string& path) {
 void SoundHandler::addMusic(const std::string& name, const std::string& path) {
     std::ifstream f(path.c_str());
     if (!f.good())
-        // TODO: Set return type to right exception
-        return;
+        throw MainException("A music file hasn't been found");
     Music music = LoadMusicStream(path.c_str());
     musicStorage.insert({name, music});
 }
