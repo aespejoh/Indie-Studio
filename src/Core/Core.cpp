@@ -10,6 +10,8 @@
 #include "Menus/MainMenu.hpp"
 #include "Menus/Mid.hpp"
 #include "Menus/Game.hpp"
+#include "Menus/Settings.hpp"
+#include "Menus/PauseMenu.hpp"
 #include "Core.hpp"
 
 Core::Core()
@@ -31,6 +33,7 @@ void Core::loadMusicAndSounds() {
         sound.addMusic("hp2", "resources/hp2.mp3");
         sound.addMusic("hp", "resources/hp.mp3");
         sound.addSound("button", "resources/buttons/button.mp3");
+        sound.setMusicVolume("hp", music_volume);
     } catch (MainException exception) {
         std::cout << "Error: " << exception.what();
         exit(84);
@@ -50,6 +53,9 @@ void Core::gameLoop()
     MainMenu mainMenu(this);
     Mid midMenu(this);
     Game game(this);
+    Settings settings(this);
+    PauseMenu pause(this);
+
     while (status != EXIT) {
         switch (status) {
             case MAIN:
@@ -61,10 +67,18 @@ void Core::gameLoop()
             case MID:
                 status = midMenu.menu();
                 break;
+            case SETTINGS:
+                status = settings.menu();
+                break;
+            case PAUSE:
+                status = pause.menu();
+                break;
             default:
                 status = mainMenu.menu();
                 break;
         }
+        if (IsKeyReleased(KEY_P) && status != MAIN && status != SETTINGS)
+            status = PAUSE;
         if (WindowShouldClose())
             status = EXIT;
     }

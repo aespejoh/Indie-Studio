@@ -13,6 +13,7 @@ enum Menu {
     GAME,
     GAME_OVER,
     EXIT,
+    PAUSE,
     SETTINGS
 };
 

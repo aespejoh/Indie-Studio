@@ -40,7 +40,6 @@ private:
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
-        //MainMenu mainMenu;
         Menu status;
         bool sec_player = false;
         float music_volume = 1.0;
