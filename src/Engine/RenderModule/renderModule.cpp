@@ -30,9 +30,13 @@ void RenderModule::renderMap(MapModule &map)
 {
     std::vector<Vector3> boxes = map.getPositions().at("boxes");
     std::vector<Vector3> walls = map.getPositions().at("walls");
+    Vector3 exit = map.getPositions().at("exit").back();
+    Vector3 size = {1.0f, 1.0f, 1.0f};
+    Texture2D wallTexture = LoadTexture("resources/cubicmap_atlas.png");
 
     for (auto & boxPosition : boxes)
-        DrawCube(boxPosition, 1.0f, 1.0f, 1.0f, BLUE);
+        DrawCubeV(boxPosition, size, BLUE);
     for (auto & colPosition : walls)
-        DrawCube(colPosition, 1.0f, 1.0f, 1.0f, GREEN);
+        DrawCubeTexture(wallTexture, colPosition, 1.0f, 1.0f, 1.0f, GRAY);
+    DrawCubeTexture(wallTexture, exit, 1.0f, 1.0f, 1.0f, RED);
 }
