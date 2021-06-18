@@ -27,8 +27,8 @@ class Core {
         InputHandler &getHandler();
         GameLogic &getLogic();
         CameraHandler &getCameraHandler();
-
-    void setSecPlayer(bool secPlayer);
+        const std::vector<std::vector<int>> &getMap() const;
+        void setSecPlayer(bool secPlayer);
 
 private:
         MessageBus bus;
@@ -39,6 +39,7 @@ private:
         //MainMenu mainMenu;
         Menu status;
         bool sec_player = false;
+        std::vector<std::vector<int>> _map;
     private:
         int fps = 60;
         int width = 1000;

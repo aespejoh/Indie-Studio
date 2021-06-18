@@ -13,8 +13,6 @@
 
 Core::Core()
         : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
-    MapModule map;
-    map.generateMap();
     InitWindow(width, height, "\0");
     SetTargetFPS(fps);
     loadMusicAndSounds();
@@ -43,12 +41,9 @@ void Core::setCamera() {
 
 void Core::gameLoop()
 {
-    //sound.playMusic("hp2");
-    //sound.playSound("button");
     MainMenu mainMenu(this);
     Mid midMenu(this);
     Game game(this);
-    //sound.playMusic("hp");
     while (status != EXIT) {
         switch (status) {
             case MAIN:
@@ -64,23 +59,6 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
         }
-        /*if (status == MAIN)
-            status = mainMenu.menu();
-        else if (status == MID)
-            status = midMenu.menu();
-        else
-            status = mainMenu.menu();*/
-        //sound.playMusic("hp2");
-        //status = mainMenu.menu();
-        /*logic.update();
-        sound.update();
-        handler.update();
-        bus.notify();
-        BeginDrawing();
-        cameraHandler.Begin3DMode();
-        DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-        cameraHandler.End3DMode();
-        EndDrawing();*/
         if (WindowShouldClose())
             status = EXIT;
     }
@@ -112,4 +90,8 @@ CameraHandler &Core::getCameraHandler() {
 void Core::setSecPlayer(bool secPlayer)
 {
     sec_player = secPlayer;
+}
+
+const std::vector<std::vector<int>> &Core::getMap() const {
+    return _map;
 }
