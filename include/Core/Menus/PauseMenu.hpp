@@ -27,6 +27,7 @@ public:
 
 private:
     Core *core;
+    Font font;
     Texture2D background;
     Texture2D playButton;
     Texture2D optionsButton;

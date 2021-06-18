@@ -19,6 +19,8 @@ PauseMenu::~PauseMenu()
 
 void PauseMenu::loadTextures()
 {
+    font = LoadFont("resources/font/Caramel Sweets.ttf");
+
     Image back = LoadImage("resources/background_two.png");
     Image _playButton = LoadImage("resources/buttons/playButton.png");
     Image _optionsButton = LoadImage("resources/buttons/optionsButton.png");
@@ -72,6 +74,8 @@ void PauseMenu::drawings()
 {
     BeginDrawing();
     DrawTexture(background, -50, -50, WHITE);
+    DrawTextEx(font, "PAUSE", Vector2{(float)WIDTH/2 - 100, 30.0f}, 100, 2,
+               BLACK);
     DrawTextureRec(playButton, playSourceRec,
                    Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
     DrawTextureRec(optionsButton, optionsSourceRec,
