@@ -7,11 +7,13 @@
 
 #include "Menus/Settings.hpp"
 #include <stdlib.h>
+#include <cmath>
 
 Settings::Settings(Core *core)
 {
     this->core = core;
     loadTexture();
+    loadRect();
 }
 
 Settings::~Settings()
@@ -32,44 +34,27 @@ Menu Settings::menu()
     core->getHandler().update();
     core->getBus().notify();
 
-    checkMouse();
-    //std::cout << core->getMusicVolume() << std::endl;
-    int vol = (int)core->getMusicVolume() * 100;
-    std::string s = std::to_string(vol);
-    char const *pchar = s.c_str();
+    mousePoint = GetMousePosition();
 
-    BeginDrawing();
-    DrawTexture(background, -50, -50, WHITE);
-    DrawTextEx(font, "SETTINGS", Vector2{(float)WIDTH/2 - 100, 30.0f}, 50, 2,
-               BLACK);
-    DrawTextEx(font, "Music volume:", Vector2{250.0f, 190.0f}, 35, 2, BLACK);
-    DrawTexture(arrow_left, 500, 180, WHITE);
-    DrawTextEx(font, pchar, Vector2{560.0f, 190}, 35, 2, BLACK);
-    DrawTexture(arrow_right, 610, 180, WHITE);
-    //DrawTextEx(font, "-", Vector2{360, 170}, 75, 2, BLACK);
-    //DrawTextEx(font, "+", Vector2{450, 170}, 75, 2, BLACK);
-    /*for (int i = 0; i <= vol; i++) {
-        DrawTextEx(font, "|", Vector2{posX, posY}, 40, 2, BLACK);
-        posX += 10;
-    }*/
-    //DrawTextEx(font, "Music volume:", Vector2{130.0f, 190.0f}, 35, 2, BLACK);
-    //core->getCameraHandler().Begin3DMode();
-    //DrawCube(Vector3{-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-    //core->getCameraHandler().End3DMode();
-    EndDrawing();
+    initInfo();
+    checkMouse();
+    playMouseCheck();
+    drawing();
+
+    if (playAction) {
+        playAction = false;
+        return MID;
+    }
     return SETTINGS;
 }
 
 void Settings::checkMouse()
 {
     if (CheckCollisionPointRec(mousePoint, arrow_left_rect)) {
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && core->getMusicVolume() > 0) {
             float vol = core->getMusicVolume() - 0.10;
-            std::cout << vol << std::endl;
             core->setMusicVolume(vol);
-            std::cout << core->getMusicVolume() << std::endl;
             core->getSound().setMusicVolume("hp", vol);
-            std::cout << core->getMusicVolume() << std::endl;
         }
     }
     if (CheckCollisionPointRec(mousePoint, arrow_right_rect)) {
@@ -77,6 +62,16 @@ void Settings::checkMouse()
             float vol = core->getMusicVolume() + 0.10;
             core->setMusicVolume(vol);
             core->getSound().setMusicVolume("hp", vol);
+        }
+    }
+    if (CheckCollisionPointRec(mousePoint, arrow_left_rect_)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            switchFpsDes();
+        }
+    }
+    if (CheckCollisionPointRec(mousePoint, arrow_right_rect_)) {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            switchFpsAsc();
         }
     }
 }
@@ -96,4 +91,128 @@ void Settings::loadTexture()
     Image right = LoadImage("resources/arrow_right.png");
     ImageResize(&right, 50, 50);
     arrow_right = LoadTextureFromImage(right);
+
+    Image _playButton = LoadImage("resources/buttons/playButton.png");
+    ImageResize(&_playButton, 200, 125);
+    playButton = LoadTextureFromImage(_playButton);
+}
+
+void Settings::loadRect()
+{
+    arrow_left_rect = {500, 180, (float)arrow_left.width,
+                       (float)arrow_left.height};
+    arrow_right_rect = {630, 180, (float)arrow_left.width,
+                        (float)arrow_left.height};
+    arrow_left_rect_ = {500, 240, (float)arrow_left.width,
+                       (float)arrow_left.height};
+    arrow_right_rect_ = {630, 240, (float)arrow_left.width,
+                        (float)arrow_left.height};
+}
+
+void Settings::drawing()
+{
+    BeginDrawing();
+    DrawTexture(background, -50, -50, WHITE);
+    DrawTextEx(font, "SETTINGS", Vector2{(float)WIDTH/2 - 150, 30.0f}, 100, 2,
+               BLACK);
+    drawingMusicVolumen();
+    drawingFpds();
+    drawButton();
+    EndDrawing();
+}
+
+void Settings::drawingFpds()
+{
+    int fpss = core->getFps();
+    std::string ss = std::to_string(fpss);
+    char const *fps = ss.c_str();
+
+    DrawTextEx(font, "FPS:", Vector2{150.0f, 250.0f}, 50, 2, BLACK);
+    DrawTexture(arrow_left, 500, 240, WHITE);
+    DrawTextEx(font, fps, Vector2{560.0f, 245}, 50, 2, BLACK);
+    DrawTexture(arrow_right, 630, 240, WHITE);
+}
+
+void Settings::drawingMusicVolumen()
+{
+    int vol = (int)round(core->getMusicVolume() * 100);
+    std::string s = std::to_string(vol);
+    char const *volume = s.c_str();
+
+    DrawTextEx(font, "Music volume:", Vector2{150.0f, 190.0f}, 50, 2, BLACK);
+    DrawTexture(arrow_left, 500, 180, WHITE);
+    DrawTextEx(font, volume, Vector2{560.0f, 185}, 50, 2, BLACK);
+    DrawTexture(arrow_right, 630, 180, WHITE);
+}
+
+void Settings::drawButton()
+{
+    DrawTextureRec(playButton, playSourceRec,
+                   Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
+}
+
+void Settings::playMouseCheck()
+{
+    if (CheckCollisionPointRec(mousePoint, playBtnBounds)) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            playState = 2;
+        else
+            playState = 1;
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+            playAction = true;
+    }
+    else playState = 0;
+
+    if (playAction)
+        core->getSound().playSound("button");
+    playSourceRec.y = playState * playFrameHeight;
+}
+
+void Settings::initInfo()
+{
+    playFrameHeight = (float)playButton.height/NUM_FRAMES;
+
+    playSourceRec = {0, 0, (float)playButton.width, playFrameHeight};
+
+    playBtnBounds = {WIDTH/2.0f - playButton.width/2.0f,
+                     HEIGHT/2.0f - playButton.height/NUM_FRAMES/2.0f + 250,
+                     (float)playButton.width, playFrameHeight};
+}
+
+void Settings::switchFpsAsc()
+{
+    int fps = core->getFps();
+    switch (fps) {
+        case 30:
+            core->setFps(60);
+            SetTargetFPS(60);
+            break;
+        case 60:
+            core->setFps(120);
+            SetTargetFPS(120);
+            break;
+        case 120:
+            core->setFps(30);
+            SetTargetFPS(30);
+            break;
+    }
+}
+
+void Settings::switchFpsDes()
+{
+    int fps = core->getFps();
+    switch (fps) {
+        case 30:
+            core->setFps(120);
+            SetTargetFPS(120);
+            break;
+        case 60:
+            core->setFps(30);
+            SetTargetFPS(30);
+            break;
+        case 120:
+            core->setFps(60);
+            SetTargetFPS(60);
+            break;
+    }
 }
