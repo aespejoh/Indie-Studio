@@ -37,6 +37,8 @@ void MainMenu::loadTextures()
 
 Menu MainMenu::menu()
 {
+    ClearBackground(WHITE);
+
     core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
@@ -51,12 +53,18 @@ Menu MainMenu::menu()
     exitMouseCheck();
     drawings();
 
-    if (exitAction)
+    if (exitAction) {
+        exitAction = false;
         return EXIT;
-    if (playAction)
+    }
+    if (playAction) {
+        playAction = false;
         return MID;
-    if (optionsAction)
+    }
+    if (optionsAction) {
+        optionsAction = false;
         return SETTINGS;
+    }
     return MAIN;
 }
 
