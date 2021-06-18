@@ -43,8 +43,10 @@ Menu Mid::menu()
     if (!arrow)
         core->setSecPlayer(true);
 
-    if (playAction)
+    if (playAction) {
+        playAction = false;
         return GAME;
+    }
     return MID;
 }
 

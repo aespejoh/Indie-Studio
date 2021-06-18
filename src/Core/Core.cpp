@@ -12,6 +12,7 @@
 #include "Menus/Game.hpp"
 #include "Menus/Settings.hpp"
 #include "Menus/PauseMenu.hpp"
+#include "Menus/GameOver.hpp"
 #include "Core.hpp"
 
 Core::Core()
@@ -55,6 +56,7 @@ void Core::gameLoop()
     Game game(this);
     Settings settings(this);
     PauseMenu pause(this);
+    GameOver gameOver(this);
 
     while (status != EXIT) {
         switch (status) {

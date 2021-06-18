@@ -8,13 +8,20 @@
 #ifndef GAMEOVER_HPP_
 #define GAMEOVER_HPP_
 
+#include "Core.hpp"
+
+#define WIDTH 1000
+#define HEIGHT 750
+
 class GameOver {
     public:
-        GameOver();
+        GameOver(Core *core);
         ~GameOver();
+        Menu menu();
 
-    protected:
     private:
+        Core *core;
+        Font font;
 };
 
 #endif /* !GAMEOVER_HPP_ */
