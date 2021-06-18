@@ -63,6 +63,7 @@ private:
     void initBoxes();
     std::vector<Vector3> generateBoxPositions();
     std::vector<Vector3> generateWallPositions();
+    std::vector<Vector3> getExitPosition();
     void generatePositionVectors();
 };
 
