@@ -9,6 +9,7 @@
 #define PLAYER_HPP
 
 #include "raylib.h"
+#include <MapModule/mapModule.h>
 
 #define MODEL_PLAYER_PATH "resources/bomberman/Bomberman.obj"
 #define TEXTURE_BLUE_PLAYER_PATH "resources/bomberman/blue_body.png"
@@ -19,7 +20,7 @@
 class Player
 {
     public:
-        explicit Player(int playerID);
+        explicit Player(int playerID, MapModule &map);
         void draw();
         void moveUp();
         void moveLeft();
@@ -29,9 +30,10 @@ class Player
 
     private:
         void load_model_and_texture(int player_num);
+        MapModule _map;
         Model _model;
         Texture _texture;
-        Vector3 _position = {0.0f, 0.0f, 0.0f};
+        Vector3 _position = {5.0f, 0.0f, 5.0f};
         BoundingBox _boundingBox;
         float _scale = 0.075f;
         Color _color = WHITE;

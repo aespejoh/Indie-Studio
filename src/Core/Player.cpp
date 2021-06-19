@@ -41,51 +41,71 @@ void Player::draw()
     DrawModel(_model, _position, _scale, _color);
 }
 
-Player::Player(int playerID) : _player_ID(playerID)
+Player::Player(int playerID, MapModule &map) : _player_ID(playerID), _map(map)
 {
     load_model_and_texture(_player_ID);
 }
 
 void Player::moveUp()
 {
-    _position.z -= 0.05f;
-    if (_yaw < 180.0f)
-        _yaw += 10.0f;
-    if (_yaw > 180.0f)
-        _yaw -= 10.0f;
-    _model.transform = MatrixRotateXYZ(Vector3 {DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll});
+    Vector3 pos = this->_position;
+    pos.z -= 0.05f;
+
+    if (_map.canPass(pos)) {
+        _position.z -= 0.05f;
+        if (_yaw < 180.0f)
+            _yaw += 10.0f;
+        if (_yaw > 180.0f)
+            _yaw -= 10.0f;
+        _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
+    }
 }
 
 void Player::moveLeft()
 {
-    _position.x -= 0.05f;
-    if (_yaw < 90)
-        _yaw += 10.0f;
-    else if (_yaw > 90)
-        _yaw -= 10.0f;
-    _model.transform = MatrixRotateXYZ(Vector3 {DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll});
+    Vector3 pos = this->_position;
+    pos.x -= 0.05f;
+
+    if (_map.canPass(pos)) {
+        _position.x -= 0.05f;
+        if (_yaw < 90)
+            _yaw += 10.0f;
+        else if (_yaw > 90)
+            _yaw -= 10.0f;
+        _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
+    }
 }
 
 void Player::moveRight()
 {
-    _position.x += 0.05f;
-    _yaw == 0 ? _yaw = 360 : _yaw;
-    if (_yaw < 270)
-        _yaw += 10.0f;
-    else if (_yaw > 270)
-        _yaw -= 10.0f;
-    _model.transform = MatrixRotateXYZ(Vector3 {DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll});
+    Vector3 pos = this->_position;
+    pos.x += 0.05f;
+
+    if (_map.canPass(pos)) {
+        _position.x += 0.05f;
+        _yaw == 0 ? _yaw = 360 : _yaw;
+        if (_yaw < 270)
+            _yaw += 10.0f;
+        else if (_yaw > 270)
+            _yaw -= 10.0f;
+        _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
+    }
 }
 
 void Player::moveDown()
 {
-    _position.z += 0.05f;
-    _yaw == 360 ? _yaw = 0 : _yaw;
-    if (_yaw >= 270)
-        _yaw += 10.0f;
-    else if (_yaw > 0)
-        _yaw -= 10.0f;
-    _model.transform = MatrixRotateXYZ(Vector3 {DEG2RAD* _pitch, DEG2RAD* _yaw, DEG2RAD* _roll});
+    Vector3 pos = this->_position;
+    pos.z += 0.05f;
+
+    if (_map.canPass(pos)) {
+        _position.z += 0.05f;
+        _yaw == 360 ? _yaw = 0 : _yaw;
+        if (_yaw >= 270)
+            _yaw += 10.0f;
+        else if (_yaw > 0)
+            _yaw -= 10.0f;
+        _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
+    }
 }
 
 const Vector3 &Player::getPosition() const
