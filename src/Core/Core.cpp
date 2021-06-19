@@ -33,8 +33,8 @@ void Core::loadMusicAndSounds() {
 }
 
 void Core::setCamera() {
-    cameraHandler.setPosition(0.0f, 10.0f, 10.0f);
-    cameraHandler.setTarget(0.0f, 0.0f, 0.0f);
+    cameraHandler.setPosition(13.0f, 25.0f, 19.0f);
+    cameraHandler.setTarget(5.0f, -14.0f, 0.0f);
     cameraHandler.setUp(0.0f, 1.0f, 0.0f);
     cameraHandler.setFov(45.0f);
     cameraHandler.setProjection(CAMERA_PERSPECTIVE);
