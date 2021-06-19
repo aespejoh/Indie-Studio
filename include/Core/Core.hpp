@@ -48,7 +48,6 @@ private:
         int fps = 60;
         int width = 1000;
         int height = 750;
-
 };
 
 #endif /* !CORE_HPP_ */
