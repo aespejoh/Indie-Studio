@@ -226,3 +226,14 @@ const std::map<std::string, std::vector<Vector3>> &MapModule::getPositions() con
 {
     return (positions);
 }
+
+bool MapModule::canPass(Vector3 &pos)
+{
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+
+    std::cerr << "x " << pos.x << " row " << row << "\tz " << pos.z << " col " << col << std::endl;
+    if (ascii_map[row][col] == MapCell::Empty)
+        return (true);
+    return (false);
+}

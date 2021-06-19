@@ -58,7 +58,7 @@ public:
     void loadMap(const std::string &filename);
     void generateMap();
     void printAsciiMap();
-
+    bool canPass(Vector3 &pos);
 
 private:
     static std::string lastFile(std::vector<std::string> files);
