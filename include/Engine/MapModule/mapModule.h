@@ -8,13 +8,19 @@
 #ifndef BOMBERMAN_MAPMODULE_H
 #define BOMBERMAN_MAPMODULE_H
 
+#ifdef __unix__
+    #include <dirent.h>
+#elif defined(_WIN32) || defined(WIN32)
+    #include "dirent_win.h"
+#endif
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <dirent.h>
 #include <random>
 #include <raylib.h>
 #include <map>
+#include <string>
 
 #define MAX_COL 15
 #define MAX_ROW 15

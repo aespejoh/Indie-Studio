@@ -39,7 +39,7 @@
             BeginMode3D(camera);
 
             //Drawing floor
-            DrawCube((Vector3) {(float) MAX_ROW / 2 -1, 0.0f, (float) MAX_ROW / 2 -1}, floor.x, floor.y, floor.z, BLACK);
+            DrawCube(Vector3 {(float) MAX_ROW / 2 -1, 0.0f, (float) MAX_ROW / 2 -1}, floor.x, floor.y, floor.z, BLACK);
 
             core.getRender().renderMap(core.getMap());
             EndMode3D();

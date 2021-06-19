@@ -69,7 +69,7 @@ void SoundHandler::playSound(const std::string& name) {
 
 void SoundHandler::playMusic(const std::string& name)
 {
-    if (playedBGM != name and !playedBGM.empty())
+    if (playedBGM != name && !playedBGM.empty())
         stopMusic(playedBGM);
     playedBGM = name;
     PlayMusicStream(musicStorage.find(name)->second);

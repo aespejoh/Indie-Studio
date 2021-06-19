@@ -114,7 +114,7 @@ void MapModule::initWalls()
         for (int j = 1; j < MAX_COL; ++j) {
             if (i == 0 || j == MAX_COL - 1 || i == MAX_ROW - 1)
                 this->ascii_map[i][j] = MapCell::Wall;
-            else if (i % 2 == 0 and j % 2 == 0)
+            else if ((i % 2 == 0) && (j % 2 == 0))
                 this->ascii_map[i][j] = MapCell::Wall;
             else
                 this->ascii_map[i][j] = MapCell::Empty;
@@ -163,7 +163,7 @@ std::vector<Vector3> MapModule::generateBoxPositions()
     for (int row = 0; row < MAX_ROW; ++row) {
         for (int col = 0; col < MAX_COL; ++col) {
             if (ascii_map[row][col] == MapCell::Box)
-                posList.push_back((Vector3) {(float) row, 1.0f, (float) col});
+                posList.push_back(Vector3 {(float) row, 1.0f, (float) col});
         }
     }
     return (posList);
@@ -176,7 +176,7 @@ std::vector<Vector3> MapModule::generateWallPositions()
     for (int row = 0; row < MAX_ROW; ++row) {
         for (int col = 0; col < MAX_COL; ++col) {
             if (ascii_map[row][col] == MapCell::Wall)
-                posList.push_back((Vector3) {(float) row, 1.0f, (float) col});
+                posList.push_back(Vector3 {(float) row, 1.0f, (float) col});
         }
     }
     return (posList);
@@ -189,7 +189,7 @@ std::vector<Vector3> MapModule::getExitPosition()
     for (int row = 0; row < MAX_ROW; ++row) {
         for (int col = 0; col < MAX_COL; ++col) {
             if (ascii_map[row][col] == MapCell::ExitWithBox)
-                posList.push_back((Vector3) {(float) row, 1.0f, (float) col});
+                posList.push_back(Vector3 {(float) row, 1.0f, (float) col});
         }
     }
     return (posList);

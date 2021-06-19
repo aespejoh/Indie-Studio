@@ -37,7 +37,7 @@ Menu Game::menu() {
 
     _core->getCameraHandler().End3DMode();
 
-    DrawTextureEx(texture, (Vector2){ 1000 - texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
+    DrawTextureEx(texture, Vector2{ 1000 - texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
     DrawRectangleLines(1000 - texture.width*4 - 20, 20, texture.width*4, texture.height*4, GREEN);
 
     return GAME;
