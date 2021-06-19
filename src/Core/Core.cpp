@@ -22,6 +22,7 @@ Core::Core()
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
+    prevStatus = MAIN;
 }
 
 Core::~Core()
@@ -132,4 +133,12 @@ float Core::getMusicVolume(){
 
 void Core::setMusicVolume(float musicVolume) {
     music_volume = musicVolume;
+}
+
+void Core::setPrevStatus(Menu prevStatus){
+    Core::prevStatus = prevStatus;
+}
+
+Menu Core::getPrevStatus() const {
+    return prevStatus;
 }
