@@ -47,6 +47,7 @@ void Core::gameLoop()
     MainMenu mainMenu(this);
     Mid midMenu(this);
     Game game(this);
+    renderModule.loadTextures();
     //sound.playMusic("hp");
     sound.playMusic("hp");
     while (status != EXIT) {

@@ -8,7 +8,6 @@
 
 RenderModule::RenderModule(MessageBus *bus) : MsgNode(bus)
 {
-
 }
 
 void RenderModule::update()
@@ -33,12 +32,17 @@ void RenderModule::renderMap(MapModule &map)
     Vector3 exit = map.getPositions().at("exit").back();
     Vector3 size = {1.0f, 1.0f, 1.0f};
     Vector3 floor = {(float) MAX_ROW, 0.0f, (float) MAX_COL};
-    Texture2D wallTexture = LoadTexture("resources/cubicmap_atlas.png");
 
     DrawCube(Vector3 {(float) MAX_ROW / 2 -1, 0.0f, (float) MAX_ROW / 2 -1}, floor.x, floor.y, floor.z, BLACK);
     for (auto & boxPosition : boxes)
         DrawCubeV(boxPosition, size, BLUE);
     for (auto & colPosition : walls)
-        DrawCubeTexture(wallTexture, colPosition, 1.0f, 1.0f, 1.0f, GRAY);
-    DrawCubeTexture(wallTexture, exit, 1.0f, 1.0f, 1.0f, RED);
+        DrawCubeTexture(_wallTexture, colPosition, 1.0f, 1.0f, 1.0f, GRAY);
+    DrawCubeTexture(_wallTexture, exit, 1.0f, 1.0f, 1.0f, RED);
+}
+
+void RenderModule::loadTextures()
+{
+    Texture2D wallTexture = LoadTexture("resources/cubicmap_atlas.png");
+    _wallTexture = wallTexture;
 }

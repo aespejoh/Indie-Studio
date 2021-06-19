@@ -16,10 +16,11 @@ class RenderModule : public MsgNode {
         explicit RenderModule(MessageBus *bus);
         void update() override;
         void renderMap(MapModule &map);
-
+        void loadTextures();
     protected:
         void renderMapTile(Vector3 position);
         void onNotify(Msg message) override;
+        Texture2D _wallTexture;
 };
 
 #endif //INDIE_STUDIO_RENDERMODULE_HPP
