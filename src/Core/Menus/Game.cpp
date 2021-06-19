@@ -16,15 +16,14 @@ Game::Game(Core *core) : _core(core)
     Player *player2 = new Player(2);
     _core->getLogic()._player2 = player2;
     _core->getLogic().getBombModel()->load_model_texture();
-/*
-    Object* player = _scene.CreateObject();
-    RenderComponent* renderComponent = new RenderComponent(player);
-    renderComponent->load_texture("resources/bomberman/body.png");
-    renderComponent->load_model("resources/bomberman/Bomberman.obj");
-    renderComponent->setScale(0.075f);
-    player->loadComponent(renderComponent);
-    core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
-*/
+    Image image = LoadImage("resources/cubicmap.png");
+    _texture = LoadTextureFromImage(image);
+    Mesh mesh = GenMeshCubicmap(image, Vector3{1.0f, 1.0f, 1.0f});
+    _model = LoadModelFromMesh(mesh);
+    Texture2D texture2 = LoadTexture("resources/cubicmap_atlas.png");
+    _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture2;
+
+    UnloadImage(image);
 }
 
 Game::~Game()
@@ -35,25 +34,14 @@ Game::~Game()
 Menu Game::menu() {
     ClearBackground(WHITE);
     _core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
-    Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };
-    Image image = LoadImage("resources/cubicmap.png");
-    Texture2D texture = LoadTextureFromImage(image);
-
-    Mesh mesh = GenMeshCubicmap(image, Vector3{1.0f, 1.0f, 1.0f});
-    Model model = LoadModelFromMesh(mesh);
-
-    Texture2D texture2 = LoadTexture("resources/cubicmap_atlas.png");
-    model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture2;
-
-    UnloadImage(image);
 
     BeginDrawing();
     _core->getCameraHandler().Begin3DMode();
 
-    DrawModel(model, mapPosition, 1.0f, WHITE);
+    DrawModel(_model, mapPosition, 1.0f, WHITE);
     _core->getCameraHandler().End3DMode();
-    DrawTextureEx(texture, Vector2{ 1000 - texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
-    DrawRectangleLines(1000 - texture.width*4 - 20, 20, texture.width*4, texture.height*4, GREEN);
+    DrawTextureEx(_texture, Vector2{ 1000 - _texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
+    DrawRectangleLines(1000 - _texture.width*4 - 20, 20, _texture.width*4, _texture.height*4, GREEN);
     _core->getLogic()._player1->draw();
     _core->getLogic()._player2->draw();
     for (const auto &item : _core->getLogic().getBombs())
