@@ -7,9 +7,24 @@
 
 #include "Menus/Game.hpp"
 
-Game::Game(Core *core)
+#include <utility>
+
+Game::Game(Core *core) : _core(core)
 {
-    _core = core;
+    Player *player1 = new Player(1);
+    _core->getLogic()._player1 = player1;
+    Player *player2 = new Player(2);
+    _core->getLogic()._player2 = player2;
+    _core->getLogic().getBombModel()->load_model_texture();
+/*
+    Object* player = _scene.CreateObject();
+    RenderComponent* renderComponent = new RenderComponent(player);
+    renderComponent->load_texture("resources/bomberman/body.png");
+    renderComponent->load_model("resources/bomberman/Bomberman.obj");
+    renderComponent->setScale(0.075f);
+    player->loadComponent(renderComponent);
+    core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
+*/
 }
 
 Game::~Game()
@@ -18,6 +33,8 @@ Game::~Game()
 }
 
 Menu Game::menu() {
+    ClearBackground(WHITE);
+    _core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
     Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };
     Image image = LoadImage("resources/cubicmap.png");
     Texture2D texture = LoadTextureFromImage(image);
@@ -34,11 +51,20 @@ Menu Game::menu() {
     _core->getCameraHandler().Begin3DMode();
 
     DrawModel(model, mapPosition, 1.0f, WHITE);
-
     _core->getCameraHandler().End3DMode();
-
     DrawTextureEx(texture, Vector2{ 1000 - texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
     DrawRectangleLines(1000 - texture.width*4 - 20, 20, texture.width*4, texture.height*4, GREEN);
+    _core->getLogic()._player1->draw();
+    _core->getLogic()._player2->draw();
+    for (const auto &item : _core->getLogic().getBombs())
+        if (item != nullptr)
+            item->draw();
+    _core->getLogic().update();
+    _core->getHandler().update();
+    _core->getBus()->notify();
+    _core->getCameraHandler().End3DMode();
+    EndDrawing();
 
     return GAME;
 }
+

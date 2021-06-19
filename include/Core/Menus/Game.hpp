@@ -12,7 +12,7 @@
 
 class Game {
     public:
-        Game(Core *core);
+        explicit Game(Core *core);
         ~Game();
         Menu menu();
     private:

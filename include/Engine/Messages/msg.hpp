@@ -17,7 +17,13 @@ enum msgType {
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,
-    MOVE_RIGHT
+    MOVE_RIGHT,
+    PLA2_MOVE_UP,
+    PLA2_MOVE_DOWN,
+    PLA2_MOVE_LEFT,
+    PLA2_MOVE_RIGHT,
+    PLACE_BOMB,
+    PLA2_PLACE_BOMB
 };
 
 
