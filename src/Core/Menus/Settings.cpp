@@ -12,7 +12,12 @@
 Settings::Settings(Core *core)
 {
     this->core = core;
-    loadTexture();
+    try {
+        loadTexture();
+    } catch (MainException exception) {
+        std::cout << "Loop Error: " << exception.what();
+        exit(84);
+    }
     loadRect();
 }
 
@@ -43,7 +48,7 @@ Menu Settings::menu()
 
     if (playAction) {
         playAction = false;
-        return MID;
+        return core->getPrevStatus();
     }
     return SETTINGS;
 }
@@ -81,19 +86,22 @@ void Settings::loadTexture()
     font = LoadFont("resources/font/Caramel Sweets.ttf");
 
     Image _background = LoadImage("resources/background_two.png");
-    ImageResize(&_background, WIDTH + 100, HEIGHT + 100);
-    background = LoadTextureFromImage(_background);
-
     Image left = LoadImage("resources/arrow_left.png");
-    ImageResize(&left, 50, 50);
-    arrow_left = LoadTextureFromImage(left);
-
     Image right = LoadImage("resources/arrow_right.png");
-    ImageResize(&right, 50, 50);
-    arrow_right = LoadTextureFromImage(right);
-
     Image _playButton = LoadImage("resources/buttons/playButton.png");
+
+    if (left.height == 0 || right.height == 0 || _playButton.height == 0 ||
+        _background.height == 0)
+        throw MainException("Loading of textures in main menu failed.");
+
+    ImageResize(&_background, WIDTH + 100, HEIGHT + 100);
+    ImageResize(&left, 50, 50);
+    ImageResize(&right, 50, 50);
     ImageResize(&_playButton, 200, 125);
+
+    background = LoadTextureFromImage(_background);
+    arrow_left = LoadTextureFromImage(left);
+    arrow_right = LoadTextureFromImage(right);
     playButton = LoadTextureFromImage(_playButton);
 }
 
