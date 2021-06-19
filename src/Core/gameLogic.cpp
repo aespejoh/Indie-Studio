@@ -39,13 +39,13 @@ void GameLogic::onNotify(Msg message)
         break;
     case PLACE_BOMB:
         if (_bombCooldown1 == 0) {
-            add_bomb(new Bomb(_player1->getPosition(), bombModel));
+            add_bomb(new Bomba(_player1->getPosition(), bombModel));
             _bombCooldown1 = 50;
         }
         break;
     case PLA2_PLACE_BOMB:
         if (_bombCooldown2 == 0) {
-            add_bomb(new Bomb(_player2->getPosition(), bombModel));
+            add_bomb(new Bomba(_player2->getPosition(), bombModel));
             _bombCooldown2 = 50;
         }
     default:
@@ -71,12 +71,12 @@ void GameLogic::update()
         }
 }
 
-void GameLogic::add_bomb(Bomb *bomb)
+void GameLogic::add_bomb(Bomba *bomb)
 {
     _bombs.push_back(bomb);
 }
 
-const std::vector<Bomb *> &GameLogic::getBombs() const
+const std::vector<Bomba *> &GameLogic::getBombs() const
 {
     return _bombs;
 }

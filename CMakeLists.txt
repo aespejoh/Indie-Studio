@@ -48,8 +48,8 @@ add_executable(bomberman
         include/Engine/SceneManager.hpp
         src/Core/Player.cpp
         include/Core/Player.hpp
-        src/Core/Menus/Bomb.cpp
-        include/Core/Bomb.hpp)
+        src/Core/Menus/Bomba.cpp
+        include/Core/Bomba.hpp)
 include_directories(./include include/Engine/Messages include/Core
         include/Engine include/Engine/InputModule include/Core/Menus include/Engine/Objects)
 find_package(raylib REQUIRED)

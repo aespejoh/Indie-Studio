@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** B-YEP-400-BAR-4-1-indiestudio-arnau.espejo-hernandez
 ** File description:
-** Bomb
+** Bomba
 */
 
 #ifndef BOMB_HPP
@@ -24,9 +24,9 @@ class BombModel
         Texture _texture;
 };
 
-class Bomb {
+class Bomba {
     public:
-        explicit Bomb(Vector3 position, BombModel bombModel);
+        explicit Bomba(Vector3 position, BombModel bombModel);
         void draw();
         int get_Tick() const;
         bool update();

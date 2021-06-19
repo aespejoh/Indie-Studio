@@ -9,16 +9,16 @@
 
 #include "MsgNode.hpp"
 #include "Player.hpp"
-#include "Bomb.hpp"
+#include "Bomba.hpp"
 
 class GameLogic : public MsgNode {
     public:
         explicit GameLogic(MessageBus *msgBus);
         void update() override;
-        void add_bomb(Bomb*);
+        void add_bomb(Bomba*);
         BombModel *getBombModel();
 
-    const std::vector<Bomb *> &getBombs() const;
+    const std::vector<Bomba *> &getBombs() const;
         Player *_player1;
         Player *_player2;
         Player *_player3;
@@ -26,7 +26,7 @@ class GameLogic : public MsgNode {
     private:
         BombModel bombModel;
         void onNotify(Msg message) override;
-        std::vector<Bomb*> _bombs;
+        std::vector<Bomba*> _bombs;
         int _bombCooldown1 = 0;
         int _bombCooldown2 = 0;
 };
