@@ -11,6 +11,7 @@ MainMenu::MainMenu(Core *core)
 {
     this->core = core;
     try {
+        checkFiles();
         loadTextures();
     } catch (MainException exception) {
         std::cout << "Loop Error: " << exception.what();
@@ -20,6 +21,24 @@ MainMenu::MainMenu(Core *core)
 
 MainMenu::~MainMenu()
 {
+}
+
+void MainMenu::checkFiles()
+{
+    std::ifstream background_;
+    background_.open("resources/background.png");
+
+    std::ifstream playButton_;
+    playButton_.open("resources/buttons/playButton.png");
+
+    std::ifstream optionsButton_;
+    optionsButton_.open("resources/buttons/optionsButton.png");
+
+    std::ifstream exitButton_;
+    exitButton_.open("resources/buttons/exitButton.png");
+
+    if (!background_.is_open() || !playButton_.is_open() || !optionsButton_.is_open() || !exitButton_.is_open())
+        throw MainException("Resource not found.");
 }
 
 void MainMenu::loadTextures()
@@ -63,14 +82,17 @@ Menu MainMenu::menu()
     drawings();
 
     if (exitAction) {
+        core->setPrevStatus(MAIN);
         exitAction = false;
         return EXIT;
     }
     if (playAction) {
+        core->setPrevStatus(MAIN);
         playAction = false;
         return MID;
     }
     if (optionsAction) {
+        core->setPrevStatus(MAIN);
         optionsAction = false;
         return SETTINGS;
     }

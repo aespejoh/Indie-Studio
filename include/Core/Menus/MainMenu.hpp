@@ -9,6 +9,7 @@
 #define MAINMENU_HPP_
 
 #include "Core.hpp"
+#include <fstream>
 
 #define WIDTH 1000
 #define HEIGHT 750
@@ -25,6 +26,7 @@ class MainMenu {
         void playMouseCheck();
         void optionsMouseCheck();
         void exitMouseCheck();
+        void checkFiles();
 
     private:
         Core *core;
