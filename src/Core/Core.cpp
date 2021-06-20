@@ -76,6 +76,9 @@ void Core::gameLoop()
             case PAUSE:
                 status = pause.menu();
                 break;
+            case GAME_OVER:
+                status = gameOver.menu();
+                break;
             default:
                 status = mainMenu.menu();
                 break;
