@@ -21,11 +21,9 @@ class Mid {
         Menu menu();
         void loadModels();
         void loadTextures();
-        void loadRect();
         void drawings();
         void drawModels();
         void drawPlayersInfo();
-        void checkMouse();
         void setPositions();
         void drawButton();
         void playMouseCheck();
@@ -41,8 +39,6 @@ class Mid {
         Texture2D black;
         Texture2D yellow;
         Texture2D red;
-        Texture2D arrow_left;
-        Texture2D arrow_right;
         Texture2D playButton;
         Texture2D background;
         Vector3 position;
@@ -52,8 +48,6 @@ class Mid {
         Font font;
         Vector2 mousePoint = { 0.0f, 0.0f };
         bool arrow = false;
-        Rectangle arrow_left_rect = {0, 0, 0, 0};
-        Rectangle arrow_right_rect = {0, 0, 0, 0};
         float playFrameHeight = 0.0;
         Rectangle playBtnBounds = {0, 0, 0, 0};
         Rectangle playSourceRec = {0, 0, 0, 0};

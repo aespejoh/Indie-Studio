@@ -18,7 +18,6 @@ Mid::Mid(Core *core)
         std::cout << "Loop Error: " << exception.what();
         exit(84);
     }
-    loadRect();
     setPositions();
 }
 
@@ -77,7 +76,6 @@ Menu Mid::menu()
     mousePoint = GetMousePosition();
 
     initInfo();
-    checkMouse();
     playMouseCheck();
     drawings();
 
@@ -132,34 +130,19 @@ void Mid::setPositions()
 
 void Mid::loadTextures()
 {
-    Image left = LoadImage("resources/arrow_left.png");
-    Image right = LoadImage("resources/arrow_right.png");
     Image _playButton = LoadImage("resources/buttons/playButton.png");
     Image _background = LoadImage("resources/background_two.png");
 
-    if (left.height == 0 || right.height == 0 || _playButton.height == 0 ||
-    _background.height == 0)
+    if (_playButton.height == 0 || _background.height == 0)
         throw MainException("Loading of textures in main menu failed.");
 
-    ImageResize(&left, 50, 50);
-    ImageResize(&right, 50, 50);
     ImageResize(&_playButton, 200, 125);
     ImageResize(&_background, WIDTH + 100, HEIGHT + 100);
 
-    arrow_left = LoadTextureFromImage(left);
-    arrow_right = LoadTextureFromImage(right);
     playButton = LoadTextureFromImage(_playButton);
     background = LoadTextureFromImage(_background);
 
     font = LoadFont("resources/font/Caramel Sweets.ttf");
-}
-
-void Mid::loadRect()
-{
-    arrow_left_rect = {300, 180, (float)arrow_left.width,
-                           (float)arrow_left.height};
-    arrow_right_rect = {450, 180, (float)arrow_left.width,
-                            (float)arrow_left.height};
 }
 
 void Mid::drawModels()
@@ -175,25 +158,9 @@ void Mid::drawModels()
 void Mid::drawPlayersInfo()
 {
     DrawTextEx(font, "Pl 1", Vector2{130.0f, 190.0f}, 35, 2, BLACK);
-    DrawTexture(arrow_left, 300, 180, WHITE);
-    if (arrow)
-        DrawTextEx(font, "IA", Vector2{375.0f, 190.0f}, 35, 2, BLACK);
-    else
-        DrawTextEx(font, "Pl 2", Vector2{355.0f, 190.0f}, 35, 2, BLACK);
-    DrawTexture(arrow_right, 450, 180, WHITE);
+    DrawTextEx(font, "Pl 2", Vector2{355.0f, 190.0f}, 35, 2, BLACK);
     DrawTextEx(font, "IA", Vector2{600.0f, 190.0f}, 35, 2, BLACK);
     DrawTextEx(font, "IA", Vector2{825.0f, 190.0f}, 35, 2, BLACK);
-}
-
-void Mid::checkMouse()
-{
-    if (CheckCollisionPointRec(mousePoint, arrow_left_rect) ||
-        CheckCollisionPointRec(mousePoint, arrow_right_rect)) {
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && arrow)
-            arrow = false;
-        else if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !arrow)
-            arrow = true;
-    }
 }
 
 void Mid::drawButton()
