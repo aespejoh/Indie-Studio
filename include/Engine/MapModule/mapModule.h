@@ -58,14 +58,14 @@ public:
     void loadMap(const std::string &filename);
     void generateMap();
     void printAsciiMap();
-    bool canPass(Vector3 &pos);
+    bool canPass(Vector3 &pos, Vector3 &player);
     int cellType(Vector3 &pos);
 
 private:
     static std::string lastFile(std::vector<std::string> files);
     static std::string getFile();
     static std::string getFileName();
-    bool initialPlayerPos(int row, int col);
+    static bool initialPlayerPos(int row, int col);
     void initWalls();
     void initExit();
     void initBoxes();
