@@ -20,7 +20,7 @@
 class Player
 {
     public:
-        explicit Player(int playerID, MapModule &map);
+        explicit Player(int playerID, MapModule *map);
         void draw();
         void moveUp();
         void moveLeft();
@@ -30,7 +30,7 @@ class Player
 
     protected:
         void load_model_and_texture(int player_num);
-        MapModule _map;
+        MapModule *_map;
         Model _model;
         Texture _texture;
         Vector3 _position = {0.0f, 0.0f, 0.0f};

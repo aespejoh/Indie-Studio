@@ -60,8 +60,13 @@ public:
     void printAsciiMap();
     bool canPass(Vector3 &pos);
     int cellType(Vector3 &pos);
+    void destroyBoxes(Vector3 pos);
 
 private:
+    void destroyUp(int row, int col);
+    void destroyDown(int row, int col);
+    void destroyRight(int row, int col);
+    void destroyLeft(int row, int col);
     static std::string lastFile(std::vector<std::string> files);
     static std::string getFile();
     static std::string getFileName();

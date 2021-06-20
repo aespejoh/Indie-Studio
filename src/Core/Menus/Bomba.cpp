@@ -28,8 +28,6 @@ void Bomba::addTick()
     _tick++;
 }
 
-#include <iostream>
-
 bool Bomba::update()
 {
     addTick();

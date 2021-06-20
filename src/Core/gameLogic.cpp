@@ -6,7 +6,8 @@
 */
 #include "Core/gameLogic.hpp"
 
-GameLogic::GameLogic(MessageBus *msgBus) : MsgNode(msgBus)
+GameLogic::GameLogic(MessageBus *msgBus)
+ : MsgNode(msgBus)
 {
 }
 
@@ -65,6 +66,7 @@ void GameLogic::update()
         if (item != nullptr) {
             if (item->update()) {
                 item->explode();
+                _map->destroyBoxes(item->getPosition());
                 delete item;
                 item = nullptr;
             }
@@ -84,4 +86,9 @@ const std::vector<Bomba *> &GameLogic::getBombs() const
 BombModel *GameLogic::getBombModel()
 {
     return &bombModel;
+}
+
+void GameLogic::loadMap(MapModule *map)
+{
+    _map = map;
 }

@@ -9,6 +9,7 @@
 #define BOMB_HPP
 
 #include "raylib.h"
+#include "MapModule/mapModule.h"
 
 #define BOMB_MODEL_PATH "resources/bomb/bomb.gltf"
 #define BOMB_TEXTURE_PATH "resources/bomb/Normal.png"
@@ -31,11 +32,12 @@ class Bomba {
         int get_Tick() const;
         bool update();
         void explode();
+        Vector3 getPosition() {return _position;};
     private:
+
         void addTick();
         Vector3 _position;
         Model _model;
-        Texture *_texture;
         float _scale = 5.0f;
         Color _color;
         int _tick = 0;

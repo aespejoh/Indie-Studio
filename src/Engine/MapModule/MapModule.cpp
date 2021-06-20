@@ -206,6 +206,7 @@ std::vector<Vector3> MapModule::getExitPosition()
 
 void MapModule::generatePositionVectors()
 {
+    positions.clear();
     std::vector<Vector3> boxPositions = generateBoxPositions();
     std::vector<Vector3> wallPositions = generateWallPositions();
 
@@ -253,4 +254,59 @@ int MapModule::cellType(Vector3 &pos)
     int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
 
     return (ascii_map[row][col]);
+}
+
+void MapModule::destroyBoxes(Vector3 pos)
+{
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+    destroyDown(row, col);
+    destroyLeft(row, col);
+    destroyRight(row, col);
+    destroyUp(row, col);
+    generatePositionVectors();
+}
+
+void MapModule::destroyUp(int row, int col)
+{
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        col--;
+        if (i == 3)
+            break;
+    }
+}
+
+void MapModule::destroyDown(int row, int col)
+{
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        col++;
+        if (i == 3)
+            break;
+    }
+}
+
+void MapModule::destroyRight(int row, int col)
+{
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        row++;
+        if (i == 3)
+            break;
+    }
+}
+
+void MapModule::destroyLeft(int row, int col)
+{
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        row--;
+        if (i == 3)
+            break;
+    }
 }
