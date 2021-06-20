@@ -26,7 +26,6 @@ Game::Game(Core *core) : _core(core)
     _model = LoadModelFromMesh(mesh);
     Texture2D texture2 = LoadTexture("resources/cubicmap_atlas.png");
     _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture2;
-
     UnloadImage(image);
 }
 
