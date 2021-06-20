@@ -28,3 +28,8 @@ void Object::draw()
             item->draw();
     }
 }
+
+void Object::setPosition(Vector3 position)
+{
+    _position = position;
+}

@@ -16,7 +16,8 @@
 #include "Core.hpp"
 
 Core::Core()
-        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus) {
+        : sound(&bus), handler(&bus), logic(&bus), cameraHandler(&bus), renderModule(&bus){
+    map.generateMap();
     InitWindow(width, height, "\0");
     SetTargetFPS(fps);
     loadMusicAndSounds();
@@ -42,8 +43,8 @@ void Core::loadMusicAndSounds() {
 }
 
 void Core::setCamera() {
-    cameraHandler.setPosition(0.0f, 10.0f, 10.0f);
-    cameraHandler.setTarget(0.0f, 0.0f, 0.0f);
+    cameraHandler.setPosition(13.0f, 25.0f, 19.0f);
+    cameraHandler.setTarget(5.0f, -14.0f, 0.0f);
     cameraHandler.setUp(0.0f, 1.0f, 0.0f);
     cameraHandler.setFov(45.0f);
     cameraHandler.setProjection(CAMERA_PERSPECTIVE);
@@ -57,7 +58,7 @@ void Core::gameLoop()
     Settings settings(this);
     PauseMenu pause(this);
     GameOver gameOver(this);
-
+    renderModule.loadTextures();
     while (status != EXIT) {
         switch (status) {
             case MAIN:
@@ -89,8 +90,8 @@ void Core::gameLoop()
 }
 
 
-MessageBus Core::getBus() {
-    return bus;
+MessageBus * Core::getBus() {
+    return &bus;
 }
 
 SoundHandler &Core::getSound() {
@@ -112,6 +113,21 @@ CameraHandler &Core::getCameraHandler() {
 void Core::setSecPlayer(bool secPlayer)
 {
     sec_player = secPlayer;
+}
+
+MapModule &Core::getMap()
+{
+    return (map);
+}
+
+RenderModule Core::getRender()
+{
+    return (renderModule);
+}
+
+bool Core::isSecPlayer() const
+{
+    return sec_player;
 }
 
 const std::vector<std::vector<int>> &Core::getMap() const {

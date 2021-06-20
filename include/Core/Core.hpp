@@ -12,6 +12,7 @@
 #include <SoundModule/SoundHandler.hpp>
 #include <gameLogic.hpp>
 #include <inputHandler.hpp>
+#include <Objects/renderModule.hpp>
 #include "Menus.hpp"
 #include "raylib.h"
 
@@ -22,7 +23,7 @@ class Core {
         void gameLoop();
         void loadMusicAndSounds();
         void setCamera();
-        MessageBus getBus();
+        MessageBus* getBus();
         SoundHandler &getSound();
         InputHandler &getHandler();
         GameLogic &getLogic();
@@ -33,6 +34,12 @@ class Core {
         void setFps(int fps);
         float getMusicVolume();
         void setMusicVolume(float musicVolume);
+        MapModule &getMap();
+        RenderModule getRender();
+
+    bool isSecPlayer() const;
+
+    void setSecPlayer(bool secPlayer);
 
 private:
         MessageBus bus;
@@ -40,6 +47,8 @@ private:
         InputHandler handler;
         GameLogic logic;
         CameraHandler cameraHandler;
+        MapModule map;
+        RenderModule renderModule;
         Menu status;
         bool sec_player = false;
         float music_volume = 1.0;

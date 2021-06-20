@@ -18,11 +18,12 @@ class Object {
         explicit Object(int uniqueID);
         int getID();
         void loadComponent(BaseComponent *comp);
+        void setPosition(Vector3 position);
         Vector3 getPosition() {return  _position;};
         void draw();
     private:
         int ID;
-        Vector3 _position;
+        Vector3 _position = {0,0,0};
         std::list<BaseComponent*> _components;
 };
 

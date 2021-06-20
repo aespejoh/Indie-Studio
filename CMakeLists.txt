@@ -46,8 +46,12 @@ add_executable(bomberman
         include/Engine/SoundModule/SoundHandler.hpp
         include/Engine/console.hpp
         include/Engine/SceneManager.hpp
+        src/Core/Player.cpp
+        include/Core/Player.hpp
+        src/Core/Menus/Bomba.cpp
+        include/Core/Bomba.hpp
         src/Core/MainExceptions.cpp include/Core/MainExceptions.hpp src/Core/Menus/PauseMenu.cpp include/Core/Menus/PauseMenu.hpp)
 include_directories(./include include/Engine/Messages include/Core
-        include/Engine include/Engine/InputModule include/Core/Menus)
+        include/Engine include/Engine/InputModule include/Core/Menus include/Engine/Objects)
 find_package(raylib REQUIRED)
 target_link_libraries(bomberman raylib)
