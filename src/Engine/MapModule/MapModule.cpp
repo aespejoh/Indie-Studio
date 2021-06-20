@@ -109,8 +109,8 @@ void MapModule::loadMap(const std::string &filename)
 
 bool MapModule::initialPlayerPos(int row, int col)
 {
-    if (row == 1 || row == MAX_ROW - 2) {
-        if (col == 1 || col == MAX_ROW - 2)
+    if (row == 1 || row == 2 || row == MAX_ROW - 2 || row == MAX_ROW - 3) {
+        if (col == 1 || col == 2 || col == MAX_ROW - 2 || col == MAX_ROW - 3)
             return (true);
     }
     return (false);
