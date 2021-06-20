@@ -28,12 +28,12 @@ class Player
         void moveDown();
         const Vector3 &getPosition() const;
 
-    private:
+    protected:
         void load_model_and_texture(int player_num);
         MapModule _map;
         Model _model;
         Texture _texture;
-        Vector3 _position = {5.0f, 0.0f, 5.0f};
+        Vector3 _position = {0.0f, 0.0f, 0.0f};
         BoundingBox _boundingBox;
         float _scale = 0.075f;
         Color _color = WHITE;

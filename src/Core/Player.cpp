@@ -12,21 +12,29 @@ void Player::load_model_and_texture(int player_num)
 {
     switch (player_num) {
     case 1:
+        _position.x = 1.0f;
+        _position.z = 1.0f;
         _model = LoadModel(MODEL_PLAYER_PATH);
         _texture = LoadTexture(TEXTURE_BLACK_PLAYER_PATH);
         _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
         break;
     case 2:
+        _position.x = 1.0f;
+        _position.z = MAX_ROW - 2;
         _model = LoadModel(MODEL_PLAYER_PATH);
         _texture = LoadTexture(TEXTURE_BLUE_PLAYER_PATH);
         _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
         break;
     case 3:
+        _position.x = MAX_ROW - 2;
+        _position.z = 1.0f;
         _model = LoadModel(MODEL_PLAYER_PATH);
         _texture = LoadTexture(TEXTURE_YELLOW_PLAYER_PATH);
         _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
         break;
     case 4:
+        _position.x = MAX_ROW - 2;
+        _position.z = MAX_ROW - 2;
         _model = LoadModel(MODEL_PLAYER_PATH);
         _texture = LoadTexture(TEXTURE_RED_PLAYER_PATH);
         _model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = _texture;
