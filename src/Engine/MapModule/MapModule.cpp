@@ -273,8 +273,8 @@ bool MapModule::canPass(Vector3 &pos, Vector3 &player, int playerId)
 {
     int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
     int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
-    BoundingBox box = {(Vector3) {pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f}, (Vector3) {pos.x + 0.5f, pos.y + 0.5f, pos.z + 0.5f}};
-    BoundingBox playerBox = {(Vector3) {player.x - 0.48f, player.y - 0.48f, player.z - 0.48f}, (Vector3) {player.x + 0.48f, player.y + 0.48f, player.z + 0.48f}};
+    BoundingBox box = {Vector3 {pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f}, Vector3 {pos.x + 0.5f, pos.y + 0.5f, pos.z + 0.5f}};
+    BoundingBox playerBox = {Vector3 {player.x - 0.48f, player.y - 0.48f, player.z - 0.48f}, Vector3 {player.x + 0.48f, player.y + 0.48f, player.z + 0.48f}};
 
     if (checkMap(row, col, playerId))
         return (true);
