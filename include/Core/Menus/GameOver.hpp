@@ -21,18 +21,18 @@ class GameOver {
         Menu menu();
         void loadTextures();
         void initInfo();
-        void playMouseCheck();
+        void exitMouseCheck();
 
     private:
         Core *core;
         Font font;
-        Texture2D playButton;
-        float playFrameHeight = 0.0;
-        Rectangle playSourceRec = {0, 0, 0, 0};
-        int playState = 0;  // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
-        bool playAction = false;
+        Texture2D exitButton;
+        float exitFrameHeight = 0.0;
+        Rectangle exitSourceRec = {0, 0, 0, 0};
+        int exitState = 0;  // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
+        bool exitAction = false;
         Vector2 mousePoint = { 0.0f, 0.0f };
-        Rectangle playBtnBounds = {0, 0, 0, 0};;
+        Rectangle exitBtnBounds = {0, 0, 0, 0};;
 };
 
 #endif /* !GAMEOVER_HPP_ */
