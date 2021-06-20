@@ -65,6 +65,14 @@ void GameLogic::onNotify(Msg message)
             break;
         }
     }
+    if (_player3 != nullptr) {
+        if (message.getType() == PLA3_PLACE_BOMB)
+            add_bomb(new Bomba(_player3->getPosition(), bombModel));
+    }
+    if (_player4 != nullptr) {
+        if (message.getType() == PLA4_PLACE_BOMB)
+            add_bomb(new Bomba(_player4->getPosition(), bombModel));
+    }
 }
 
 void GameLogic::updateAI() const
