@@ -9,16 +9,9 @@
 #include <MapModule/mapModule.h>
 #include <Objects/renderModule.hpp>
 
-    int test(void)
-    {
+int main()
+{
         Core core;
         core.gameLoop();
-        return 0;
-    }
-
-    int main()
-    {
-        test();
-        //Core core;
-        //core.gameLoop();
-    }
+        return (0);
+}
