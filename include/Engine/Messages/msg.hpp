@@ -23,7 +23,9 @@ enum msgType {
     PLA2_MOVE_LEFT,
     PLA2_MOVE_RIGHT,
     PLACE_BOMB,
-    PLA2_PLACE_BOMB
+    PLA2_PLACE_BOMB,
+    PLA3_PLACE_BOMB,
+    PLA4_PLACE_BOMB
 };
 
 
