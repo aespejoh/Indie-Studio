@@ -15,9 +15,9 @@ Game::Game(Core *core) : _core(core)
     _core->getLogic()._player1 = player1;
     Player *player2 = new Player(2, &_core->getMap());
     _core->getLogic()._player2 = player2;
-    AI *player3 = new AI(3, &_core->getMap());
+    AI *player3 = new AI(3, &_core->getMap(), _core->getBus());
     _core->getLogic()._player3 = player3;
-    AI *player4 = new AI(4, &_core->getMap());
+    AI *player4 = new AI(4, &_core->getMap(), _core->getBus());
     _core->getLogic()._player4 = player4;
     _core->getLogic().getBombModel()->load_model_texture();
     Image image = LoadImage("resources/cubicmap.png");

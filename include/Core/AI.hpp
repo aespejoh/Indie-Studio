@@ -8,9 +8,10 @@
 #ifndef BOMBERMAN_AI_HPP
 #define BOMBERMAN_AI_HPP
 
+#include "MsgNode.hpp"
 #include <Core/Player.hpp>
 
-class AI : public Player {
+class AI : public Player, public MsgNode {
 public:
     enum Direction {
         UP,
@@ -20,13 +21,15 @@ public:
         STEADY
     };
 
-    explicit AI(int, MapModule *);
-    void update();
+    explicit AI(int, MapModule *, MessageBus *);
+    void update() override;
 
 private:
     Direction dir;
     float travelled;
+    int bombCooldown;
 
+    void setBomb();
     std::pair<bool, int> nearbyTarget();
     void changeDirection();
     void moveAI();
