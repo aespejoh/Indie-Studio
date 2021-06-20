@@ -69,8 +69,10 @@ void GameLogic::onNotify(Msg message)
 
 void GameLogic::updateAI() const
 {
-    _player3->update();
-    _player4->update();
+    if (_player3 != nullptr)
+        _player3->update();
+    if (_player4 != nullptr)
+        _player4->update();
 }
 
 void GameLogic::update()
