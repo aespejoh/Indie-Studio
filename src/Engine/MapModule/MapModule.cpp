@@ -237,23 +237,50 @@ const std::map<std::string, std::vector<Vector3>> &MapModule::getPositions() con
     return (positions);
 }
 
-bool MapModule::canPass(Vector3 &pos)
-{
-    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
-    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
-
-    std::cerr << "x " << pos.x << " row " << row << "\tz " << pos.z << " col " << col << std::endl;
-    if (ascii_map[row][col] == MapCell::Empty)
-        return (true);
-    return (false);
-}
-
 int MapModule::cellType(Vector3 &pos)
 {
     int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
     int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
 
     return (ascii_map[row][col]);
+}
+
+bool MapModule::checkMap(int row, int col, int playerId)
+{
+    switch (playerId) {
+        case (1):
+            if (ascii_map[row][col] == Empty || ascii_map[row][col] == Player1)
+                return (true);
+            return (false);
+        case (2):
+            if (ascii_map[row][col] == Empty || ascii_map[row][col] == Player2)
+                return (true);
+            return (false);
+        case (3):
+            if (ascii_map[row][col] == Empty || ascii_map[row][col] == Player3)
+                return (true);
+            return (false);
+        case (4):
+            if (ascii_map[row][col] == Empty || ascii_map[row][col] == Player4)
+                return (true);
+            return (false);
+        default:
+            return (false);
+    }
+}
+
+bool MapModule::canPass(Vector3 &pos, Vector3 &player, int playerId)
+{
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+    BoundingBox box = {(Vector3) {pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f}, (Vector3) {pos.x + 0.5f, pos.y + 0.5f, pos.z + 0.5f}};
+    BoundingBox playerBox = {(Vector3) {player.x - 0.48f, player.y - 0.48f, player.z - 0.48f}, (Vector3) {player.x + 0.48f, player.y + 0.48f, player.z + 0.48f}};
+
+    if (checkMap(row, col, playerId))
+        return (true);
+    else if (CheckCollisionBoxes(box, playerBox))
+        return (false);
+    return (true);
 }
 
 int MapModule::destroy(Vector3 pos)

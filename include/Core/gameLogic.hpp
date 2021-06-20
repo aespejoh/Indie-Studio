@@ -10,6 +10,7 @@
 #include "MsgNode.hpp"
 #include "Player.hpp"
 #include "Bomba.hpp"
+#include <Core/AI.hpp>
 
 class GameLogic : public MsgNode {
     public:
@@ -20,10 +21,12 @@ class GameLogic : public MsgNode {
         void loadMap(MapModule *);
         const std::vector<Bomba *> &getBombs() const;
         void damage(Vector3 bombPosition);
+        void updateAI() const;
+
         Player *_player1;
         Player *_player2;
-        Player *_player3;
-        Player *_player4;
+        AI *_player3;
+        AI *_player4;
     private:
         std::vector<Player*> _players;
         BombModel bombModel;

@@ -21,12 +21,12 @@ class Player
 {
     public:
         explicit Player(int playerID, MapModule *map);
-        void draw();
-        void moveUp();
-        void moveLeft();
-        void moveRight();
-        void moveDown();
-        const Vector3 &getPosition() const;
+        virtual void draw();
+        virtual void moveUp();
+        virtual void moveLeft();
+        virtual void moveRight();
+        virtual void moveDown();
+        virtual const Vector3 &getPosition() const;
 
     protected:
         void load_model_and_texture(int player_num);

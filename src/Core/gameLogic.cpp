@@ -67,6 +67,12 @@ void GameLogic::onNotify(Msg message)
     }
 }
 
+void GameLogic::updateAI() const
+{
+    _player3->update();
+    _player4->update();
+}
+
 void GameLogic::update()
 {
     int ret = 0;

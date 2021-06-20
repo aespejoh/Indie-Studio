@@ -60,7 +60,7 @@ void Player::moveUp()
     _map->clearPlayerPos(pos);
     pos.z -= 0.05f;
 
-    if (_map->canPass(pos)) {
+    if (_map->canPass(pos, _position, _player_ID)) {
         _position.z -= 0.05f;
         if (_yaw < 180.0f)
             _yaw += 10.0f;
@@ -77,7 +77,7 @@ void Player::moveLeft()
     _map->clearPlayerPos(pos);
     pos.x -= 0.05f;
 
-    if (_map->canPass(pos)) {
+    if (_map->canPass(pos, _position, _player_ID)) {
         _position.x -= 0.05f;
         if (_yaw < 90)
             _yaw += 10.0f;
@@ -94,7 +94,7 @@ void Player::moveRight()
     _map->clearPlayerPos(pos);
     pos.x += 0.05f;
 
-    if (_map->canPass(pos)) {
+    if (_map->canPass(pos, _position, _player_ID)) {
         _position.x += 0.05f;
         _yaw == 0 ? _yaw = 360 : _yaw;
         if (_yaw < 270)
@@ -112,7 +112,7 @@ void Player::moveDown()
     _map->clearPlayerPos(pos);
     pos.z += 0.05f;
 
-    if (_map->canPass(pos)) {
+    if (_map->canPass(pos, _position, _player_ID)) {
         _position.z += 0.05f;
         _yaw == 360 ? _yaw = 0 : _yaw;
         if (_yaw >= 270)

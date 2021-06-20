@@ -15,6 +15,10 @@ Game::Game(Core *core) : _core(core)
     _core->getLogic()._player1 = player1;
     Player *player2 = new Player(2, &_core->getMap());
     _core->getLogic()._player2 = player2;
+    AI *player3 = new AI(3, &_core->getMap());
+    _core->getLogic()._player3 = player3;
+    AI *player4 = new AI(4, &_core->getMap());
+    _core->getLogic()._player4 = player4;
     _core->getLogic().getBombModel()->load_model_texture();
     Image image = LoadImage("resources/cubicmap.png");
     _texture = LoadTextureFromImage(image);
@@ -44,6 +48,10 @@ Menu Game::menu() {
         _core->getLogic()._player1->draw();
     if (_core->getLogic()._player2 != nullptr)
         _core->getLogic()._player2->draw();
+    if (_core->getLogic()._player3 != nullptr)
+            _core->getLogic()._player3->draw();
+    if (_core->getLogic()._player4 != nullptr)
+            _core->getLogic()._player4->draw();
     _core->getRender().renderMap(_core->getMap());
     for (const auto &item : _core->getLogic().getBombs())
         if (item != nullptr)
@@ -51,6 +59,7 @@ Menu Game::menu() {
     _core->getCameraHandler().End3DMode();
     DrawTextureEx(_texture, Vector2{ 1000 - _texture.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
     DrawRectangleLines(1000 - _texture.width*4 - 20, 20, _texture.width*4, _texture.height*4, GREEN);
+    _core->getLogic().updateAI();
     _core->getLogic().update();
     _core->getHandler().update();
     _core->getBus()->notify();

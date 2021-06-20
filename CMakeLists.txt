@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17.4)
 project(bomberman)
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 add_executable(bomberman
@@ -47,7 +48,9 @@ add_executable(bomberman
         include/Engine/console.hpp
         include/Engine/SceneManager.hpp
         src/Core/Player.cpp
+        src/Core/AI.cpp
         include/Core/Player.hpp
+        include/Core/AI.hpp
         src/Core/Menus/Bomba.cpp
         include/Core/Bomba.hpp
         src/Core/MainExceptions.cpp
