@@ -32,13 +32,16 @@ Game::~Game()
 }
 
 Menu Game::menu() {
+    if (is_gameover())
+        return GAME_OVER;
     ClearBackground(WHITE);
-
     BeginDrawing();
     _core->getCameraHandler().Begin3DMode();
     _core->getLogic().loadMap(&_core->getMap());
-    _core->getLogic()._player1->draw();
-    _core->getLogic()._player2->draw();
+    if (_core->getLogic()._player1 != nullptr)
+        _core->getLogic()._player1->draw();
+    if (_core->getLogic()._player2 != nullptr)
+        _core->getLogic()._player2->draw();
     _core->getRender().renderMap(_core->getMap());
     for (const auto &item : _core->getLogic().getBombs())
         if (item != nullptr)
@@ -51,7 +54,20 @@ Menu Game::menu() {
     _core->getBus()->notify();
     _core->getCameraHandler().End3DMode();
     EndDrawing();
-
     return GAME;
 }
+
+bool Game::is_gameover()
+{
+    if (_core->isSecPlayer()) {
+        if (_core->getLogic()._player1 == nullptr || _core->getLogic()._player2 ==
+            nullptr)
+            return true;
+    } else {
+        if (_core->getLogic()._player1 == nullptr)
+            return true;
+    }
+    return false;
+}
+
 

@@ -31,6 +31,7 @@ class Core {
         MapModule &getMap();
         RenderModule getRender();
 
+    bool isSecPlayer() const;
 
     void setSecPlayer(bool secPlayer);
 

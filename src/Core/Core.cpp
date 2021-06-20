@@ -67,6 +67,7 @@ void Core::gameLoop()
                 status = mainMenu.menu();
                 break;
         }
+
         if (status == MAIN)
             status = mainMenu.menu();
         else if (status == MID)
@@ -126,4 +127,9 @@ MapModule &Core::getMap()
 RenderModule Core::getRender()
 {
     return (renderModule);
+}
+
+bool Core::isSecPlayer() const
+{
+    return sec_player;
 }

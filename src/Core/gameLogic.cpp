@@ -17,44 +17,53 @@ GameLogic::GameLogic(MessageBus *msgBus)
 
 void GameLogic::onNotify(Msg message)
 {
-    switch (message.getType()) {
-    case MOVE_UP:
-        _player1->moveUp();
-        break;
-    case MOVE_DOWN:
-        _player1->moveDown();
-        break;
-    case MOVE_LEFT:
-        _player1->moveLeft();
-        break;
-    case MOVE_RIGHT:
-        _player1->moveRight();
-        break;
-    case PLA2_MOVE_UP:
-        _player2->moveUp();
-        break;
-    case PLA2_MOVE_DOWN:
-        _player2->moveDown();
-        break;
-    case PLA2_MOVE_LEFT:
-        _player2->moveLeft();
-        break;
-    case PLA2_MOVE_RIGHT:
-        _player2->moveRight();
-        break;
-    case PLACE_BOMB:
-        if (_bombCooldown1 == 0) {
-            add_bomb(new Bomba(_player1->getPosition(), bombModel));
-            _bombCooldown1 = 50;
+    if (_player1 != nullptr) {
+        switch (message.getType()) {
+        case MOVE_UP:
+            _player1->moveUp();
+            break;
+        case MOVE_DOWN:
+            _player1->moveDown();
+            break;
+        case MOVE_LEFT:
+            _player1->moveLeft();
+            break;
+        case MOVE_RIGHT:
+            _player1->moveRight();
+            break;
+        case PLACE_BOMB:
+            if (_bombCooldown1 == 0) {
+                add_bomb(new Bomba(_player1->getPosition(), bombModel));
+                _bombCooldown1 = 50;
+            }
+            break;
+        default:
+            break;
         }
-        break;
-    case PLA2_PLACE_BOMB:
-        if (_bombCooldown2 == 0) {
-            add_bomb(new Bomba(_player2->getPosition(), bombModel));
-            _bombCooldown2 = 50;
+    }
+    if (_player2 != nullptr) {
+        switch (message.getType()) {
+        case PLA2_MOVE_UP:
+            _player2->moveUp();
+            break;
+        case PLA2_MOVE_DOWN:
+            _player2->moveDown();
+            break;
+        case PLA2_MOVE_LEFT:
+            _player2->moveLeft();
+            break;
+        case PLA2_MOVE_RIGHT:
+            _player2->moveRight();
+            break;
+            break;
+        case PLA2_PLACE_BOMB:
+            if (_bombCooldown2 == 0) {
+                add_bomb(new Bomba(_player2->getPosition(), bombModel));
+                _bombCooldown2 = 50;
+            }
+        default:
+            break;
         }
-    default:
-        break;
     }
 }
 
