@@ -43,7 +43,7 @@ Menu Victory::menu()
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
-    core->getBus().notify();
+    core->getBus()->notify();
 
     mousePoint = GetMousePosition();
 
