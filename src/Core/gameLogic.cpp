@@ -53,6 +53,12 @@ void GameLogic::onNotify(Msg message)
     }
 }
 
+void GameLogic::updateAI() const
+{
+    _player3->update();
+    _player4->update();
+}
+
 void GameLogic::update()
 {
     _bombCooldown1 != 0 ? _bombCooldown1-- : _bombCooldown1;
