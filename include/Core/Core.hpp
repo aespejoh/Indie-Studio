@@ -36,11 +36,7 @@ class Core {
         void setMusicVolume(float musicVolume);
         MapModule &getMap();
         RenderModule getRender();
-
-    bool isSecPlayer() const;
-
-    void setSecPlayer(bool secPlayer);
-
+        bool isSecPlayer() const;
 private:
         MessageBus bus;
         SoundHandler sound;

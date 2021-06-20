@@ -32,6 +32,8 @@ Game::~Game()
 }
 
 Menu Game::menu() {
+    _core->getCameraHandler().setPosition(13.0f, 25.0f, 19.0f);
+    _core->getCameraHandler().setTarget(5.0f, -14.0f, 0.0f);
     if (is_gameover())
         return GAME_OVER;
     ClearBackground(WHITE);

@@ -25,10 +25,11 @@ Menu GameOver::menu()
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
-    core->getBus().notify();
+    core->getBus()->notify();
 
     BeginDrawing();
     DrawTextEx(font, "GAME OVER", Vector2{(float)WIDTH/2 - 200, (float)
     HEIGHT/2 - 100},100, 2, RED);
     EndDrawing();
+    return GAME_OVER;
 }
