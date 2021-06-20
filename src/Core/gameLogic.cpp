@@ -79,15 +79,19 @@ void GameLogic::update()
     switch (ret) {
         case Player1:
             delete _player1;
+            _player1 = nullptr;
             break;
         case Player2:
             delete _player2;
+            _player2 = nullptr;
             break;
         case Player3:
             delete _player3;
+            _player3 = nullptr;
             break;
         case Player4:
             delete _player4;
+            _player4 = nullptr;
             break;
         default:
             break;
