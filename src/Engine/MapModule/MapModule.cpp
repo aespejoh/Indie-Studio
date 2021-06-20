@@ -107,6 +107,15 @@ void MapModule::loadMap(const std::string &filename)
     }
 }
 
+bool MapModule::initialPlayerPos(int row, int col)
+{
+    if (row == 1 || row == MAX_ROW - 2) {
+        if (col == 1 || col == MAX_ROW - 2)
+            return (true);
+    }
+    return (false);
+}
+
 void MapModule::initWalls()
 {
     for (int i = 0; i < MAX_ROW; ++i) {
@@ -133,7 +142,7 @@ void MapModule::initExit()
     do {
         i = dist(mt);
         j = dist(mt);
-    } while (this->ascii_map[i][j] != MapCell::Empty);
+    } while (!initialPlayerPos(i, j) && this->ascii_map[i][j] != MapCell::Empty);
     this->ascii_map[i][j] = MapCell::ExitWithBox;
 }
 
@@ -149,7 +158,7 @@ void MapModule::initBoxes()
     while (numBoxes <= MAX_BOXES) {
         i = dist(mt);
         j = dist(mt);
-        if (this->ascii_map[i][j] == MapCell::Empty) {
+        if (!initialPlayerPos(i, j) && this->ascii_map[i][j] == MapCell::Empty) {
             this->ascii_map[i][j] = MapCell::Box;
             numBoxes++;
         }
@@ -236,4 +245,12 @@ bool MapModule::canPass(Vector3 &pos)
     if (ascii_map[row][col] == MapCell::Empty)
         return (true);
     return (false);
+}
+
+int MapModule::cellType(Vector3 &pos)
+{
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+
+    return (ascii_map[row][col]);
 }

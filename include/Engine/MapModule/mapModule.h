@@ -59,11 +59,13 @@ public:
     void generateMap();
     void printAsciiMap();
     bool canPass(Vector3 &pos);
+    int cellType(Vector3 &pos);
 
 private:
     static std::string lastFile(std::vector<std::string> files);
     static std::string getFile();
     static std::string getFileName();
+    bool initialPlayerPos(int row, int col);
     void initWalls();
     void initExit();
     void initBoxes();
