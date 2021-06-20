@@ -57,9 +57,9 @@ Player::Player(int playerID, MapModule &map) : _player_ID(playerID), _map(map)
 void Player::moveUp()
 {
     Vector3 pos = this->_position;
-    pos.z -= 0.05f;
+    pos.z -= 0.5f;
 
-    if (_map.canPass(pos)) {
+    if (_map.canPass(pos, _position)) {
         _position.z -= 0.05f;
         if (_yaw < 180.0f)
             _yaw += 10.0f;
@@ -72,9 +72,9 @@ void Player::moveUp()
 void Player::moveLeft()
 {
     Vector3 pos = this->_position;
-    pos.x -= 0.05f;
+    pos.x -= 0.5f;
 
-    if (_map.canPass(pos)) {
+    if (_map.canPass(pos, _position)) {
         _position.x -= 0.05f;
         if (_yaw < 90)
             _yaw += 10.0f;
@@ -87,9 +87,9 @@ void Player::moveLeft()
 void Player::moveRight()
 {
     Vector3 pos = this->_position;
-    pos.x += 0.05f;
+    pos.x += 0.5f;
 
-    if (_map.canPass(pos)) {
+    if (_map.canPass(pos, _position)) {
         _position.x += 0.05f;
         _yaw == 0 ? _yaw = 360 : _yaw;
         if (_yaw < 270)
@@ -103,9 +103,9 @@ void Player::moveRight()
 void Player::moveDown()
 {
     Vector3 pos = this->_position;
-    pos.z += 0.05f;
+    pos.z += 0.5f;
 
-    if (_map.canPass(pos)) {
+    if (_map.canPass(pos, _position)) {
         _position.z += 0.05f;
         _yaw == 360 ? _yaw = 0 : _yaw;
         if (_yaw >= 270)
