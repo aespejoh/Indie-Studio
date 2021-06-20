@@ -25,14 +25,14 @@ Victory::~Victory()
 
 void Victory::loadTextures()
 {
-    Image _playButton = LoadImage("resources/buttons/playButton.png");
+    Image _exitButton = LoadImage("resources/buttons/exitButton.png");
 
-    if (_playButton.height == 0)
+    if (_exitButton.height == 0)
         throw MainException("Loading of textures in main menu failed.");
 
-    ImageResize(&_playButton, 200, 125);
+    ImageResize(&_exitButton, 200, 125);
 
-    playButton = LoadTextureFromImage(_playButton);
+    exitButton = LoadTextureFromImage(_exitButton);
 }
 
 Menu Victory::menu()
@@ -48,19 +48,19 @@ Menu Victory::menu()
     mousePoint = GetMousePosition();
 
     initInfo();
-    playMouseCheck();
+    exitMouseCheck();
 
     BeginDrawing();
     DrawTextEx(font, "YOU HAVE WON!", Vector2{(float)WIDTH/2 - 250, (float)
                                                                         HEIGHT/2 - 100},100, 2, WHITE);
-    DrawTextureRec(playButton, playSourceRec,
-                   Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
+    DrawTextureRec(exitButton, exitSourceRec,
+                   Vector2{ exitBtnBounds.x, exitBtnBounds.y }, WHITE);
     EndDrawing();
 
-    if (playAction) {
+    if (exitAction) {
         core->setPrevStatus(GAME_OVER);
-        playAction = false;
-        return MID;
+        exitAction = false;
+        return EXIT;
     }
     return VICTORY;
 }
@@ -68,29 +68,29 @@ Menu Victory::menu()
 void Victory::initInfo()
 {
     // Define frame rectangle for drawing
-    playFrameHeight = (float)playButton.height/NUM_FRAMES;
+    exitFrameHeight = (float)exitButton.height/NUM_FRAMES;
 
-    playSourceRec = {0, 0, (float)playButton.width, playFrameHeight};
+    exitSourceRec = {0, 0, (float)exitButton.width, exitFrameHeight};
 
-    playBtnBounds = {WIDTH/2.0f - playButton.width/2.0f,
-                     HEIGHT/2.0f - playButton.height/NUM_FRAMES/2.0f + 200,
-                     (float)playButton.width, playFrameHeight};
+    exitBtnBounds = {WIDTH/2.0f - exitButton.width/2.0f,
+                     HEIGHT/2.0f - exitButton.height/NUM_FRAMES/2.0f + 200,
+                     (float)exitButton.width, exitFrameHeight};
 }
 
-void Victory::playMouseCheck()
+void Victory::exitMouseCheck()
 {
     // Check button state
-    if (CheckCollisionPointRec(mousePoint, playBtnBounds)) {
+    if (CheckCollisionPointRec(mousePoint, exitBtnBounds)) {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-            playState = 2;
+            exitState = 2;
         else
-            playState = 1;
+            exitState = 1;
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-            playAction = true;
+            exitAction = true;
     }
-    else playState = 0;
+    else exitState = 0;
 
-    if (playAction)
+    if (exitAction)
         core->getSound().playSound("button");
-    playSourceRec.y = playState * playFrameHeight;
+    exitSourceRec.y = exitState * exitFrameHeight;
 }
