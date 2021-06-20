@@ -33,13 +33,11 @@ Game::~Game()
 
 Menu Game::menu() {
     ClearBackground(WHITE);
-    _core->getCameraHandler().setTarget(0.0f, 1.5f, 0.0f);
 
     BeginDrawing();
     _core->getCameraHandler().Begin3DMode();
 
     _core->getRender().renderMap(_core->getMap());
-//    DrawModel(_model, mapPosition, 1.0f, WHITE);
     _core->getLogic()._player1->draw();
     _core->getLogic()._player2->draw();
     _core->getCameraHandler().End3DMode();
