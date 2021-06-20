@@ -24,7 +24,7 @@
 
 #define MAX_COL 15
 #define MAX_ROW 15
-#define MAX_BOXES 40
+#define MAX_BOXES 30
 
 enum MapCell {
     Empty,

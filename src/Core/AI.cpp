@@ -6,11 +6,13 @@
 */
 
 #include <Core/AI.hpp>
+#include <Bomba.hpp>
 
-AI::AI(int playerID, MapModule *map) : Player(playerID, map)
+AI::AI(int playerID, MapModule *map, MessageBus *bus) : Player(playerID, map), MsgNode(bus)
 {
     dir = Direction::LEFT;
     travelled = 0;
+    bombCooldown = 0;
 }
 
 std::pair<bool, int> AI::nearbyTarget()
@@ -161,16 +163,29 @@ bool AI::randomMovement()
     return (false);
 }
 
+void AI::setBomb()
+{
+    if (bombCooldown == 0) {
+        if (_player_ID == 3)
+            send(Msg(PLA3_PLACE_BOMB));
+        else if (_player_ID == 4)
+            send(Msg(PLA4_PLACE_BOMB));
+        bombCooldown = 70;
+    }
+
+}
+
 void AI::update()
 {
     std::pair<bool, int>nearby = nearbyTarget();
+    bombCooldown != 0 ? bombCooldown-- : bombCooldown;
 
     if (randomMovement())
         return;
     if (nearby.first) {
-        /*if (nearby.second == Box)
-            return; //setBomb();
-        else */if (nearby.second != Empty) {
+        if (nearby.second == Box)
+            setBomb();
+        else if (nearby.second != Empty) {
             changeDirection();
         }
     }
