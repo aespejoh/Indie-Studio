@@ -65,6 +65,7 @@ include_directories(./include
         include/Engine
         include/Engine/InputModule
         include/Core/Menus
-        include/Engine/Objects)
+        include/Engine/Objects
+        _deps)
 find_package(raylib REQUIRED)
 target_link_libraries(bomberman raylib)
