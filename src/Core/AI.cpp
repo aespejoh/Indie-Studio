@@ -16,32 +16,36 @@ AI::AI(int playerID, MapModule *map) : Player(playerID, map)
 std::pair<bool, int> AI::nearbyTarget()
 {
     Vector3 pos = _position;
+    bool obstacle = true;
     int cellType;
 
     switch(dir) {
         case (UP):
             pos.z -= 0.5;
             cellType = _map->cellType(pos);
+            obstacle = _map->canPass(pos, _position, _player_ID);
             break;
         case DOWN:
             pos.z += 0.5;
             cellType = _map->cellType(pos);
+            obstacle = _map->canPass(pos, _position, _player_ID);
             break;
         case LEFT:
             pos.x -= 0.5;
             cellType = _map->cellType(pos);
+            obstacle = _map->canPass(pos, _position, _player_ID);
             break;
         case RIGHT:
             pos.x += 0.5;
             cellType = _map->cellType(pos);
+            obstacle = _map->canPass(pos, _position, _player_ID);
             break;
         case STEADY:
             cellType = Empty;
+            obstacle = _map->canPass(pos, _position, _player_ID);
             break;
     }
-    if (cellType != Empty)
-        return (std::make_pair(true, cellType));
-    return (std::make_pair(false, cellType));
+    return (std::make_pair(!obstacle, cellType));
 }
 
 bool AI::goodDirection(Vector3 pos, Direction direction)
@@ -62,7 +66,7 @@ bool AI::goodDirection(Vector3 pos, Direction direction)
         default:
             return (false);
     }
-    if (_map->canPass(pos, _position, 0)) {
+    if (_map->canPass(pos, _position, _player_ID)) {
         dir = direction;
         return (true);
     }
@@ -147,7 +151,7 @@ bool AI::randomMovement()
 {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<float> dist(20.0, 70.0);
+    std::uniform_real_distribution<float> dist(30.0, 60.0);
 
     if (travelled >= dist(mt)) {
         changeDirection();
