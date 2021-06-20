@@ -10,7 +10,12 @@
 PauseMenu::PauseMenu(Core *core)
 {
     this->core = core;
-    loadTextures();
+    try {
+        loadTextures();
+    } catch (MainException exception) {
+        std::cout << "Loop Error: " << exception.what();
+        exit(84);
+    }
 }
 
 PauseMenu::~PauseMenu()
@@ -25,6 +30,10 @@ void PauseMenu::loadTextures()
     Image _playButton = LoadImage("resources/buttons/playButton.png");
     Image _optionsButton = LoadImage("resources/buttons/optionsButton.png");
     Image _exitButton = LoadImage("resources/buttons/exitButton.png");
+
+    if (back.height == 0 || _playButton.height == 0 ||
+        _optionsButton.height == 0 || _exitButton.height == 0)
+        throw MainException("Loading of textures in main menu failed.");
 
     ImageResize(&back, WIDTH + 100, HEIGHT + 100);
     ImageResize(&_playButton, 200, 125);
@@ -56,14 +65,17 @@ Menu PauseMenu::menu()
     drawings();
 
     if (exitAction) {
+        core->setPrevStatus(PAUSE);
         exitAction = false;
         return EXIT;
     }
     if (playAction) {
+        core->setPrevStatus(PAUSE);
         playAction = false;
         return GAME;
     }
     if (optionsAction) {
+        core->setPrevStatus(PAUSE);
         optionsAction = false;
         return SETTINGS;
     }

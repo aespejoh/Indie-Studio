@@ -13,6 +13,7 @@
 #include "Menus/Settings.hpp"
 #include "Menus/PauseMenu.hpp"
 #include "Menus/GameOver.hpp"
+#include "Menus/Victory.hpp"
 #include "Core.hpp"
 
 Core::Core()
@@ -23,6 +24,7 @@ Core::Core()
     loadMusicAndSounds();
     setCamera();
     status = MAIN;
+    prevStatus = MAIN;
 }
 
 Core::~Core()
@@ -59,6 +61,8 @@ void Core::gameLoop()
     PauseMenu pause(this);
     GameOver gameOver(this);
     renderModule.loadTextures();
+    Victory victory(this);
+
     while (status != EXIT) {
         switch (status) {
             case MAIN:
@@ -75,6 +79,12 @@ void Core::gameLoop()
                 break;
             case PAUSE:
                 status = pause.menu();
+                break;
+            case GAME_OVER:
+                status = gameOver.menu();
+                break;
+            case VICTORY:
+                status = victory.menu();
                 break;
             default:
                 status = mainMenu.menu();
@@ -148,4 +158,12 @@ float Core::getMusicVolume(){
 
 void Core::setMusicVolume(float musicVolume) {
     music_volume = musicVolume;
+}
+
+void Core::setPrevStatus(Menu prevStatus){
+    Core::prevStatus = prevStatus;
+}
+
+Menu Core::getPrevStatus() const {
+    return prevStatus;
 }

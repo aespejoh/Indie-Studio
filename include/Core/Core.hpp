@@ -37,6 +37,9 @@ class Core {
         MapModule &getMap();
         RenderModule getRender();
         bool isSecPlayer() const;
+        void setPrevStatus(Menu prevStatus);
+        Menu getPrevStatus() const;
+
 private:
         MessageBus bus;
         SoundHandler sound;
@@ -46,6 +49,7 @@ private:
         MapModule map;
         RenderModule renderModule;
         Menu status;
+        Menu prevStatus;
         bool sec_player = false;
         float music_volume = 1.0;
         std::vector<std::vector<int>> _map;

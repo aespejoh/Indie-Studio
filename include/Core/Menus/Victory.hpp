@@ -1,12 +1,11 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-YEP-400-BAR-4-1-indiestudio-arnau.espejo-hernandez
+** Victory.hpp.h
 ** File description:
-** GameOver
+** Victory.hpp.h
 */
-
-#ifndef GAMEOVER_HPP_
-#define GAMEOVER_HPP_
+#ifndef BOMBERMAN_VICTORY_HPP
+#define BOMBERMAN_VICTORY_HPP
 
 #include "Core.hpp"
 
@@ -14,10 +13,10 @@
 #define HEIGHT 750
 #define NUM_FRAMES 2
 
-class GameOver {
+class Victory {
     public:
-        GameOver(Core *core);
-        ~GameOver();
+        Victory(Core *core);
+        ~Victory();
         Menu menu();
         void loadTextures();
         void initInfo();
@@ -35,4 +34,4 @@ class GameOver {
         Rectangle playBtnBounds = {0, 0, 0, 0};;
 };
 
-#endif /* !GAMEOVER_HPP_ */
+#endif //BOMBERMAN_VICTORY_HPP

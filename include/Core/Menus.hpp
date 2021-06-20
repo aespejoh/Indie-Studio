@@ -14,7 +14,8 @@ enum Menu {
     GAME_OVER,
     EXIT,
     PAUSE,
-    SETTINGS
+    SETTINGS,
+    VICTORY
 };
 
 #endif //BOMBERMAN_MENUS_HPP

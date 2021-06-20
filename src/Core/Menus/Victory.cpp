@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2021
-** B-YEP-400-BAR-4-1-indiestudio-arnau.espejo-hernandez
+** Victory.cpp.c
 ** File description:
-** GameOver
+** Victory.cpp.c
 */
 
-#include "Menus/GameOver.hpp"
+#include "Victory.hpp"
 
-GameOver::GameOver(Core *core)
+Victory::Victory(Core *core)
 {
     this->core = core;
     font = LoadFont("resources/font/Caramel Sweets.ttf");
@@ -19,11 +19,11 @@ GameOver::GameOver(Core *core)
     }
 }
 
-GameOver::~GameOver()
+Victory::~Victory()
 {
 }
 
-void GameOver::loadTextures()
+void Victory::loadTextures()
 {
     Image _playButton = LoadImage("resources/buttons/playButton.png");
 
@@ -35,15 +35,15 @@ void GameOver::loadTextures()
     playButton = LoadTextureFromImage(_playButton);
 }
 
-Menu GameOver::menu()
+Menu Victory::menu()
 {
-    ClearBackground(BLACK);
+    ClearBackground(SKYBLUE);
 
     core->getSound().playMusic("hp");
     core->getLogic().update();
     core->getSound().update();
     core->getHandler().update();
-    core->getBus()->notify();
+    core->getBus().notify();
 
     mousePoint = GetMousePosition();
 
@@ -51,8 +51,8 @@ Menu GameOver::menu()
     playMouseCheck();
 
     BeginDrawing();
-    DrawTextEx(font, "GAME OVER", Vector2{(float)WIDTH/2 - 200, (float)
-    HEIGHT/2 - 100},100, 2, RED);
+    DrawTextEx(font, "YOU HAVE WON!", Vector2{(float)WIDTH/2 - 250, (float)
+                                                                        HEIGHT/2 - 100},100, 2, WHITE);
     DrawTextureRec(playButton, playSourceRec,
                    Vector2{ playBtnBounds.x, playBtnBounds.y }, WHITE);
     EndDrawing();
@@ -62,10 +62,10 @@ Menu GameOver::menu()
         playAction = false;
         return MID;
     }
-    return GAME_OVER;
+    return VICTORY;
 }
 
-void GameOver::initInfo()
+void Victory::initInfo()
 {
     // Define frame rectangle for drawing
     playFrameHeight = (float)playButton.height/NUM_FRAMES;
@@ -77,7 +77,7 @@ void GameOver::initInfo()
                      (float)playButton.width, playFrameHeight};
 }
 
-void GameOver::playMouseCheck()
+void Victory::playMouseCheck()
 {
     // Check button state
     if (CheckCollisionPointRec(mousePoint, playBtnBounds)) {

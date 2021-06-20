@@ -30,6 +30,7 @@ class Mid {
         void drawButton();
         void playMouseCheck();
         void initInfo();
+        void checkFiles();
     private:
         Core *core;
         Model boomberman_blue;
