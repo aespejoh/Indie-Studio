@@ -306,6 +306,8 @@ int MapModule::destroyUp(int row, int col)
     for (int i = 0; ascii_map[row][col] != Wall; i++) {
         if (ascii_map[row][col] == Box)
             ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] == ExitWithBox)
+            ascii_map[row][col] = Exit;
         if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
             ret = ascii_map[row][col];
         col == 0 ? col : col--;
@@ -321,6 +323,8 @@ int MapModule::destroyDown(int row, int col)
     for (int i = 0; ascii_map[row][col] != Wall; i++) {
         if (ascii_map[row][col] == Box)
             ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] == ExitWithBox)
+            ascii_map[row][col] = Exit;
         if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
             ret = ascii_map[row][col];
         col == MAX_COL ? col : col++;
@@ -336,6 +340,8 @@ int MapModule::destroyRight(int row, int col)
     for (int i = 0; ascii_map[row][col] != Wall; i++) {
         if (ascii_map[row][col] == Box)
             ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] == ExitWithBox)
+            ascii_map[row][col] = Exit;
         if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
             ret = ascii_map[row][col];
         row == MAX_ROW ? row : row++;
@@ -351,6 +357,8 @@ int MapModule::destroyLeft(int row, int col)
     for (int i = 0; ascii_map[row][col] != Wall; i++) {
         if (ascii_map[row][col] == Box)
             ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] == ExitWithBox)
+            ascii_map[row][col] = Exit;
         if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
             ret = ascii_map[row][col];
         row == 0 ? row : row--;
