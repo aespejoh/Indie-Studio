@@ -13,6 +13,7 @@
 #include "Menus/Settings.hpp"
 #include "Menus/PauseMenu.hpp"
 #include "Menus/GameOver.hpp"
+#include "Menus/Victory.hpp"
 #include "Core.hpp"
 
 Core::Core()
@@ -58,6 +59,7 @@ void Core::gameLoop()
     Settings settings(this);
     PauseMenu pause(this);
     GameOver gameOver(this);
+    Victory victory(this);
 
     while (status != EXIT) {
         switch (status) {
@@ -78,6 +80,9 @@ void Core::gameLoop()
                 break;
             case GAME_OVER:
                 status = gameOver.menu();
+                break;
+            case VICTORY:
+                status = victory.menu();
                 break;
             default:
                 status = mainMenu.menu();
