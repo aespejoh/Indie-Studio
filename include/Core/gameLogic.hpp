@@ -10,6 +10,7 @@
 #include "MsgNode.hpp"
 #include "Player.hpp"
 #include "Bomba.hpp"
+#include <Core/AI.hpp>
 
 class GameLogic : public MsgNode {
     public:
@@ -17,12 +18,13 @@ class GameLogic : public MsgNode {
         void update() override;
         void add_bomb(Bomba*);
         BombModel *getBombModel();
+        void updateAI() const;
 
     const std::vector<Bomba *> &getBombs() const;
         Player *_player1;
         Player *_player2;
-        Player *_player3;
-        Player *_player4;
+        AI *_player3;
+        AI *_player4;
     private:
         BombModel bombModel;
         void onNotify(Msg message) override;
