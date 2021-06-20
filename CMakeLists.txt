@@ -47,7 +47,9 @@ add_executable(bomberman
         include/Engine/console.hpp
         include/Engine/SceneManager.hpp
         src/Core/Player.cpp
+        src/Core/AI.cpp
         include/Core/Player.hpp
+        include/Core/AI.hpp
         src/Core/Menus/Bomba.cpp
         include/Core/Bomba.hpp)
 include_directories(./include include/Engine/Messages include/Core
