@@ -38,8 +38,6 @@ Game::~Game()
 Menu Game::menu() {
     _core->getCameraHandler().setPosition(13.0f, 25.0f, 19.0f);
     _core->getCameraHandler().setTarget(5.0f, -14.0f, 0.0f);
-    if (is_gameover())
-        return GAME_OVER;
     ClearBackground(WHITE);
     BeginDrawing();
     _core->getCameraHandler().Begin3DMode();
@@ -65,20 +63,27 @@ Menu Game::menu() {
     _core->getBus()->notify();
     _core->getCameraHandler().End3DMode();
     EndDrawing();
-    return GAME;
+    return is_gameover();
 }
 
-bool Game::is_gameover()
+Menu Game::is_gameover()
 {
     if (_core->isSecPlayer()) {
-        if (_core->getLogic()._player1 == nullptr || _core->getLogic()._player2 ==
+        if (_core->getLogic()._player3 == nullptr && _core->getLogic()._player4 ==
+            nullptr && (_core->getLogic()._player1 == nullptr || _core->getLogic()._player2 ==
+            nullptr))
+            return VICTORY;
+        if (_core->getLogic()._player1 == nullptr && _core->getLogic()._player2 ==
             nullptr)
-            return true;
+            return GAME_OVER;
     } else {
         if (_core->getLogic()._player1 == nullptr)
-            return true;
+            return GAME_OVER;
+        if (_core->getLogic()._player2 == nullptr && _core->getLogic()._player3 ==
+            nullptr && _core->getLogic()._player4 == nullptr)
+            return VICTORY;
     }
-    return false;
+    return GAME;
 }
 
 

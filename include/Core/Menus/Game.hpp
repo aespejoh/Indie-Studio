@@ -16,7 +16,7 @@ class Game {
         ~Game();
         Menu menu();
     private:
-        bool is_gameover();
+        Menu is_gameover();
         Core *_core;
         Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };
     Model _model;
