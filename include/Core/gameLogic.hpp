@@ -19,11 +19,13 @@ class GameLogic : public MsgNode {
         BombModel *getBombModel();
         void loadMap(MapModule *);
         const std::vector<Bomba *> &getBombs() const;
+        void damage(Vector3 bombPosition);
         Player *_player1;
         Player *_player2;
         Player *_player3;
         Player *_player4;
     private:
+        std::vector<Player*> _players;
         BombModel bombModel;
         MapModule *_map;
         void onNotify(Msg message) override;

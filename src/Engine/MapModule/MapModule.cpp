@@ -256,57 +256,93 @@ int MapModule::cellType(Vector3 &pos)
     return (ascii_map[row][col]);
 }
 
-void MapModule::destroyBoxes(Vector3 pos)
+int MapModule::destroy(Vector3 pos)
+{
+    int ret = 0;
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+    int down = destroyDown(row, col);
+    int left = destroyLeft(row, col);
+    int right = destroyRight(row, col);
+    int up = destroyUp(row, col);
+    generatePositionVectors();
+    down != 0 ? ret = down : down;
+    left != 0 ? ret = left : left;
+    right != 0 ? ret = right : right;
+    up != 0 ? ret = up : up;
+    return ret;
+}
+
+int MapModule::destroyUp(int row, int col)
+{
+    int ret = 0;
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
+            ret = ascii_map[row][col];
+        col == 0 ? col : col--;
+        if (i == 3)
+            break;
+    }
+    return ret;
+}
+
+int MapModule::destroyDown(int row, int col)
+{
+    int ret = 0;
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
+            ret = ascii_map[row][col];
+        col == MAX_COL ? col : col++;
+        if (i == 3)
+            break;
+    }
+    return ret;
+}
+
+int MapModule::destroyRight(int row, int col)
+{
+    int ret = 0;
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
+            ret = ascii_map[row][col];
+        row == MAX_ROW ? row : row++;
+        if (i == 3)
+            break;
+    }
+    return ret;
+}
+
+int MapModule::destroyLeft(int row, int col)
+{
+    int ret = 0;
+    for (int i = 0; ascii_map[row][col] != Wall; i++) {
+        if (ascii_map[row][col] == Box)
+            ascii_map[row][col] = Empty;
+        if (ascii_map[row][col] >= Player1 && ascii_map[row][col] <= Player4)
+            ret = ascii_map[row][col];
+        row == 0 ? row : row--;
+        if (i == 3)
+            break;
+    }
+    return ret;
+}
+
+void MapModule::clearPlayerPos(Vector3 pos)
 {
     int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
     int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
-    destroyDown(row, col);
-    destroyLeft(row, col);
-    destroyRight(row, col);
-    destroyUp(row, col);
-    generatePositionVectors();
+    ascii_map[row][col] = Empty;
 }
 
-void MapModule::destroyUp(int row, int col)
+void MapModule::putPlayerPos(Vector3 pos, int playerID)
 {
-    for (int i = 0; ascii_map[row][col] != Wall; i++) {
-        if (ascii_map[row][col] == Box)
-            ascii_map[row][col] = Empty;
-        col--;
-        if (i == 3)
-            break;
-    }
-}
-
-void MapModule::destroyDown(int row, int col)
-{
-    for (int i = 0; ascii_map[row][col] != Wall; i++) {
-        if (ascii_map[row][col] == Box)
-            ascii_map[row][col] = Empty;
-        col++;
-        if (i == 3)
-            break;
-    }
-}
-
-void MapModule::destroyRight(int row, int col)
-{
-    for (int i = 0; ascii_map[row][col] != Wall; i++) {
-        if (ascii_map[row][col] == Box)
-            ascii_map[row][col] = Empty;
-        row++;
-        if (i == 3)
-            break;
-    }
-}
-
-void MapModule::destroyLeft(int row, int col)
-{
-    for (int i = 0; ascii_map[row][col] != Wall; i++) {
-        if (ascii_map[row][col] == Box)
-            ascii_map[row][col] = Empty;
-        row--;
-        if (i == 3)
-            break;
-    }
+    int row = pos.x - (int) pos.x > 0.4 ? pos.x + 1 : pos.x;
+    int col = pos.z - (int) pos.z > 0.4 ? pos.z + 1 : pos.z;
+    ascii_map[row][col] = Bomb + playerID;
 }

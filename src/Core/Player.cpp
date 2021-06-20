@@ -57,6 +57,7 @@ Player::Player(int playerID, MapModule *map) : _player_ID(playerID), _map(map)
 void Player::moveUp()
 {
     Vector3 pos = this->_position;
+    _map->clearPlayerPos(pos);
     pos.z -= 0.05f;
 
     if (_map->canPass(pos)) {
@@ -67,11 +68,13 @@ void Player::moveUp()
             _yaw -= 10.0f;
         _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
     }
+    _map->putPlayerPos(_position, _player_ID);
 }
 
 void Player::moveLeft()
 {
     Vector3 pos = this->_position;
+    _map->clearPlayerPos(pos);
     pos.x -= 0.05f;
 
     if (_map->canPass(pos)) {
@@ -82,11 +85,13 @@ void Player::moveLeft()
             _yaw -= 10.0f;
         _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
     }
+    _map->putPlayerPos(_position, _player_ID);
 }
 
 void Player::moveRight()
 {
     Vector3 pos = this->_position;
+    _map->clearPlayerPos(pos);
     pos.x += 0.05f;
 
     if (_map->canPass(pos)) {
@@ -98,11 +103,13 @@ void Player::moveRight()
             _yaw -= 10.0f;
         _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
     }
+    _map->putPlayerPos(_position, _player_ID);
 }
 
 void Player::moveDown()
 {
     Vector3 pos = this->_position;
+    _map->clearPlayerPos(pos);
     pos.z += 0.05f;
 
     if (_map->canPass(pos)) {
@@ -114,6 +121,7 @@ void Player::moveDown()
             _yaw -= 10.0f;
         _model.transform = MatrixRotateXYZ(Vector3{DEG2RAD * _pitch, DEG2RAD * _yaw, DEG2RAD * _roll});
     }
+    _map->putPlayerPos(_position, _player_ID);
 }
 
 const Vector3 &Player::getPosition() const

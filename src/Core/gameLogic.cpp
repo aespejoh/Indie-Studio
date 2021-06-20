@@ -9,6 +9,10 @@
 GameLogic::GameLogic(MessageBus *msgBus)
  : MsgNode(msgBus)
 {
+    _players.push_back(_player1);
+    _players.push_back(_player2);
+    _players.push_back(_player3);
+    _players.push_back(_player4);
 }
 
 void GameLogic::onNotify(Msg message)
@@ -56,6 +60,7 @@ void GameLogic::onNotify(Msg message)
 
 void GameLogic::update()
 {
+    int ret = 0;
     _bombCooldown1 != 0 ? _bombCooldown1-- : _bombCooldown1;
     _bombCooldown2 != 0 ? _bombCooldown2-- : _bombCooldown2;
     for (auto i = _bombs.begin(); i > _bombs.end(); ++i) {
@@ -66,11 +71,27 @@ void GameLogic::update()
         if (item != nullptr) {
             if (item->update()) {
                 item->explode();
-                _map->destroyBoxes(item->getPosition());
+                ret = _map->destroy(item->getPosition());
                 delete item;
                 item = nullptr;
             }
         }
+    switch (ret) {
+        case Player1:
+            delete _player1;
+            break;
+        case Player2:
+            delete _player2;
+            break;
+        case Player3:
+            delete _player3;
+            break;
+        case Player4:
+            delete _player4;
+            break;
+        default:
+            break;
+    }
 }
 
 void GameLogic::add_bomb(Bomba *bomb)
@@ -91,4 +112,17 @@ BombModel *GameLogic::getBombModel()
 void GameLogic::loadMap(MapModule *map)
 {
     _map = map;
+}
+
+void GameLogic::damage(Vector3 bombPosition)
+{
+    Vector3 pos = bombPosition;
+    for (int i = 0; _map->cellType(pos) != MapCell::Wall; i++)
+    {
+        for (auto &item : _players) {
+            if (pos.x == item->getPosition().x && pos.y == item->getPosition().y) {
+
+            }
+        }
+    }
 }
