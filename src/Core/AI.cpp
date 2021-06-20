@@ -170,7 +170,7 @@ void AI::setBomb()
             send(Msg(PLA3_PLACE_BOMB));
         else if (_player_ID == 4)
             send(Msg(PLA4_PLACE_BOMB));
-        bombCooldown = 50;
+        bombCooldown = 70;
     }
 
 }
